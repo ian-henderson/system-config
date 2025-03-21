@@ -41,13 +41,8 @@ if [[ ! -d "$config" ]]; then
 fi
 
 config_dirs=(
-#	"alacritty"
 	"fastfetch"
-#	"foot"
-#	"gammastep"
-#	"gtk-3.0"
 	"nvim"
-#	"sway"
 )
 
 for d in "${config_dirs[@]}"; do
@@ -62,9 +57,3 @@ for d in "${config_dirs[@]}"; do
 		ln -s "$source_dir" "$target_dir"
 	fi
 done
-
-# One-off thing to make sure sway has a logs directory
-# sway_logs="$HOME/.config/sway/logs"
-# if [[ ! -d "$sway_logs" ]]; then
-# 	mkdir "$sway_logs"
-# fi
