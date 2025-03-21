@@ -1,9 +1,0 @@
-# https://alacritty.org/config-alacritty.html
-# https://github.com/alacritty/alacritty-theme
-
-[general]
-import = [ "/home/ian/.config/alacritty/themes/catppuccin_mocha.toml" ]
-
-[font]
-normal = { family = "Ubuntu Sans Mono" }
-size = 18

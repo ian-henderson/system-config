@@ -4,6 +4,7 @@ flatpak remote-add --if-not-exists \
 	flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 flatpak install -y \
+	app.devsuite.Ptyxis \
 	ca.desrt.dconf-editor \
 	ch.protonmail.protonmail-bridge \
 	com.calibre_ebook.calibre \
