@@ -7,6 +7,7 @@ parent_dir="$PWD/.."
 home_dotfiles=(
 	"bash_profile"
 	"bashrc"
+	"emacs.d"
 	"gitconfig"
 	"inputrc"
 )
@@ -16,7 +17,7 @@ for f in "${home_dotfiles[@]}"; do
 	target_file="$HOME/.$f"
 
 	if [[ -f "$target_file" ]] || [[ -L "$target_file" ]]; then
-		rm "$target_file"
+		rm -rf "$target_file"
 	fi
 
 	if [[ -e "$source_file" ]]; then

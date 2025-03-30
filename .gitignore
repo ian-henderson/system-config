@@ -1,2 +1,15 @@
-sway/logs
-theme
+emacs.d/*~
+emacs.d/**/*~
+emacs.d/*.elc
+emacs.d/.emacs.desktop
+emacs.d/.emacs.desktop.lock
+emacs.d/.last-package-update-day
+emacs.d/ac-comphist.dat
+emacs.d/auto-save-list
+emacs.d/eln-cache
+emacs.d/elpa
+emacs.d/eshell/
+emacs.d/framesets.d
+emacs.d/recentf
+emacs.d/session.*
+emacs.d/transient

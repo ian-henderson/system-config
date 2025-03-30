@@ -8,6 +8,7 @@ flatpak install -y \
 	ca.desrt.dconf-editor \
 	ch.protonmail.protonmail-bridge \
 	com.calibre_ebook.calibre \
+	com.discordapp.Discord \
 	com.github.johnfactotum.Foliate \
 	com.github.tchx84.Flatseal \
 	com.mattjakeman.ExtensionManager \

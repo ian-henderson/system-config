@@ -2,6 +2,9 @@
 
 source $HOME/.bashrc.d/variables.sh
 
+alias s="mit-scheme --quiet --load $1"
+alias cl="sbcl --noinform --load $1"
+
 alias cat="batcat -pp --tabs 8 --theme ansi"
 alias elitebook="ssh ian@elitebook"
 alias g=git
