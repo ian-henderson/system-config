@@ -10,14 +10,11 @@
  rcirc-server-alist
  `(("irc.libera.chat"
     :channels ("##politics"
-               "#c"
                "#cs"
                "#emacs"
                "#hacksoc"
                "#linux"
                "#networking"
-               "#nixos"
-               "#python"
                "#systemcrafters")
     :encryption tls
     :nick ,(getenv "LIBERA_USERNAME")

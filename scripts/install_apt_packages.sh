@@ -11,18 +11,23 @@ sudo apt install -y \
 	btop \
 	curl \
 	distrobox \
+	emacs-gtk \
+	emacs-common-non-dfsg \
 	fastfetch \
 	firefox \
 	flatpak \
+	gcc \
 	git \
 	lolcat \
+	make \
 	neovim \
+	thunderbird \
 	tree \
-	wget
+	wget \
+	wl-clipboard
 
 # Rust-specific packages
 sudo apt install -y \
-	gcc \
 	libssl-dev \
 	pkg-config
 
@@ -45,4 +50,3 @@ sudo apt remove -y \
 # TODO: add vscode and 1password
 
 sudo apt autoremove -y
-

@@ -4,7 +4,7 @@
 
 (setq-default
  eww-search-prefix "https://lite.duckduckgo.com/lite?q="
- shr-width 70)
+ shr-width 50)
 
 (defun eww-add-bookmark ()
   "Bookmark the current page."

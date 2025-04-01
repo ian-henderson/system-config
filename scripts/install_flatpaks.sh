@@ -17,8 +17,8 @@ flatpak install -y \
 	io.missioncenter.MissionCenter \
 	me.timschneeberger.GalaxyBudsClient \
 	org.gimp.GIMP \
+	org.gnome.Boxes \
 	org.gnome.Papers \
 	org.gnome.baobab \
-	org.mozilla.Thunderbird \
 	org.signal.Signal \
 	us.zoom.Zoom

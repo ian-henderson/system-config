@@ -6,13 +6,13 @@
 ;; (setq-default line-spacing 0.2)
 
 (set-face-attribute
- 'default nil :family "Victor Mono" :height default-font-height)
+ 'default nil :family "Maple Mono" :height default-font-height)
 
 (set-face-attribute
- 'fixed-pitch nil :family "Victor Mono" :height default-font-height)
+ 'fixed-pitch nil :family "Maple Mono" :height default-font-height)
 
 (set-face-attribute
- 'variable-pitch nil :family "Adwaita Sans" :height default-font-height)
+ 'variable-pitch nil :family "Liberation Serif" :height default-font-height)
 
 (defun increase-font-size ()
   "Increase font size."

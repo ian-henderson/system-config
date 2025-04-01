@@ -8,7 +8,20 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("3aa51468052c1e3e21dd41a3fa40c0161e07ca600683e3d96f1bca70f36749e2"
+   '("0325a6b5eea7e5febae709dab35ec8648908af12cf2d2b569bedc8da0a3a81c1"
+     "f053f92735d6d238461da8512b9c071a5ce3b9d972501f7a5e6682a90bf29725"
+     "da75eceab6bea9298e04ce5b4b07349f8c02da305734f7c0c8c6af7b5eaa9738"
+     "8899e88d19a37d39c7187f4bcb5bb596fba990728ef963420b93e2aea5d1666a"
+     "aff0396925324838889f011fd3f5a0b91652b88f5fd0611f7b10021cc76f9e09"
+     "541282f66e5cc83918994002667d2268f0a563205117860e71b7cb823c1a11e9"
+     "d6b369a3f09f34cdbaed93eeefcc6a0e05e135d187252e01b0031559b1671e97"
+     "6f1f6a1a3cff62cc860ad6e787151b9b8599f4471d40ed746ea2819fcd184e1a"
+     "4ade6b630ba8cbab10703b27fd05bb43aaf8a3e5ba8c2dc1ea4a2de5f8d45882"
+     "19b62f442479efd3ca4c1cef81c2311579a98bbc0f3684b49cdf9321bd5dfdbf"
+     "6af300029805f10970ebec4cea3134f381cd02f04c96acba083c76e2da23f3ec"
+     "1ad12cda71588cc82e74f1cabeed99705c6a60d23ee1bb355c293ba9c000d4ac"
+     "cee5c56dc8b95b345bfe1c88d82d48f89e0f23008b0c2154ef452b2ce348da37"
+     "3aa51468052c1e3e21dd41a3fa40c0161e07ca600683e3d96f1bca70f36749e2"
      "0ee15d9d6ea7ac4516368884c4a4bb740c96d2054e9b0c2b0a68698a35d4438a"
      "b1791a921c4f38cb966c6f78633364ad880ad9cf36eef01c60982c54ec9dd088"
      "ffa78fc746f85d1c88a2d1691b1e37d21832e9a44a0eeee114a00816eabcdaf9"
@@ -34,7 +47,8 @@
 		   exec-path-from-shell fish-mode flycheck format-all
 		   git-gutter go-mode magit markdown-mode modus-themes
 		   moe-theme nano-modeline org-bullets paredit
-		   projectile rainbow-delimiters rust-mode yaml-mode)))
+		   projectile rainbow-delimiters rust-mode
+		   treesit-auto yaml-mode)))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

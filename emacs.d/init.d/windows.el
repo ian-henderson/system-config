@@ -2,31 +2,15 @@
 ;;; Commentary:
 ;;; Code:
 
-;; fullscreen/maximize keybindings
-(defun my-maximize-on-new-frame (frame)
-  "Make the new FRAME fullscreen."
-  (with-selected-frame frame
-    (toggle-frame-maximized)))
-
-;; maximize on start
-;; (add-hook 'after-make-frame-functions 'my-maximize-on-new-frame)
-;; (add-hook 'window-setup-hook 'toggle-frame-maximized t)
-
+;; maximize, fullscreen
 (global-set-key (kbd "C-c f") 'toggle-frame-fullscreen)
 (global-set-key (kbd "C-c m") 'toggle-frame-maximized)
-
-;; Moves cursor across panes
-(global-set-key (kbd "M-h") 'windmove-left)
-(global-set-key (kbd "M-j") 'windmove-down)
-(global-set-key (kbd "M-k") 'windmove-up)
-(global-set-key (kbd "M-l") 'windmove-right)
 
 ;; window resizing keymappings
 (global-set-key (kbd "M-<down>") 'shrink-window)
 (global-set-key (kbd "M-<up>") 'enlarge-window)
 (global-set-key (kbd "M-<left>") 'shrink-window-horizontally)
 (global-set-key (kbd "M-<right>") 'enlarge-window-horizontally)
-(global-set-key (kbd "M-0") 'balance-windows)
 
 ;; swap windows
 (global-set-key (kbd "C-c s") 'window-swap-states)
@@ -74,5 +58,9 @@
 	    (setq-default mode-line-format
 			  (delq 'mode-line-modes mode-line-format))))
 
+;; Removes client side decorations in gnome
+(add-to-list 'default-frame-alist '(undecorated . t))
+
 (provide 'windows)
+
 ;;; windows.el ends here

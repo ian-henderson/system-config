@@ -13,3 +13,4 @@ emacs.d/framesets.d
 emacs.d/recentf
 emacs.d/session.*
 emacs.d/transient
+emacs.d/url
