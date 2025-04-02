@@ -2,8 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-;; tabs
-
 (setq tab-bar-close-button-show nil
       tab-bar-format (remove 'tab-bar-format-add-tab tab-bar-format)
       tab-bar-new-tab-choice "*dashboard*")
@@ -17,43 +15,37 @@
 			     (interactive)
 			     (tab-bar-select-tab ,j))))))
 
-(dolist (binding '(("M-9" . tab-bar-switch-to-prev-tab)
-		   ("M-0" . tab-bar-switch-to-next-tab)
-		   ("M-(" . tab-bar-move-tab-backward)
-		   ("M-)" . tab-bar-move-tab)
-		   ("M-t" . tab-bar-new-tab)
-		   ("M-T" . tab-bar-undo-close-tab)
-		   ("M-w" . tab-bar-close-tab)))
+(dolist (binding '(("M-9"       . tab-bar-switch-to-prev-tab)
+		   ("M-0"       . tab-bar-switch-to-next-tab)
+		   ("M-("       . tab-bar-move-tab-backward)
+		   ("M-)"       . tab-bar-move-tab)
+		   ("M-t"       . tab-bar-new-tab)
+		   ("M-T"       . tab-bar-undo-close-tab)
+		   ("M-w"       . tab-bar-close-tab)
+		   ("C-c f"     . toggle-frame-fullscreen)
+		   ("C-c m"     . toggle-frame-maximized)
+		   ("C-c s"     . window-swap-states)
+		   ("C-c ="     . balance-windows)
+		   ("M-<down>"  . shrink-window)
+		   ("M-<up>"    . enlarge-window)
+		   ("M-<left>"  . shrink-window-horizontally)
+		   ("M-<right>" . enlarge-window-horizontally)))
   (global-set-key (kbd (car binding)) (cdr binding)))
-
-;; maximize, fullscreen
-(global-set-key (kbd "C-c f") 'toggle-frame-fullscreen)
-(global-set-key (kbd "C-c m") 'toggle-frame-maximized)
-
-;; window resizing keymappings
-(global-set-key (kbd "M-<down>") 'shrink-window)
-(global-set-key (kbd "M-<up>") 'enlarge-window)
-(global-set-key (kbd "M-<left>") 'shrink-window-horizontally)
-(global-set-key (kbd "M-<right>") 'enlarge-window-horizontally)
-
-;; swap windows
-(global-set-key (kbd "C-c s") 'window-swap-states)
-
-;; balance windows
-(global-set-key (kbd "C-c =") 'balance-windows)
 
 ;; line numbers
 (setq-default display-line-numbers-type 'relative)
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
-;; Removes minor modes from modeline after init
+;; removes minor modes from modeline after init
 (add-hook 'after-init-hook
 	  (lambda ()
 	    (setq-default mode-line-format
 			  (delq 'mode-line-modes mode-line-format))))
 
-;; Removes client side decorations in gnome
-(add-to-list 'default-frame-alist '(undecorated . t))
+;; removes client-side decorations in GNOME+Linux
+(when (and (eq system-type 'gnu/linux)
+           (string-match "GNOME" (or (getenv "XDG_CURRENT_DESKTOP") "")))
+  (add-to-list 'default-frame-alist '(undecorated . t)))
 
 (provide 'windows)
 
