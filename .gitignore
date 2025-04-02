@@ -1,3 +1,5 @@
+bashrc.d/secrets.sh
+
 emacs.d/*~
 emacs.d/**/*~
 emacs.d/*.elc
@@ -12,5 +14,6 @@ emacs.d/eshell/
 emacs.d/framesets.d
 emacs.d/recentf
 emacs.d/session.*
+emacs.d/tramp
 emacs.d/transient
 emacs.d/url

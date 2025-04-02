@@ -2,17 +2,23 @@
 ;;; Commentary:
 ;;; Code:
 
-(defvar default-font-height 200)
-;; (setq-default line-spacing 0.2)
+(defvar monospace-font-height 225)
+(defvar serif-font-height 350)
 
 (set-face-attribute
- 'default nil :family "Maple Mono" :height default-font-height)
+ 'default nil
+ :family "Maple Mono"
+ :height monospace-font-height)
 
 (set-face-attribute
- 'fixed-pitch nil :family "Maple Mono" :height default-font-height)
+ 'fixed-pitch nil
+ :family "Maple Mono"
+ :height monospace-font-height)
 
 (set-face-attribute
- 'variable-pitch nil :family "Liberation Serif" :height default-font-height)
+ 'variable-pitch nil
+ :family "Liberation Serif"
+ :height serif-font-height)
 
 (defun increase-font-size ()
   "Increase font size."
@@ -44,15 +50,16 @@
   "Reset font size."
   (interactive)
   (set-face-attribute
-   'default nil :height default-font-height)
+   'default nil :height monospace-font-height)
   (set-face-attribute
-   'fixed-pitch nil :height default-font-height)
+   'fixed-pitch nil :height monospace-font-height)
   (set-face-attribute
-   'variable-pitch nil :height default-font-height))
+   'variable-pitch nil :height serif-font-height))
 
 (global-set-key (kbd "C-=") 'increase-font-size)
 (global-set-key (kbd "C--") 'decrease-font-size)
 (global-set-key (kbd "C-0") 'reset-font-size)
 
 (provide 'fonts)
+
 ;;; fonts.el ends here

@@ -2,6 +2,30 @@
 ;;; Commentary:
 ;;; Code:
 
+;; tabs
+
+(setq tab-bar-close-button-show nil
+      tab-bar-format (remove 'tab-bar-format-add-tab tab-bar-format)
+      tab-bar-new-tab-choice "*dashboard*")
+
+(tab-bar-mode 1)
+
+(dotimes (i 7) ; Sets M-j to select tab j, where j is in series 1..8 inclusive
+  (let ((j (+ i 1)))
+    (global-set-key (kbd (format "M-%d" j))
+		    (eval `(lambda ()
+			     (interactive)
+			     (tab-bar-select-tab ,j))))))
+
+(dolist (binding '(("M-9" . tab-bar-switch-to-prev-tab)
+		   ("M-0" . tab-bar-switch-to-next-tab)
+		   ("M-(" . tab-bar-move-tab-backward)
+		   ("M-)" . tab-bar-move-tab)
+		   ("M-t" . tab-bar-new-tab)
+		   ("M-T" . tab-bar-undo-close-tab)
+		   ("M-w" . tab-bar-close-tab)))
+  (global-set-key (kbd (car binding)) (cdr binding)))
+
 ;; maximize, fullscreen
 (global-set-key (kbd "C-c f") 'toggle-frame-fullscreen)
 (global-set-key (kbd "C-c m") 'toggle-frame-maximized)
@@ -15,42 +39,12 @@
 ;; swap windows
 (global-set-key (kbd "C-c s") 'window-swap-states)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; balance windows
+(global-set-key (kbd "C-c =") 'balance-windows)
+
 ;; line numbers
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (setq-default display-line-numbers-type 'relative)
-(global-display-line-numbers-mode)
-
-(defvar display-line-numbers-exempt-modes
-  '(Buffer-menu-mode
-    dired-mode
-    ert-results-mode
-    eshell-mode
-    eww-bookmark-mode
-    eww-mode
-    help-mode
-    Info-mode
-    messages-buffer-mode
-    neotree-mode
-    rcirc-mode
-    shell-mode
-    term-mode
-    vterm-mode))
-
-(defun display-line-numbers--turn-off-in-exempt-modes ()
-  "Turn off line numbers in modes defined in `display-line-numbers-exempt-modes`."
-  (when (member major-mode display-line-numbers-exempt-modes)
-    (display-line-numbers-mode 0)))
-
-(dolist (mode display-line-numbers-exempt-modes)
-  (let ((hook (intern (concat (symbol-name mode) "-hook"))))
-    (add-hook hook #'display-line-numbers--turn-off-in-exempt-modes)))
-
-;; Turn off line numbers immediately in existing buffers of exempt modes
-(dolist (buffer (buffer-list))
-  (with-current-buffer buffer
-    (display-line-numbers--turn-off-in-exempt-modes)))
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
 ;; Removes minor modes from modeline after init
 (add-hook 'after-init-hook

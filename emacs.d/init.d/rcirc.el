@@ -2,25 +2,30 @@
 ;;; Commentary:
 ;;; Code:
 
-;; LIBERA_USERNAME and LIBERA_PASSWORD are set in ~/.profile
-
 (setq-default
  rcirc-authinfo
- `(("libera" nickserv ,(getenv "LIBERA_USERNAME") ,(getenv "LIBERA_PASSWORD")))
+ `(("libera" nickserv,(getenv "LIBERA_USERNAME") ,(getenv "LIBERA_PASSWORD")))
  rcirc-server-alist
  `(("irc.libera.chat"
-    :channels ("##politics"
-               "#cs"
-               "#emacs"
-               "#hacksoc"
-               "#linux"
-               "#networking"
-               "#systemcrafters")
+    :channels ("##politics" "##rust" "#debian" "#emacs" "#guile" "#libera"
+	       "#linux" "#lisp" "#networking" "#scheme" "#systemcrafters")
     :encryption tls
     :nick ,(getenv "LIBERA_USERNAME")
     :port 6697)))
 
-(global-set-key (kbd "C-c i") 'irc)
+(add-hook 'rcirc-mode-hook
+	  (lambda ()
+	    (set (make-local-variable 'scroll-conservatively) 8192)))
+
+(global-set-key (kbd "C-c i") 'rcirc)
+
+(defun kill-rcirc ()
+  "Kill all rcirc buffers."
+  (interactive)
+  (dolist (buffer (buffer-list))
+    (with-current-buffer buffer
+      (when (eq major-mode 'rcirc-mode)
+        (kill-buffer)))))
 
 (provide 'rcirc)
 

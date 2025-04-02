@@ -6,6 +6,7 @@
 ;; https://melpa.org
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
 (setq-default use-package-always-ensure t)
 
 ;; Loads el files in init.d

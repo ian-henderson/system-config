@@ -2,12 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-;; TODO: break these use-package calls into separate files
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Packages
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 ;; https://github.com/rranelli/auto-package-update.el
 (use-package auto-package-update
   :config
@@ -81,12 +75,6 @@
 (use-package org-bullets
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
-
-;; https://paredit.org/
-;; https://www.emacswiki.org/emacs/ParEdit
-(use-package paredit
-  :hook
-  ((emacs-lisp-mode lisp-mode scheme-mode) . paredit-mode))
 
 ;; https://github.com/Fanael/rainbow-delimiters
 (use-package rainbow-delimiters
