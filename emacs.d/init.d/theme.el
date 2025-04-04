@@ -2,35 +2,35 @@
 ;;; Commentary:
 ;;; Code:
 
-;; https://github.com/kuanyui/moe-theme.el
-(use-package moe-theme)
+(defvar theme-dark 'modus-vivendi)
+(defvar theme-light 'modus-operandi)
 
-(defvar dark-theme 'moe-dark)
-(defvar light-theme 'moe-light)
-(defvar current-theme dark-theme)
-
-(defun my-toggle-theme ()
-  "Toggle between light and dark themes."
+(defun theme-toggle ()
+  "Toggle between light and dark themes manually."
   (interactive)
-  (disable-theme current-theme)
-  (setq current-theme
-	(if (eq current-theme dark-theme) light-theme dark-theme))
-  (load-theme current-theme t))
+  (let ((theme-current (car custom-enabled-themes)))
+    (disable-theme theme-current)
+    (load-theme (if (eq theme-current theme-dark) theme-light theme-dark) t)))
 
-(global-set-key (kbd "<f5>") 'my-toggle-theme)
+(global-set-key (kbd "<f5>") #'theme-toggle)
 
-(defvar calendar-latitude  38.8339)
-(defvar calendar-longitude -104.8214)
+(use-package moe-theme
+  :defer t)
 
-;; https://github.com/guidoschmidt/circadian.el
+;; https://protesilaos.com/emacs/modus-themes
+(use-package modus-themes
+  :custom
+  (modus-themes-bold-constructs t)    ;; Enable bold text
+  (modus-themes-italic-constructs t)) ;; Enable italics
+
 (use-package circadian
+  :after modus-themes
+  :custom ; values are evaluated as literals, hence the ` and , chars
+  (calendar-latitude 38.833881)
+  (calendar-longitude -104.821365)
+  (circadian-themes `((:sunrise . ,theme-light)
+		      (:sunset  . ,theme-dark)))
   :config
-  (setq circadian-themes `((:sunrise . ,light-theme)
-			   (:sunset  . ,dark-theme)))
-  (add-hook 'circadian-after-load-theme-hook
-	    (lambda (theme)
-	      (setq current-theme theme)))
-  (add-hook 'emacs-startup-hook #'circadian-setup)
   (circadian-setup))
 
 (provide 'theme)

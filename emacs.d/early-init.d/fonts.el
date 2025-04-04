@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(defvar monospace-font-height 225)
+(defvar monospace-font-height 200)
 (defvar serif-font-height 350)
 
 (set-face-attribute
@@ -56,9 +56,12 @@
   (set-face-attribute
    'variable-pitch nil :height serif-font-height))
 
-(global-set-key (kbd "C-=") 'increase-font-size)
-(global-set-key (kbd "C--") 'decrease-font-size)
-(global-set-key (kbd "C-0") 'reset-font-size)
+(defvar key-bindings-list
+  '(("C-=" . increase-font-size)
+    ("C--" . decrease-font-size)
+    ("C-0" . reset-font-size)))
+
+(global-set-key-list key-bindings-list)
 
 (provide 'fonts)
 

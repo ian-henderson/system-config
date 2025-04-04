@@ -17,9 +17,7 @@
 	  (lambda ()
 	    (set (make-local-variable 'scroll-conservatively) 8192)))
 
-(global-set-key (kbd "C-c i") 'rcirc)
-
-(defun kill-rcirc ()
+(defun rcirc-kill-buffers ()
   "Kill all rcirc buffers."
   (interactive)
   (dolist (buffer (buffer-list))
