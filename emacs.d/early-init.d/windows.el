@@ -23,6 +23,12 @@
 (dolist (hook '(conf-toml-mode-hook prog-mode-hook))
   (add-hook hook #'display-line-numbers-mode))
 
+;; prettify symbols
+;; Going to explicitly list which modes. The default ligatures look terrible.
+(mapc (lambda (hook)
+	(add-hook hook #'prettify-symbols-mode))
+      '(emacs-lisp-mode-hook scheme-mode-hook))
+
 (defun remove-mode-line-modes-from-mode-line ()
   "Remove modes from modeline."
   (setq mode-line-format

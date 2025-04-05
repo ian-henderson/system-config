@@ -13,10 +13,10 @@
   (dashboard-setup-startup-hook)
   :custom
   (dashboard-center-content t)
-  (dashboard-items '((recents   . 10)))
+  (dashboard-items '((recents . 5)))
   (dashboard-navigation-cycle t)
   (dashboard-startup-banner
-   (expand-file-name "images/stallman.gif" user-emacs-directory))
+   (expand-file-name "images/stallman-boat.jpg" user-emacs-directory))
   (dashboard-vertically-center-content t)
   :init
   (setq-default initial-buffer-choice
@@ -32,7 +32,6 @@
 
 ;; https://github.com/emacs-evil/evil
 (use-package evil
-  ;; :defer t
   :init
   (setq-default evil-want-keybinding nil)
   (defun toggle-evil-mode ()
@@ -50,30 +49,52 @@
   :config
   (evil-collection-init))
 
+;; https://github.com/lassik/emacs-format-all-the-code
+(use-package format-all
+  :commands
+  format-all-mode
+  :custom
+  (format-all-formatters '(("Shell" (shfmt "-ci"))))
+  :hook
+  (prog-mode . format-all-mode)
+  (prog-mode . format-all-ensure-formatter))
+
 ;; https://www.flycheck.org/en/latest/user/installation.html
 (use-package flycheck
-  :defer t
   :config
   (global-flycheck-mode 1))
 
 ;; https://github.com/emacsorphanage/git-gutter
 (use-package git-gutter
-  :defer t
   :config
+  (custom-set-variables
+   '(git-gutter:update-interval 2)
+   '(git-gutter:hide-gutter t))
   (global-git-gutter-mode 1))
 
 ;; https://github.com/magit/magit
 ;; https://magit.vc/manual
-(use-package magit
-  :defer t)
+(use-package magit)
 
 ;; https://github.com/jrblevin/markdown-mode
 (use-package markdown-mode
-  :defer t
   :config
   (setq-default markdown-command "multimarkdown")
   (add-to-list 'auto-mode-alist '("\\.markdown\\'" . gfm-mode))
   (add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode)))
+
+;; https://github.com/bbatsov/projectile
+;; https://docs.projectile.mx/projectile/index.html
+(use-package projectile
+  :init
+  (setq projectile-project-search-path
+	'("~/Developer/guile"
+	  "~/Developer/rust/codecrafters-shell-rust"
+	  "~/Developer/rust/data_structures_and_algorithms"
+	  "~/Developer/system-config"))
+  :config
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (projectile-mode 1))
 
 ;; https://github.com/Fanael/rainbow-delimiters
 (use-package rainbow-delimiters
@@ -81,13 +102,40 @@
 
 ;; https://github.com/rust-lang/rust-mode
 (use-package rust-mode
-  :defer t
   :mode "\\.rs\\'"
   :config (setq-default rust-format-on-save t))
 
+;; https://github.com/minad/vertico
+(use-package vertico
+  :custom
+  (completion-ignore-case t)
+  (read-file-name-completion-ignore-case t)
+  (read-buffer-completion-ignore-case t)
+  (vertico-resize t)
+  (vertico-cycle t)
+  :config
+  (vertico-mode 1)
+  (which-key-mode 1))
+
+;; https://github.com/akermu/emacs-libvterm
+;; Depends on libvterm-dev and cmake in Debian
+(use-package vterm
+  :config
+  (with-eval-after-load 'vterm ; Insanity!
+    (add-hook 'vterm-mode-hook
+	      (lambda ()
+		(let ((meta-keys (mapcar (lambda (i)
+					   (format "M-%s" i))
+					 (append
+					  (number-sequence 0 9)
+					  '("t" "T" "w" "(" ")" "<up>"
+					    "<down>" "<left>" "<right>")))))
+		  (mapc (lambda (key)
+			  (define-key vterm-mode-map (kbd key) nil))
+			(append meta-keys '("<f5>"))))))))
+
 ;; https://github.com/yoshiki/yaml-mode
 (use-package yaml-mode
-  :defer t
   :config
   (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
   (add-to-list 'auto-mode-alist '("\\.yaml\\'" . yaml-mode)))

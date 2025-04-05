@@ -14,18 +14,18 @@
 
 (global-set-key (kbd "<f5>") #'theme-toggle)
 
-(use-package moe-theme
-  :defer t)
+;; https://github.com/kuanyui/moe-theme.el
+(use-package moe-theme)
 
 ;; https://protesilaos.com/emacs/modus-themes
 (use-package modus-themes
   :custom
-  (modus-themes-bold-constructs t)    ;; Enable bold text
-  (modus-themes-italic-constructs t)) ;; Enable italics
+  (modus-themes-bold-constructs t)    ; Enable bold text
+  (modus-themes-italic-constructs t)) ; Enable italics
 
+;; https://github.com/GuidoSchmidt/circadian.el
 (use-package circadian
-  :after modus-themes
-  :custom ; values are evaluated as literals, hence the ` and , chars
+  :custom
   (calendar-latitude 38.833881)
   (calendar-longitude -104.821365)
   (circadian-themes `((:sunrise . ,theme-light)

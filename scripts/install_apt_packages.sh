@@ -9,6 +9,8 @@ sudo apt upgrade -y
 sudo apt install -y \
 	bat \
 	btop \
+	cbonsai \
+	cmake \
 	curl \
 	distrobox \
 	emacs-gtk \
@@ -18,9 +20,11 @@ sudo apt install -y \
 	flatpak \
 	gcc \
 	git \
+	libvterm-dev \
 	lolcat \
 	make \
 	neovim \
+	shfmt \
 	thunderbird \
 	tree \
 	wget \

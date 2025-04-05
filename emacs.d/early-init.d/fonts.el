@@ -2,22 +2,25 @@
 ;;; Commentary:
 ;;; Code:
 
+(defvar monospace-font "IBM Plex Mono")
 (defvar monospace-font-height 200)
+
+(defvar serif-font "IBM Plex Serif")
 (defvar serif-font-height 350)
 
 (set-face-attribute
  'default nil
- :family "Maple Mono"
+ :family monospace-font
  :height monospace-font-height)
 
 (set-face-attribute
  'fixed-pitch nil
- :family "Maple Mono"
+ :family monospace-font
  :height monospace-font-height)
 
 (set-face-attribute
  'variable-pitch nil
- :family "Liberation Serif"
+ :family serif-font
  :height serif-font-height)
 
 (defun increase-font-size ()

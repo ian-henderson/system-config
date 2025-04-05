@@ -2,10 +2,11 @@
 
 alias cat="batcat -pp --tabs 8 --theme ansi"
 alias dell="ssh ian@dell"
-alias g=git
+alias em="emacsclient -ct"
 alias f=flatpak
 alias ff=fastfetch
 alias fflol="fastfetch | lolcat"
+alias g=git
 alias raspberrypi="ssh ian@raspberrypi"
 alias vi=nvim
 

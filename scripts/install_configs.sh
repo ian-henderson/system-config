@@ -1,12 +1,11 @@
 #!/bin/bash
 
-parent_dir="$PWD/.."
-
-### Home Dir ##################################################
+parent_dir=".."
 
 home_dotfiles=(
 	"bash_profile"
 	"bashrc"
+	"bashrc.d"
 	"emacs.d"
 	"gitconfig"
 	"inputrc"
@@ -24,16 +23,6 @@ for f in "${home_dotfiles[@]}"; do
 		ln -s "$source_file" "$target_file"
 	fi
 done
-
-bashrcd="$HOME/.bashrc.d"
-
-if [[ -d "$bashrcd" ]] || [[ -L "$bashrcd" ]]; then 
-	rm -rf "$bashrcd"
-fi
-
-ln -s "$parent_dir/bashrc.d" "$bashrcd"
-
-### Config Dir ################################################
 
 config="$HOME/.config"
 

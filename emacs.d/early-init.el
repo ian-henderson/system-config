@@ -3,7 +3,7 @@
 ;;; Code:
 
 (defun global-set-key-list (list)
-  "Set global keybindings. LIST: list of keymapping and function pairs."
+  "Set global keybindings.  LIST: list of keymapping and function pairs."
   (dolist (binding list)
     (global-set-key (kbd (car binding)) (cdr binding))))
 
