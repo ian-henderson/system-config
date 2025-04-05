@@ -17,6 +17,7 @@
 (column-number-mode 1)
 (electric-pair-mode 1)
 (global-visual-line-mode 1)
+(which-key-mode 1)
 
 ;; line numbers
 (setq-default display-line-numbers-type 'relative)
@@ -34,6 +35,11 @@
   (setq mode-line-format
 	(delq 'mode-line-modes mode-line-format)))
 (add-hook 'after-init-hook #'remove-mode-line-modes-from-mode-line)
+
+;; tab size for shell mode
+(add-hook 'sh-mode-hook
+	  (lambda ()
+	    (setq-local tab-width 4)))
 
 (provide 'windows)
 

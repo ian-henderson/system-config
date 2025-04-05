@@ -28,12 +28,15 @@
 (tool-bar-mode -1)
 
 ;; Adds clock, usage, and battery to tab bar
-(setq display-time-24hr-format t
-      display-time-interval 1
-      tab-bar-format '(tab-bar-format-tabs
-		       tab-bar-format-align-right
-		       tab-bar-format-global))
+(setq-default display-time-24hr-format t
+	      display-time-interval 1
+	      tab-bar-format '(tab-bar-format-tabs
+			       tab-bar-format-align-right
+			       tab-bar-format-global))
 (display-time-mode 1)
+(with-eval-after-load 'time
+  (setq-default display-time-mail-function nil
+		display-time-mail-string ""))
 
 ;; tab bar
 (setq tab-bar-close-button-show nil

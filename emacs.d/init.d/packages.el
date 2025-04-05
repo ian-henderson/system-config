@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-;; https://company-mode.github.io/
+;; https://company-mode.github.io
 (use-package company ; complete anything (auto complete)
   :config
   (add-hook 'after-init-hook 'global-company-mode))
@@ -20,12 +20,12 @@
   (dashboard-vertically-center-content t)
   :init
   (setq-default initial-buffer-choice
-		(lambda ()
-		  (get-buffer "*dashboard*"))))
+		(lambda () (get-buffer "*dashboard*"))))
 
 ;; https://joaotavora.github.io/eglot/
 (use-package eglot
-  :hook (rust-mode . eglot-ensure)
+  :hook
+  (rust-mode . eglot-ensure)
   :config
   (add-to-list 'eglot-server-programs
                '(rust-mode . ("rust-analyzer"))))
@@ -86,12 +86,12 @@
 ;; https://github.com/bbatsov/projectile
 ;; https://docs.projectile.mx/projectile/index.html
 (use-package projectile
-  :init
-  (setq projectile-project-search-path
-	'("~/Developer/guile"
-	  "~/Developer/rust/codecrafters-shell-rust"
-	  "~/Developer/rust/data_structures_and_algorithms"
-	  "~/Developer/system-config"))
+  :custom
+  (projectile-project-search-path
+   '("~/Developer/guile"
+     "~/Developer/rust/codecrafters-shell-rust"
+     "~/Developer/rust/data_structures_and_algorithms"
+     "~/Developer/system-config"))
   :config
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (projectile-mode 1))
@@ -103,7 +103,9 @@
 ;; https://github.com/rust-lang/rust-mode
 (use-package rust-mode
   :mode "\\.rs\\'"
-  :config (setq-default rust-format-on-save t))
+  :config
+  (setq rust-format-on-save t)
+  (add-hook 'rust-mode-hook (lambda () (flycheck-mode -1))))
 
 ;; https://github.com/minad/vertico
 (use-package vertico
@@ -111,28 +113,28 @@
   (completion-ignore-case t)
   (read-file-name-completion-ignore-case t)
   (read-buffer-completion-ignore-case t)
-  (vertico-resize t)
   (vertico-cycle t)
   :config
-  (vertico-mode 1)
-  (which-key-mode 1))
+  (vertico-mode 1))
 
 ;; https://github.com/akermu/emacs-libvterm
 ;; Depends on libvterm-dev and cmake in Debian
 (use-package vterm
   :config
-  (with-eval-after-load 'vterm ; Insanity!
-    (add-hook 'vterm-mode-hook
-	      (lambda ()
-		(let ((meta-keys (mapcar (lambda (i)
-					   (format "M-%s" i))
-					 (append
-					  (number-sequence 0 9)
-					  '("t" "T" "w" "(" ")" "<up>"
-					    "<down>" "<left>" "<right>")))))
-		  (mapc (lambda (key)
-			  (define-key vterm-mode-map (kbd key) nil))
-			(append meta-keys '("<f5>"))))))))
+  (defun unset-vterm-keys ()
+    "Unset vterm keys that overwrite existing keybindings."
+    (let ((meta-keys (mapcar (lambda (i)
+			       (format "M-%s" i))
+			     (append
+			      (number-sequence 0 9)
+			      '("t" "T" "w" "(" ")" "<up>"
+				"<down>" "<left>" "<right>")))))
+      (mapc (lambda (key)
+	      (define-key vterm-mode-map (kbd key) nil))
+	    (append meta-keys '("<f5>")))))
+
+  (with-eval-after-load 'vterm
+    (add-hook 'vterm-mode-hook #'unset-vterm-keys)))
 
 ;; https://github.com/yoshiki/yaml-mode
 (use-package yaml-mode
