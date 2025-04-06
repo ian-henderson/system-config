@@ -29,6 +29,7 @@ sudo apt install -y \
 	emacs-gtk \
 	emacs-common-non-dfsg \
 	fastfetch \
+	fish \
 	flatpak \
 	gcc \
 	git \
@@ -66,3 +67,6 @@ sudo apt remove -y \
 # TODO: add vscode and 1password
 
 sudo apt autoremove -y
+
+# Changes default shell to fish
+chsh -s $(which fish) $USER

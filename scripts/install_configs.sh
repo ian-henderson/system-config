@@ -1,6 +1,6 @@
 #!/bin/bash
 
-parent_dir=".."
+parent_dir="$PWD/.."
 
 home_dotfiles=(
 	"bash_profile"
@@ -12,15 +12,15 @@ home_dotfiles=(
 )
 
 for f in "${home_dotfiles[@]}"; do
-	source_file="$parent_dir/$f"
-	target_file="$HOME/.$f"
+	src="$parent_dir/$f"
+	target="$HOME/.$f"
 
-	if [[ -f "$target_file" ]] || [[ -L "$target_file" ]]; then
-		rm -rf "$target_file"
+	if [[ -f "$target" ]] || [[ -L "$target" ]]; then
+		rm -rf "$target"
 	fi
 
-	if [[ -e "$source_file" ]]; then
-		ln -s "$source_file" "$target_file"
+	if [[ -e "$src" ]]; then
+		ln -s "$src" "$target"
 	fi
 done
 
@@ -32,18 +32,19 @@ fi
 
 config_dirs=(
 	"fastfetch"
+	"fish"
 	"nvim"
 )
 
 for d in "${config_dirs[@]}"; do
-	source_dir="$parent_dir/$d"
-	target_dir="$config/$d"
+	src="$parent_dir/$d"
+	target="$config/$d"
 
-	if [[ -d "$target_dir" ]] || [[ -L "$target_dir" ]]; then
-		rm -rf "$target_dir"
+	if [[ -d "$target" ]] || [[ -L "$target" ]]; then
+		rm -rf "$target"
 	fi
 
-	if [[ -e "$source_dir" ]]; then
-		ln -s "$source_dir" "$target_dir"
+	if [[ -e "$src" ]]; then
+		ln -s "$src" "$target"
 	fi
 done

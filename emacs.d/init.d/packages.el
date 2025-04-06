@@ -2,6 +2,19 @@
 ;;; Commentary:
 ;;; Code:
 
+;; https://github.com/rranelli/auto-package-update.el
+(use-package auto-package-update
+  :config
+  (setq-default auto-package-update-delete-old-versions t
+                auto-package-update-hide-results t)
+  (auto-package-update-maybe))
+
+;; https://github.com/dholm/benchmark-init-el
+(use-package benchmark-init
+  :config
+  ;; To disable collection of benchmark data after init is done.
+  (add-hook 'after-init-hook 'benchmark-init/deactivate))
+
 ;; https://company-mode.github.io
 (use-package company ; complete anything (auto complete)
   :config
@@ -48,6 +61,18 @@
   evil
   :config
   (evil-collection-init))
+
+;; https://github.com/purcell/exec-path-from-shell
+(use-package exec-path-from-shell
+  :custom
+  (shell-file-name (or (executable-find "fish") (executable-find "bash")))
+  :config
+  (exec-path-from-shell-initialize)
+  (exec-path-from-shell-copy-envs
+   '("LIBERA_USERNAME" "LIBERA_PASSWORD" "LIBERA_FULL_NAME")))
+
+;; https://github.com/wwwjfy/emacs-fish
+(use-package fish-mode)
 
 ;; https://github.com/lassik/emacs-format-all-the-code
 (use-package format-all
@@ -118,8 +143,12 @@
   (vertico-mode 1))
 
 ;; https://github.com/akermu/emacs-libvterm
-;; Depends on libvterm-dev and cmake in Debian
+;; Debian dependencies: libvterm-dev, cmake
 (use-package vterm
+  :if
+  (eq system-type 'gnu/linux)
+  :custom
+  (vterm-shell (or (executable-find "fish") (executable-find "bash")))
   :config
   (defun unset-vterm-keys ()
     "Unset vterm keys that overwrite existing keybindings."
