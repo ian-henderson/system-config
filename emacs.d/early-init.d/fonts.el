@@ -3,25 +3,22 @@
 ;;; Code:
 
 (defvar monospace-font "Terminus")
-(defvar monospace-font-height 250)
+(defvar monospace-font-height 200)
 
-(defvar serif-font "Liberation Serif")
-(defvar serif-font-height 350)
+(set-face-attribute 'default nil
+		    :family monospace-font
+		    :height monospace-font-height)
 
-(set-face-attribute
- 'default nil
- :family monospace-font
- :height monospace-font-height)
+(set-face-attribute 'fixed-pitch nil
+		    :family monospace-font
+		    :height monospace-font-height)
 
-(set-face-attribute
- 'fixed-pitch nil
- :family monospace-font
- :height monospace-font-height)
+(defvar serif-font "EB Garamond")
+(defvar serif-font-height 300)
 
-(set-face-attribute
- 'variable-pitch nil
- :family serif-font
- :height serif-font-height)
+(set-face-attribute 'variable-pitch nil
+		    :family serif-font
+		    :height serif-font-height)
 
 (defun increase-font-size ()
   "Increase font size."
