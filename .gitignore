@@ -9,6 +9,7 @@ emacs.d/*.elc
 emacs.d/.emacs.desktop
 emacs.d/.emacs.desktop.lock
 emacs.d/auto-save-list
+emacs.d/history
 emacs.d/tramp
 emacs.d/.org-id-locations
 emacs.d/*_archive
@@ -36,4 +37,5 @@ emacs.d/session.*
 emacs.d/transient
 emacs.d/url
 
+fish/fish_variables
 fish/secrets.fish

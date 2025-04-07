@@ -27,6 +27,8 @@
 
 (load-custom-file)
 
+(savehist-mode t)
+
 (provide 'utils)
 
 ;;; utils.el ends here

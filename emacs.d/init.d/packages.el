@@ -28,8 +28,8 @@
   (dashboard-center-content t)
   (dashboard-items '((recents . 5)))
   (dashboard-navigation-cycle t)
-  (dashboard-startup-banner
-   (expand-file-name "images/stallman-boat.jpg" user-emacs-directory))
+  (dashboard-startup-banner 1)
+  ;; (expand-file-name "images/stallman-boat.jpg" user-emacs-directory))
   (dashboard-vertically-center-content t)
   :init
   (setq-default initial-buffer-choice
@@ -140,7 +140,9 @@
   (read-buffer-completion-ignore-case t)
   (vertico-cycle t)
   :config
-  (vertico-mode 1))
+  (vertico-mode t)
+  (vertico-buffer-mode t)
+  (vertico-mouse-mode t))
 
 ;; https://github.com/akermu/emacs-libvterm
 ;; Debian dependencies: libvterm-dev, cmake

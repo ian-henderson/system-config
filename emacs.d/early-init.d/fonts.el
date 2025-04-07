@@ -2,10 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
-(defvar monospace-font "IBM Plex Mono")
-(defvar monospace-font-height 200)
+(defvar monospace-font "Terminus")
+(defvar monospace-font-height 250)
 
-(defvar serif-font "IBM Plex Serif")
+(defvar serif-font "Liberation Serif")
 (defvar serif-font-height 350)
 
 (set-face-attribute
