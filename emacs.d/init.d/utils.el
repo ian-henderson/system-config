@@ -27,6 +27,23 @@
 
 (load-custom-file)
 
+;; https://orgmode.org/
+(use-package org
+  :ensure nil ; (built-in)
+  :custom
+  (org-hide-leading-stars t)
+  (org-startup-indented t)
+  :hook
+  (org-mode . org-indent-mode)
+  (org-mode . variable-pitch-mode)
+  :bind (:map org-mode-map
+	      ("C-c l" . org-toggle-link-display)))
+
+;; https://github.com/sabof/org-bullets
+(use-package org-bullets
+  :after org
+  :hook (org-mode . org-bullets-mode))
+
 (savehist-mode t)
 
 (provide 'utils)

@@ -2,23 +2,28 @@
 ;;; Commentary:
 ;;; Code:
 
-(defvar monospace-font "Terminus")
+(defvar fonts-list '("EB Garamond"
+		     "Envy Code R"
+		     "Geist"
+		     "JetBrains Mono"
+		     "Kode Mono"
+		     "ProggyVector"
+		     "Terminus"))
+
+(defvar monospace-font (nth 1 fonts-list))
 (defvar monospace-font-height 200)
 
-(set-face-attribute 'default nil
-		    :family monospace-font
-		    :height monospace-font-height)
+(dolist (face '(default fixed-pitch))
+  (set-face-attribute face nil
+		      :family monospace-font
+		      :height monospace-font-height
+		      :weight 'light))
 
-(set-face-attribute 'fixed-pitch nil
-		    :family monospace-font
-		    :height monospace-font-height)
+(defvar serif-font (nth 2 fonts-list))
+(defvar serif-font-height 250)
 
-(defvar serif-font "EB Garamond")
-(defvar serif-font-height 300)
-
-(set-face-attribute 'variable-pitch nil
-		    :family serif-font
-		    :height serif-font-height)
+(set-face-attribute
+ 'variable-pitch nil :family serif-font :height serif-font-height)
 
 (defun increase-font-size ()
   "Increase font size."

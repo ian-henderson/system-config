@@ -28,7 +28,7 @@
   (dashboard-center-content t)
   (dashboard-items '((recents . 5)))
   (dashboard-navigation-cycle t)
-  (dashboard-startup-banner 1)
+  (dashboard-startup-banner 2)
   ;; (expand-file-name "images/stallman-boat.jpg" user-emacs-directory))
   (dashboard-vertically-center-content t)
   :init
@@ -53,14 +53,12 @@
     (evil-mode (if (bound-and-true-p evil-mode) -1 1)))
   (global-set-key (kbd "C-c e") 'toggle-evil-mode)
   :config
-  (evil-mode 1))
+  (evil-mode t))
 
 ;; https://github.com/emacs-evil/evil-collection
 (use-package evil-collection
-  :after
-  evil
-  :config
-  (evil-collection-init))
+  :after evil
+  :config (evil-collection-init))
 
 ;; https://github.com/purcell/exec-path-from-shell
 (use-package exec-path-from-shell
@@ -95,7 +93,7 @@
   (custom-set-variables
    '(git-gutter:update-interval 2)
    '(git-gutter:hide-gutter t))
-  (global-git-gutter-mode 1))
+  (global-git-gutter-mode t))
 
 ;; https://github.com/magit/magit
 ;; https://magit.vc/manual
@@ -119,7 +117,7 @@
      "~/Developer/system-config"))
   :config
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  (projectile-mode 1))
+  (projectile-mode t))
 
 ;; https://github.com/Fanael/rainbow-delimiters
 (use-package rainbow-delimiters
@@ -130,7 +128,7 @@
   :mode "\\.rs\\'"
   :config
   (setq rust-format-on-save t)
-  (add-hook 'rust-mode-hook (lambda () (flycheck-mode -1))))
+  (add-hook 'rust-mode-hook (lambda () (flycheck-mode nil))))
 
 ;; https://github.com/minad/vertico
 (use-package vertico
