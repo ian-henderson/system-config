@@ -4,7 +4,7 @@
 
 ;; https://github.com/rranelli/auto-package-update.el
 (use-package auto-package-update
-  :config
+  :init
   (setq-default auto-package-update-delete-old-versions t
                 auto-package-update-hide-results t)
   (auto-package-update-maybe))
@@ -17,23 +17,20 @@
 
 ;; https://company-mode.github.io
 (use-package company ; complete anything (auto complete)
-  :config
+  :init
   (add-hook 'after-init-hook 'global-company-mode))
 
 ;; https://github.com/emacs-dashboard/emacs-dashboard
 (use-package dashboard
-  :config
-  (dashboard-setup-startup-hook)
   :custom
   (dashboard-center-content t)
   (dashboard-items '((recents . 5)))
   (dashboard-navigation-cycle t)
-  (dashboard-startup-banner 2)
-  ;; (expand-file-name "images/stallman-boat.jpg" user-emacs-directory))
+  (dashboard-startup-banner 3)
   (dashboard-vertically-center-content t)
+  (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
   :init
-  (setq-default initial-buffer-choice
-		(lambda () (get-buffer "*dashboard*"))))
+  (dashboard-setup-startup-hook))
 
 ;; https://joaotavora.github.io/eglot/
 (use-package eglot
@@ -50,9 +47,8 @@
   (defun toggle-evil-mode ()
     "Toggle evil mode."
     (interactive)
-    (evil-mode (if (bound-and-true-p evil-mode) -1 1)))
+    (evil-mode (if (bound-and-true-p evil-mode) nil t)))
   (global-set-key (kbd "C-c e") 'toggle-evil-mode)
-  :config
   (evil-mode t))
 
 ;; https://github.com/emacs-evil/evil-collection
@@ -99,12 +95,27 @@
 ;; https://magit.vc/manual
 (use-package magit)
 
+;; https://github.com/minad/marginalia
+(use-package marginalia
+  :init
+  (marginalia-mode t))
+
 ;; https://github.com/jrblevin/markdown-mode
 (use-package markdown-mode
   :config
   (setq-default markdown-command "multimarkdown")
   (add-to-list 'auto-mode-alist '("\\.markdown\\'" . gfm-mode))
   (add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode)))
+
+;; https://pdftools.wiki
+(use-package pdf-tools
+  :magic
+  ("%PDF" . pdf-view-mode)
+  :custom
+  (pdf-view-display-size 'fit-width)
+  :config
+  (pdf-loader-install)
+  (define-key pdf-view-mode-map (kbd "g") #'pdf-view-goto-page))
 
 ;; https://github.com/bbatsov/projectile
 ;; https://docs.projectile.mx/projectile/index.html
@@ -115,9 +126,10 @@
      "~/Developer/rust/codecrafters-shell-rust"
      "~/Developer/rust/data_structures_and_algorithms"
      "~/Developer/system-config"))
+  :init
+  (projectile-mode t)
   :config
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  (projectile-mode t))
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
 ;; https://github.com/Fanael/rainbow-delimiters
 (use-package rainbow-delimiters
@@ -132,15 +144,33 @@
 
 ;; https://github.com/minad/vertico
 (use-package vertico
+  :init
+  (vertico-mode t))
+
+;; Persist history over Emacs restarts. Vertico sorts by history position.
+(use-package savehist
+  :init
+  (savehist-mode t))
+
+(use-package vertico-directory
+  :after vertico
+  :ensure nil
+  ;; More convenient directory navigation commands
+  :bind (:map vertico-map
+              ("RET" . vertico-directory-enter)
+              ("DEL" . vertico-directory-delete-char)
+              ("M-DEL" . vertico-directory-delete-word))
+  ;; Tidy shadowed file names
+  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
+
+(use-package orderless
   :custom
-  (completion-ignore-case t)
-  (read-file-name-completion-ignore-case t)
-  (read-buffer-completion-ignore-case t)
-  (vertico-cycle t)
-  :config
-  (vertico-mode t)
-  (vertico-buffer-mode t)
-  (vertico-mouse-mode t))
+  ;; Configure a custom style dispatcher (see the Consult wiki)
+  ;; (orderless-style-dispatchers '(+orderless-consult-dispatch orderless-affix-dispatch))
+  ;; (orderless-component-separator #'orderless-escapable-split-on-space)
+  (completion-styles '(orderless basic))
+  (completion-category-defaults nil)
+  (completion-category-overrides '((file (styles partial-completion)))))
 
 ;; https://github.com/akermu/emacs-libvterm
 ;; Debian dependencies: libvterm-dev, cmake
@@ -167,7 +197,7 @@
 
 ;; https://github.com/yoshiki/yaml-mode
 (use-package yaml-mode
-  :config
+  :init
   (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
   (add-to-list 'auto-mode-alist '("\\.yaml\\'" . yaml-mode)))
 

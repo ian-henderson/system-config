@@ -1,5 +1,15 @@
 ;; Auto-generated file; don't edit -*- mode: lisp-data -*-
-((:url
+((:url "https://news.ycombinator.com/" :title "Hacker News" :time
+       "Tue Apr  8 12:27:44 2025")
+ (:url "https://lite.duckduckgo.com/lite/" :title "DuckDuckGo" :time
+       "Tue Apr  8 12:27:33 2025")
+ (:url "https://en.wikipedia.org/wiki/Main_Page" :title
+       "Wikipedia, the free encyclopedia" :time
+       "Tue Apr  8 12:26:44 2025")
+ (:url "https://craftinginterpreters.com/contents.html" :title
+       "Table of Contents · Crafting Interpreters" :time
+       "Tue Apr  8 12:01:00 2025")
+ (:url
   "https://mitp-content-server.mit.edu/books/content/sectbyfn/books_pres_0/6515/sicp.zip/full-text/book/book-Z-H-4.html#%_toc_start"
   :title "Structure and Interpretation of Computer Programs" :time
   "Mon Mar 31 00:38:20 2025"))

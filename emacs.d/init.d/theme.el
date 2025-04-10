@@ -14,15 +14,6 @@
 
 (global-set-key (kbd "<f5>") #'theme-toggle)
 
-;; https://github.com/kuanyui/moe-theme.el
-(use-package moe-theme)
-
-;; https://protesilaos.com/emacs/modus-themes
-(use-package modus-themes
-  :custom
-  (modus-themes-bold-constructs t)    ; Enable bold text
-  (modus-themes-italic-constructs t)) ; Enable italics
-
 ;; https://github.com/GuidoSchmidt/circadian.el
 (use-package circadian
   :custom
@@ -32,6 +23,15 @@
 		      (:sunset  . ,theme-dark)))
   :config
   (circadian-setup))
+
+;; https://github.com/kuanyui/moe-theme.el
+(use-package moe-theme)
+
+;; https://protesilaos.com/emacs/modus-themes
+(use-package modus-themes
+  :custom
+  (modus-themes-bold-constructs nil)  ; Enable bold text
+  (modus-themes-italic-constructs t)) ; Enable italics
 
 (provide 'theme)
 

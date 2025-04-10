@@ -23,21 +23,14 @@ sudo apt install -y \
 	brave-browser \
 	btop \
 	cbonsai \
-	cmake \
 	curl \
 	distrobox \
-	emacs-gtk \
-	emacs-common-non-dfsg \
 	fastfetch \
 	fish \
 	flatpak \
-	gcc \
 	git \
-	libvterm-dev \
 	lolcat \
-	make \
 	neovim \
-	shfmt \
 	thunderbird \
 	tree \
 	wget \
@@ -45,11 +38,29 @@ sudo apt install -y \
 
 # Rust-specific packages
 sudo apt install -y \
+	gcc \
 	libssl-dev \
 	pkg-config
 
 # SICP packages
 sudo apt install -y guile-3.0
+
+# Emacs packages
+sudo apt install -y \
+	autoconf \
+	automake \
+	cmake \
+	emacs-common-non-dfsg \
+	emacs-gtk \
+	gcc \
+	libpng-dev \
+	libpoppler-dev \
+	libpoppler-glib-dev \
+	libvterm-dev \
+	libz-dev \
+	make \
+	pkg-config \
+	shfmt
 
 sudo apt remove -y \
 	evolution \
