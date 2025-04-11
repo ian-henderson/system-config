@@ -2,8 +2,6 @@
 \#*\#
 .\#*
 
-bashrc.d/secrets.sh
-
 # Emacs
 emacs.d/*.elc
 emacs.d/.emacs.desktop

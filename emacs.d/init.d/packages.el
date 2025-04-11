@@ -4,9 +4,10 @@
 
 ;; https://github.com/rranelli/auto-package-update.el
 (use-package auto-package-update
+  :custom
+  (auto-package-update-delete-old-versions t)
+  (auto-package-update-hide-results t)
   :init
-  (setq-default auto-package-update-delete-old-versions t
-                auto-package-update-hide-results t)
   (auto-package-update-maybe))
 
 ;; https://github.com/dholm/benchmark-init-el
@@ -26,13 +27,13 @@
   (dashboard-center-content t)
   (dashboard-items '((recents . 5)))
   (dashboard-navigation-cycle t)
-  (dashboard-startup-banner 3)
+  (dashboard-startup-banner 1)
   (dashboard-vertically-center-content t)
   (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
   :init
   (dashboard-setup-startup-hook))
 
-;; https://joaotavora.github.io/eglot/
+;; https://joaotavora.github.io/eglot
 (use-package eglot
   :hook
   (rust-mode . eglot-ensure)
@@ -42,19 +43,25 @@
 
 ;; https://github.com/emacs-evil/evil
 (use-package evil
-  :init
-  (setq-default evil-want-keybinding nil)
+  :custom
+  (evil-want-keybinding nil)
+  :config
   (defun toggle-evil-mode ()
     "Toggle evil mode."
     (interactive)
-    (evil-mode (if (bound-and-true-p evil-mode) nil t)))
+    (evil-mode (if (bound-and-true-p evil-mode) 0 1)))
   (global-set-key (kbd "C-c e") 'toggle-evil-mode)
-  (evil-mode t))
+  (evil-mode 1))
 
 ;; https://github.com/emacs-evil/evil-collection
 (use-package evil-collection
   :after evil
   :config (evil-collection-init))
+
+;; https://github.com/emacs-evil/evil-surround
+(use-package evil-surround
+  :after evil
+  :config (global-evil-surround-mode 1))
 
 ;; https://github.com/purcell/exec-path-from-shell
 (use-package exec-path-from-shell
@@ -106,16 +113,6 @@
   (setq-default markdown-command "multimarkdown")
   (add-to-list 'auto-mode-alist '("\\.markdown\\'" . gfm-mode))
   (add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode)))
-
-;; https://pdftools.wiki
-(use-package pdf-tools
-  :magic
-  ("%PDF" . pdf-view-mode)
-  :custom
-  (pdf-view-display-size 'fit-width)
-  :config
-  (pdf-loader-install)
-  (define-key pdf-view-mode-map (kbd "g") #'pdf-view-goto-page))
 
 ;; https://github.com/bbatsov/projectile
 ;; https://docs.projectile.mx/projectile/index.html

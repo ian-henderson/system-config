@@ -1,5 +1,5 @@
 function cat
-    batcat -pp --tabs 8 --theme ansi $argv
+    batcat -pp --tabs 4 --theme ansi $argv
 end
 
 function em
