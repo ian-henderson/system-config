@@ -2,13 +2,7 @@
 
 set parent_dir "$PWD/.."
 
-set home_dotfiles \
-    bash_profile \
-    bashrc \
-    "bashrc.d" \
-    "emacs.d" \
-    gitconfig \
-    inputrc
+set home_dotfiles "emacs.d" gitconfig
 
 for element in $home_dotfiles
     set src "$parent_dir/$element"
