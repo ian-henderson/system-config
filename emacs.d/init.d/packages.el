@@ -135,18 +135,15 @@
 ;; https://docs.projectile.mx/projectile/index.html
 (use-package projectile
   :config
+  (projectile-mode t)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  (projectile-clear-known-projects)
   (mapc (lambda (path)
-	  (let ((developer-dir (if (eq system-type 'windows-nt)
-				   "C:/Users/ianhe/Developer/"
-				 "~/Developer/")))
-	    (projectile-add-known-project (concat developer-dir path))))
+	  (projectile-add-known-project (concat "~/Developer/" path)))
 	'("guile"
 	  "rust/codecrafters-shell-rust"
 	  "rust/data_structures_and_algorithms"
 	  "system-config"))
-  (projectile-mode t))
+  (projectile-cleanup-known-projects))
 
 ;; https://github.com/Fanael/rainbow-delimiters
 (use-package rainbow-delimiters

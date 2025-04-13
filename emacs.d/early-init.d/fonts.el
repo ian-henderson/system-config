@@ -9,15 +9,15 @@
 		     "SF Mono"))
 
 (defvar monospace-font (nth 2 fonts-list))
-(defvar monospace-font-height 180)
+(defvar monospace-font-height 200)
 
 (dolist (face '(default fixed-pitch))
   (set-face-attribute face nil
 		      :family monospace-font
 		      :height monospace-font-height))
 
-(defvar serif-font (nth 2 fonts-list))
-(defvar serif-font-height 180)
+(defvar serif-font (nth 3 fonts-list))
+(defvar serif-font-height 200)
 
 (set-face-attribute
  'variable-pitch nil :family serif-font :height serif-font-height)
