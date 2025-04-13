@@ -7,12 +7,8 @@
   :custom
   (calendar-latitude 38.833881)
   (calendar-longitude -104.821365)
-  (circadian-themes '((:sunrise . standard-dark-tinted)
-		      ("10:00"  . standard-light-tinted)
-		      ("12:00"  . standard-light)
-		      ("17:00"  . standard-light-tinted)
-		      (:sunset  . standard-dark-tinted)
-		      ("20:00"  . standard-dark)))
+  (circadian-themes '((:sunrise . standard-light)
+		      (:sunset  . standard-dark)))
   :init
   (circadian-setup))
 

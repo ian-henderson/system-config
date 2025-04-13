@@ -25,13 +25,25 @@
 (use-package dashboard
   :custom
   (dashboard-center-content t)
-  (dashboard-items '((recents . 5)))
+  (dashboard-items '((projects . 5)
+		     (recents  . 5)))
+  (dashboard-item-shortcuts '((projects . "p")
+			      (recents  . "r")))
   (dashboard-navigation-cycle t)
+  (dashboard-projects-backend 'projectile)
   (dashboard-startup-banner 1)
   (dashboard-vertically-center-content t)
   (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
   :init
   (dashboard-setup-startup-hook))
+
+;; https://github.com/axgfn/edwina
+(use-package edwina
+  :custom
+  (display-buffer-base-action '(display-buffer-below-selected))
+  :config
+  (edwina-setup-dwm-keys)
+  (edwina-mode 1))
 
 ;; https://joaotavora.github.io/eglot
 (use-package eglot
@@ -76,11 +88,15 @@
 (use-package fish-mode)
 
 ;; https://github.com/lassik/emacs-format-all-the-code
+;; https://clang.llvm.org/docs/ClangFormat.html
+;; https://github.com/patrickvane/shfmt
 (use-package format-all
   :commands
   format-all-mode
   :custom
-  (format-all-formatters '(("Shell" (shfmt "-ci"))))
+  (format-all-formatters
+   '(("C" (clang-format "--style={BasedOnStyle: Microsoft, ColumnLimit: 80}"))
+     ("Shell" (shfmt "-ci"))))
   :hook
   (prog-mode . format-all-mode)
   (prog-mode . format-all-ensure-formatter))
@@ -117,16 +133,18 @@
 ;; https://github.com/bbatsov/projectile
 ;; https://docs.projectile.mx/projectile/index.html
 (use-package projectile
-  :custom
-  (projectile-project-search-path
-   '("~/Developer/guile"
-     "~/Developer/rust/codecrafters-shell-rust"
-     "~/Developer/rust/data_structures_and_algorithms"
-     "~/Developer/system-config"))
+  ;; :custom
+  ;; (projectile-project-search-path '())
   :init
   (projectile-mode t)
   :config
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (mapc (lambda (path)
+	  (projectile-add-known-project (concat "~/Developer/" path)))
+	'("guile"
+	  "rust/codecrafters-shell-rust"
+	  "rust/data_structures_and_algorithms"
+	  "system-config")))
 
 ;; https://github.com/Fanael/rainbow-delimiters
 (use-package rainbow-delimiters
@@ -154,9 +172,9 @@
   :ensure nil
   ;; More convenient directory navigation commands
   :bind (:map vertico-map
-              ("RET" . vertico-directory-enter)
-              ("DEL" . vertico-directory-delete-char)
-              ("M-DEL" . vertico-directory-delete-word))
+	      ("RET" . vertico-directory-enter)
+	      ("DEL" . vertico-directory-delete-char)
+	      ("M-DEL" . vertico-directory-delete-word))
   ;; Tidy shadowed file names
   :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
 

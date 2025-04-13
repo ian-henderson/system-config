@@ -43,10 +43,14 @@ sudo apt install -y \
     pkg-config
 
 # SICP packages
-sudo apt install -y guile-3.0
+sudo apt install -y \
+    guile-3.0 \
+    guile-3.0-dev
 
 # Emacs packages
 sudo apt install -y \
+    clang-format \
+    cmake \
     emacs-common-non-dfsg \
     emacs-gtk \
     gcc \

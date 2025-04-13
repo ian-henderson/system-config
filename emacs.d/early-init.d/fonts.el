@@ -12,8 +12,8 @@
 		      :family monospace-font
 		      :height monospace-font-height))
 
-(defvar serif-font (nth 2 fonts-list))
-(defvar serif-font-height 325)
+(defvar serif-font (nth 1 fonts-list))
+(defvar serif-font-height 240)
 
 (set-face-attribute
  'variable-pitch nil :family serif-font :height serif-font-height)
