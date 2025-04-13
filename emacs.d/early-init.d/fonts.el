@@ -2,9 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-(defvar fonts-list '("EB Garamond" "Fixedsys Excelsior" "SF Mono"))
+(defvar fonts-list '("EB Garamond" "Fixedsys Excelsior" "Iosevka" "SF Mono"))
 
-(defvar monospace-font (nth 1 fonts-list))
+(defvar monospace-font (nth 2 fonts-list))
 (defvar monospace-font-height 240)
 
 (dolist (face '(default fixed-pitch))
@@ -12,7 +12,7 @@
 		      :family monospace-font
 		      :height monospace-font-height))
 
-(defvar serif-font (nth 1 fonts-list))
+(defvar serif-font (nth 2 fonts-list))
 (defvar serif-font-height 240)
 
 (set-face-attribute

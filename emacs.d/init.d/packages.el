@@ -41,6 +41,7 @@
 (use-package edwina
   :custom
   (display-buffer-base-action '(display-buffer-below-selected))
+  (edwina-narrow-threshold 115)
   :config
   (edwina-setup-dwm-keys)
   (edwina-mode 1))
