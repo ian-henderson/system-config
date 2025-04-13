@@ -109,7 +109,6 @@
 
 ;; https://github.com/emacsorphanage/git-gutter
 (use-package git-gutter
-  :if (memq system-type '(darwin gnu/linux))
   :config
   (custom-set-variables
    '(git-gutter:update-interval 2)
@@ -118,8 +117,7 @@
 
 ;; https://github.com/magit/magit
 ;; https://magit.vc/manual
-(use-package magit
-  :if (memq system-type '(darwin gnu/linux)))
+(use-package magit)
 
 ;; https://github.com/minad/marginalia
 (use-package marginalia
