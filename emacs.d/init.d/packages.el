@@ -109,6 +109,7 @@
 
 ;; https://github.com/emacsorphanage/git-gutter
 (use-package git-gutter
+  :if (memq system-type '(darwin gnu/linux))
   :config
   (custom-set-variables
    '(git-gutter:update-interval 2)
@@ -117,7 +118,8 @@
 
 ;; https://github.com/magit/magit
 ;; https://magit.vc/manual
-(use-package magit)
+(use-package magit
+  :if (memq system-type '(darwin gnu/linux)))
 
 ;; https://github.com/minad/marginalia
 (use-package marginalia
@@ -134,18 +136,19 @@
 ;; https://github.com/bbatsov/projectile
 ;; https://docs.projectile.mx/projectile/index.html
 (use-package projectile
-  ;; :custom
-  ;; (projectile-project-search-path '())
-  :init
-  (projectile-mode t)
   :config
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (projectile-clear-known-projects)
   (mapc (lambda (path)
-	  (projectile-add-known-project (concat "~/Developer/" path)))
+	  (let ((developer-dir (if (eq system-type 'windows-nt)
+				   "C:/Users/ianhe/Developer/"
+				 "~/Developer/")))
+	    (projectile-add-known-project (concat developer-dir path))))
 	'("guile"
 	  "rust/codecrafters-shell-rust"
 	  "rust/data_structures_and_algorithms"
-	  "system-config")))
+	  "system-config"))
+  (projectile-mode t))
 
 ;; https://github.com/Fanael/rainbow-delimiters
 (use-package rainbow-delimiters

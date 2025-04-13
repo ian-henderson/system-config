@@ -2,6 +2,11 @@
 ;;; Commentary:
 ;;; Code:
 
+(prefer-coding-system 'utf-8)
+(setq-default default-buffer-file-coding-system 'utf-8
+	      coding-system-for-read 'utf-8
+	      coding-system-for-write 'utf-8)
+
 (defvar utils-keybindings-list
   '(("C-c c" . clipboard-kill-ring-save)
     ("C-c v" . clipboard-yank)
