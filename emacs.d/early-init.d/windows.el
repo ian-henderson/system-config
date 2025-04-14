@@ -37,9 +37,7 @@
 (add-hook 'after-init-hook #'remove-mode-line-modes-from-mode-line)
 
 ;; tab size for shell mode
-(add-hook 'sh-mode-hook
-	  (lambda ()
-	    (setq-local tab-width 4)))
+(add-hook 'sh-mode-hook (lambda () (setq-local tab-width 4)))
 
 (provide 'windows)
 

@@ -16,6 +16,11 @@
 (require 'use-package)
 (setq-default use-package-always-ensure t)
 
+;; https://gitlab.com/koral/gcmh
+(use-package gcmh
+  :custom (garbage-collection-messages t)
+  :config (gcmh-mode 1))
+
 ;; Loads el files in init.d
 (let ((init-d (expand-file-name "init.d" user-emacs-directory)))
   (when (file-directory-p init-d)

@@ -7,13 +7,14 @@
   :custom
   (calendar-latitude 38.833881)
   (calendar-longitude -104.821365)
-  (circadian-themes '((:sunrise . standard-light-tinted)
-		      ("12:00"  . standard-light)
-		      ("18:00"  . standard-light-tinted)
-		      (:sunset  . standard-dark-tinted)
-		      ("20:00"  . standard-dark)))
+  (circadian-themes '((:sunrise . ef-elea-light)
+		      (:sunset  . ef-elea-dark)))
   :init
   (circadian-setup))
+
+;; https://protesilaos.com/emacs/ef-themes
+;; https://protesilaos.com/emacs/ef-themes-pictures
+(use-package ef-themes)
 
 ;; https://protesilaos.com/emacs/modus-themes
 (use-package modus-themes

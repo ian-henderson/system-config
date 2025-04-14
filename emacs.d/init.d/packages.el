@@ -41,7 +41,8 @@
 (use-package edwina
   :custom
   (display-buffer-base-action '(display-buffer-below-selected))
-  (edwina-narrow-threshold 115)
+  (edwina-mode-line-format "")
+  (edwina-narrow-threshold 132)
   :config
   (edwina-setup-dwm-keys)
   (edwina-mode 1))
@@ -96,7 +97,7 @@
   format-all-mode
   :custom
   (format-all-formatters
-   '(("C" (clang-format "--style={BasedOnStyle: Microsoft, ColumnLimit: 80}"))
+   '(("C" (clang-format))
      ("Shell" (shfmt "-ci"))))
   :hook
   (prog-mode . format-all-mode)

@@ -27,13 +27,16 @@
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 
-;; Adds clock, usage, and battery to tab bar
-(setq-default display-time-24hr-format t
-	      display-time-interval 1
-	      tab-bar-format '(tab-bar-format-tabs
+(setq-default tab-bar-format '(tab-bar-format-history
+			       tab-bar-format-tabs
+			       tab-bar-separator
 			       tab-bar-format-align-right
-			       tab-bar-format-global))
+			       tab-bar-format-global)
+	      display-time-24hr-format t
+	      display-time-interval 1)
+
 (display-time-mode 1)
+
 (with-eval-after-load 'time
   (setq-default display-time-mail-function nil
 		display-time-mail-string ""))
