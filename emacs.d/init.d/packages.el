@@ -190,25 +190,21 @@
 ;; https://github.com/akermu/emacs-libvterm
 ;; Debian dependencies: libvterm-dev, cmake
 (use-package vterm
-  :if
-  (eq system-type 'gnu/linux)
   :custom
   (vterm-shell (or (executable-find "fish") (executable-find "bash")))
   :config
   (defun unset-vterm-keys ()
     "Unset vterm keys that overwrite existing keybindings."
-    (let ((meta-keys (mapcar (lambda (i)
-			       (format "M-%s" i))
+    (let ((meta-keys (mapcar (lambda (i) (format "M-%s" i))
 			     (append
 			      (number-sequence 0 9)
 			      '("t" "T" "w" "(" ")" "<up>"
 				"<down>" "<left>" "<right>")))))
       (mapc (lambda (key)
 	      (define-key vterm-mode-map (kbd key) nil))
-	    (append meta-keys '("<f5>")))))
-
-  (with-eval-after-load 'vterm
-    (add-hook 'vterm-mode-hook #'unset-vterm-keys)))
+	    meta-keys)))
+  :hook
+  (vterm-mode . unset-vterm-keys))
 
 ;; https://github.com/yoshiki/yaml-mode
 (use-package yaml-mode

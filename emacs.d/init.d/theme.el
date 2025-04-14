@@ -7,10 +7,9 @@
   :custom
   (calendar-latitude 38.833881)
   (calendar-longitude -104.821365)
-  (circadian-themes '((:sunrise . ef-elea-light)
-		      (:sunset  . ef-elea-dark)))
-  :init
-  (circadian-setup))
+  (circadian-themes '((:sunrise . ef-reverie) (:sunset . ef-dream)))
+  :hook
+  (emacs-startup . circadian-setup))
 
 ;; https://protesilaos.com/emacs/ef-themes
 ;; https://protesilaos.com/emacs/ef-themes-pictures
