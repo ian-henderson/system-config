@@ -7,19 +7,15 @@
   :custom
   (auto-package-update-delete-old-versions t)
   (auto-package-update-hide-results t)
-  :init
-  (auto-package-update-maybe))
+  :init (auto-package-update-maybe))
 
 ;; https://github.com/dholm/benchmark-init-el
-(use-package benchmark-init
-  :config
-  ;; To disable collection of benchmark data after init is done.
-  (add-hook 'after-init-hook 'benchmark-init/deactivate))
+;; Disables collection of benchmark data after init is done.
+(use-package benchmark-init :hook (after-init . benchmark-init/deactivate))
 
 ;; https://company-mode.github.io
-(use-package company ; complete anything (auto complete)
-  :init
-  (add-hook 'after-init-hook 'global-company-mode))
+;; complete anything (auto complete)
+(use-package company :hook (after-init . global-company-mode))
 
 ;; https://github.com/emacs-dashboard/emacs-dashboard
 (use-package dashboard
@@ -34,8 +30,7 @@
   (dashboard-startup-banner 1)
   (dashboard-vertically-center-content t)
   (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
-  :init
-  (dashboard-setup-startup-hook))
+  :init (dashboard-setup-startup-hook))
 
 ;; https://github.com/axgfn/edwina
 (use-package edwina
@@ -49,16 +44,13 @@
 
 ;; https://joaotavora.github.io/eglot
 (use-package eglot
-  :hook
-  (rust-mode . eglot-ensure)
-  :config
-  (add-to-list 'eglot-server-programs
-               '(rust-mode . ("rust-analyzer"))))
+  :hook (rust-mode . eglot-ensure)
+  :config (add-to-list 'eglot-server-programs
+		       '(rust-mode . ("rust-analyzer"))))
 
 ;; https://github.com/emacs-evil/evil
 (use-package evil
-  :custom
-  (evil-want-keybinding nil)
+  :custom (evil-want-keybinding nil)
   :config
   (defun toggle-evil-mode ()
     "Toggle evil mode."
@@ -79,8 +71,7 @@
 
 ;; https://github.com/purcell/exec-path-from-shell
 (use-package exec-path-from-shell
-  :custom
-  (shell-file-name (or (executable-find "fish") (executable-find "bash")))
+  :custom (shell-file-name (or (executable-find "fish") (executable-find "bash")))
   :config
   (exec-path-from-shell-initialize)
   (exec-path-from-shell-copy-envs
@@ -93,20 +84,16 @@
 ;; https://clang.llvm.org/docs/ClangFormat.html
 ;; https://github.com/patrickvane/shfmt
 (use-package format-all
-  :commands
-  format-all-mode
-  :custom
-  (format-all-formatters
-   '(("C" (clang-format))
-     ("Shell" (shfmt "-ci"))))
+  :commands format-all-mode
+  :custom (format-all-formatters
+	   '(("C" (clang-format "--style" "Mozilla"))
+	     ("Shell" (shfmt "-ci"))))
   :hook
   (prog-mode . format-all-mode)
   (prog-mode . format-all-ensure-formatter))
 
 ;; https://www.flycheck.org/en/latest/user/installation.html
-(use-package flycheck
-  :config
-  (global-flycheck-mode 1))
+(use-package flycheck :config (global-flycheck-mode 1))
 
 ;; https://github.com/emacsorphanage/git-gutter
 (use-package git-gutter
@@ -121,14 +108,12 @@
 (use-package magit)
 
 ;; https://github.com/minad/marginalia
-(use-package marginalia
-  :init
-  (marginalia-mode t))
+(use-package marginalia :init (marginalia-mode t))
 
 ;; https://github.com/jrblevin/markdown-mode
 (use-package markdown-mode
+  :custom (markdown-command "multimarkdown")
   :config
-  (setq-default markdown-command "multimarkdown")
   (add-to-list 'auto-mode-alist '("\\.markdown\\'" . gfm-mode))
   (add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode)))
 
@@ -147,25 +132,19 @@
   (projectile-cleanup-known-projects))
 
 ;; https://github.com/Fanael/rainbow-delimiters
-(use-package rainbow-delimiters
-  :hook (prog-mode . rainbow-delimiters-mode))
+(use-package rainbow-delimiters :hook (prog-mode . rainbow-delimiters-mode))
 
 ;; https://github.com/rust-lang/rust-mode
 (use-package rust-mode
+  :custom (rust-format-on-save t)
   :mode "\\.rs\\'"
-  :config
-  (setq rust-format-on-save t)
-  (add-hook 'rust-mode-hook (lambda () (flycheck-mode nil))))
+  :config (add-hook 'rust-mode-hook (lambda () (flycheck-mode nil))))
 
 ;; https://github.com/minad/vertico
-(use-package vertico
-  :init
-  (vertico-mode t))
+(use-package vertico :init (vertico-mode t))
 
 ;; Persist history over Emacs restarts. Vertico sorts by history position.
-(use-package savehist
-  :init
-  (savehist-mode t))
+(use-package savehist :init (savehist-mode t))
 
 (use-package vertico-directory
   :after vertico
@@ -190,8 +169,7 @@
 ;; https://github.com/akermu/emacs-libvterm
 ;; Debian dependencies: libvterm-dev, cmake
 (use-package vterm
-  :custom
-  (vterm-shell (or (executable-find "fish") (executable-find "bash")))
+  :custom (vterm-shell (or (executable-find "fish") (executable-find "bash")))
   :config
   (defun unset-vterm-keys ()
     "Unset vterm keys that overwrite existing keybindings."
@@ -203,8 +181,7 @@
       (mapc (lambda (key)
 	      (define-key vterm-mode-map (kbd key) nil))
 	    meta-keys)))
-  :hook
-  (vterm-mode . unset-vterm-keys))
+  :hook (vterm-mode . unset-vterm-keys))
 
 ;; https://github.com/yoshiki/yaml-mode
 (use-package yaml-mode

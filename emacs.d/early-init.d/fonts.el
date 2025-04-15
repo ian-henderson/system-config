@@ -2,17 +2,19 @@
 ;;; Commentary:
 ;;; Code:
 
-(defvar fixed-pitch-font-height 180)
+(defvar-local fixed-pitch-font-height 225)
 
+;; DejaVu Sans Mono, Liberation Mono
 (dolist (face '(default fixed-pitch))
   (set-face-attribute face nil
-		      :family "IBM Plex Mono"
+		      :family "DejaVu Sans Mono"
 		      :height fixed-pitch-font-height))
 
-(defvar variable-pitch-font-height 320)
+(defvar-local variable-pitch-font-height 250)
 
+;; DejaVu Serif, FreeSerif, Libre Baskerville, Liberation Serif
 (set-face-attribute 'variable-pitch nil
-		    :family "IBM Plex Serif"
+		    :family "DejaVu Serif"
 		    :height variable-pitch-font-height)
 
 (defun increase-font-size ()

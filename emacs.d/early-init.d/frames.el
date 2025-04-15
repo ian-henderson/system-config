@@ -27,6 +27,7 @@
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 
+;; https://lambdaland.org/posts/2022-07-20_adding_a_clock_to_emacs/
 (setq-default tab-bar-format '(tab-bar-format-history
 			       tab-bar-format-tabs
 			       tab-bar-separator
