@@ -8,11 +8,11 @@ for element in $home_dotfiles
     set src "$parent_dir/$element"
     set target "$HOME/.$element"
 
-    if test -e "$target"
-        rm -rf "$target"
-    end
-
     if test -e "$src"
+        if test -e "$target"
+            mv "$target" "$target_backup_(date +%s)"
+        end
+
         ln -s "$src" "$target"
     end
 end
@@ -29,11 +29,11 @@ for element in $config_dirs
     set src "$parent_dir/$element"
     set target "$config/$element"
 
-    if test -e "$target"
-        rm -rf "$target"
-    end
-
     if test -e "$src"
+        if test -e "$target"
+            mv "$target" "$target_backup_(date +%s)"
+        end
+
         ln -s "$src" "$target"
     end
 end

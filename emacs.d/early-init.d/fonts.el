@@ -10,7 +10,7 @@
 		      :family "DejaVu Sans Mono"
 		      :height fixed-pitch-font-height))
 
-(defvar-local variable-pitch-font-height 250)
+(defvar-local variable-pitch-font-height 300)
 
 ;; DejaVu Serif, FreeSerif, Libre Baskerville, Liberation Serif
 (set-face-attribute 'variable-pitch nil
