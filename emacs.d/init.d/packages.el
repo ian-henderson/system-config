@@ -180,7 +180,7 @@
 				"<down>" "<left>" "<right>")))))
       (mapc (lambda (key)
 	      (define-key vterm-mode-map (kbd key) nil))
-	    meta-keys)))
+	    (append meta-keys '("<f5>")))))
   :hook (vterm-mode . unset-vterm-keys))
 
 ;; https://github.com/yoshiki/yaml-mode

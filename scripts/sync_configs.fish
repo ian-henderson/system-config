@@ -1,20 +1,37 @@
 #!/usr/bin/env fish
 
-set parent_dir "$PWD/.."
+set script_dir "$HOME/Developer/system-config"
+
+function create-symbolic-link
+    set -l src $argv[1]
+    set -l target $argv[2]
+
+    if not test -e "$src"
+        echo "$src does not exist. Skipping."
+        return
+    end
+
+    if test -e "$target"
+        if test -L "$target"
+            rm "$target"
+            echo "Removed old symbolic link $target"
+        else
+            set target_backup "$target.backup."(date +%s)
+            mv "$target" "$target_backup"
+            echo "Backed up $target to $target_backup"
+        end
+    end
+
+    ln -s "$src" "$target"
+    echo "Symbolically linked $src -> $target"
+end
 
 set home_dotfiles "emacs.d" gitconfig
 
-for element in $home_dotfiles
-    set src "$parent_dir/$element"
-    set target "$HOME/.$element"
-
-    if test -e "$src"
-        if test -e "$target"
-            mv "$target" "$target_backup_(date +%s)"
-        end
-
-        ln -s "$src" "$target"
-    end
+for i in $home_dotfiles
+    set src "$script_dir/$i"
+    set target "$HOME/.$i"
+    create-symbolic-link "$src" "$target"
 end
 
 set config "$HOME/.config"
@@ -25,15 +42,8 @@ end
 
 set config_dirs fastfetch fish nvim
 
-for element in $config_dirs
-    set src "$parent_dir/$element"
-    set target "$config/$element"
-
-    if test -e "$src"
-        if test -e "$target"
-            mv "$target" "$target_backup_(date +%s)"
-        end
-
-        ln -s "$src" "$target"
-    end
+for i in $config_dirs
+    set src "$script_dir/$i"
+    set target "$config/$i"
+    create-symbolic-link "$src" "$target"
 end
