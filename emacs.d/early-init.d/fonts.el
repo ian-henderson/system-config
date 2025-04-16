@@ -2,19 +2,19 @@
 ;;; Commentary:
 ;;; Code:
 
-(defvar-local fixed-pitch-font-height 225)
+(defvar-local fixed-pitch-font-height 240)
 
-;; DejaVu Sans Mono, Liberation Mono
+;; Anonymous Pro, DejaVu Sans Mono, Hack, Liberation Mono
 (dolist (face '(default fixed-pitch))
   (set-face-attribute face nil
-		      :family "DejaVu Sans Mono"
+		      :family "Anonymous Pro"
 		      :height fixed-pitch-font-height))
 
-(defvar-local variable-pitch-font-height 300)
+(defvar-local variable-pitch-font-height 350)
 
 ;; DejaVu Serif, FreeSerif, Libre Baskerville, Liberation Serif
 (set-face-attribute 'variable-pitch nil
-		    :family "DejaVu Serif"
+		    :family "Liberation Serif"
 		    :height variable-pitch-font-height)
 
 (defun increase-font-size ()

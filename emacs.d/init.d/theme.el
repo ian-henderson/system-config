@@ -23,7 +23,11 @@
   :custom
   (calendar-latitude 38.833881)
   (calendar-longitude -104.821365)
-  (circadian-themes '((:sunrise . moe-light) (:sunset . moe-dark)))
+  (circadian-themes '((:sunrise . standard-light-tinted)
+		      ("12:00"  . standard-light)
+		      ("17:00"  . standard-light-tinted)
+		      ("19:00"  . standard-dark-tinted)
+		      (:sunset  . standard-dark)))
   :hook (emacs-startup . circadian-setup))
 
 (provide 'theme)

@@ -32,16 +32,6 @@
   (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
   :init (dashboard-setup-startup-hook))
 
-;; https://github.com/axgfn/edwina
-(use-package edwina
-  :custom
-  (display-buffer-base-action '(display-buffer-below-selected))
-  (edwina-mode-line-format "")
-  (edwina-narrow-threshold 132)
-  :config
-  (edwina-setup-dwm-keys)
-  (edwina-mode 1))
-
 ;; https://joaotavora.github.io/eglot
 (use-package eglot
   :hook (rust-mode . eglot-ensure)
@@ -102,6 +92,18 @@
    '(git-gutter:update-interval 2)
    '(git-gutter:hide-gutter t))
   (global-git-gutter-mode t))
+
+;; https://github.com/roman/golden-ratio.el
+(use-package golden-ratio
+  :init (golden-ratio-mode 1)
+  :config
+  (dolist (f '(evil-window-left
+	       evil-window-right
+	       evil-window-up
+	       evil-window-down
+	       evil-window-next
+	       evil-window-prev))
+    (advice-add f :after (lambda (&rest _) (golden-ratio)))))
 
 ;; https://github.com/magit/magit
 ;; https://magit.vc/manual
