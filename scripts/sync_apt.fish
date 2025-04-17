@@ -10,7 +10,27 @@ function add_brave_repo
         sudo tee /etc/apt/sources.list.d/brave-browser-release.list
 end
 
+function add_1password_repo
+    curl -sS https://downloads.1password.com/linux/keys/1password.asc \
+        | sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
+
+    echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/amd64 stable main' \
+        | sudo tee /etc/apt/sources.list.d/1password.list
+
+    sudo mkdir -p /etc/debsig/policies/AC2D62742012EA22/
+
+    curl -sS https://downloads.1password.com/linux/debian/debsig/1password.pol \
+        | sudo tee /etc/debsig/policies/AC2D62742012EA22/1password.pol
+
+    sudo mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22
+
+    curl -sS https://downloads.1password.com/linux/keys/1password.asc \
+        | sudo gpg --dearmor --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg
+end
+
 add_brave_repo
+
+add_1password_repo
 
 sudo apt update -y
 
@@ -67,9 +87,10 @@ sudo apt autoremove --purge -y \
     gnome-music \
     gnome-system-monitor \
     gnome-tour \
-    libreoffice* \
+    lightsoff \
     malcontent \
+    quadrapassel \
     shotwell \
+    swell-foop \
+    tali \
     yelp
-
-# TODO: add vscode and 1password
