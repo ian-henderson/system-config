@@ -27,7 +27,8 @@
 			      (recents  . "r")))
   (dashboard-navigation-cycle t)
   (dashboard-projects-backend 'projectile)
-  (dashboard-startup-banner 1)
+  (dashboard-startup-banner
+   (expand-file-name "images/stallman-boat.jpg" user-emacs-directory))
   (dashboard-vertically-center-content t)
   (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
   :init (dashboard-setup-startup-hook))
@@ -118,6 +119,13 @@
   :config
   (add-to-list 'auto-mode-alist '("\\.markdown\\'" . gfm-mode))
   (add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode)))
+
+;; https://github.com/jaypei/emacs-neotree
+(use-package neotree
+  :custom
+  (neo-theme 'ascii)
+  (neo-window-width 30)
+  :bind ("<f8>" . neotree-toggle))
 
 ;; https://github.com/bbatsov/projectile
 ;; https://docs.projectile.mx/projectile/index.html

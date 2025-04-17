@@ -2,10 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
-(defun global-set-key-list (list)
-  "Set global keybindings.  LIST: list of keymapping and function pairs."
-  (dolist (binding list)
-    (global-set-key (kbd (car binding)) (cdr binding))))
+(defun global-set-key-list (cons-list)
+  "Set global keybindings.  CONS-LIST: list of key and function pairs."
+  (dolist (key-function-pair cons-list)
+    (global-set-key (kbd (car key-function-pair)) (cdr key-function-pair))))
 
 ;; Loads el files in early-init.d
 (let ((init-directory (expand-file-name "early-init.d" user-emacs-directory)))

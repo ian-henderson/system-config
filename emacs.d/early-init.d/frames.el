@@ -2,16 +2,49 @@
 ;;; Commentary:
 ;;; Code:
 
+(declare-function global-set-key-list "early-init.el" cons-list)
+
+(defun frame-change-dimension (set-frame-function operation)
+  "Change the current frame height or width.
+Arguments: SET-FRAME-FUNCTION (`set-frame-height` or `set-frame-width`)
+and OPERATION (`+` or `-`)."
+  (funcall set-frame-function
+	   (selected-frame) (funcall operation (frame-height) 10)))
+
+(defun frame-height-decrease ()
+  "Decrease the current frame height."
+  (interactive)
+  (frame-change-dimension #'set-frame-height #'-))
+
+(defun frame-height-increase ()
+  "Increase the current frame height."
+  (interactive)
+  (frame-change-dimension #'set-frame-height #'+))
+
+(defun frame-width-decrease ()
+  "Decrease the current frame width."
+  (interactive)
+  (frame-change-dimension #'set-frame-width #'-))
+
+(defun frame-width-increase ()
+  "Increase the current frame width."
+  (interactive)
+  (frame-change-dimension #'set-frame-width #'+))
+
 (defvar frames-keybindings-list
   (append
-   '(("C-c n" . tab-rename)
-     ("M-9"   . tab-bar-switch-to-prev-tab)
-     ("M-0"   . tab-bar-switch-to-next-tab)
-     ("M-("   . tab-bar-move-tab-backward)
-     ("M-)"   . tab-bar-move-tab)
-     ("M-t"   . tab-bar-new-tab)
-     ("M-T"   . tab-bar-undo-close-tab)
-     ("M-w"   . tab-bar-close-tab))
+   '(("C-c n"       . tab-rename)
+     ("M-9"         . tab-bar-switch-to-prev-tab)
+     ("M-0"         . tab-bar-switch-to-next-tab)
+     ("M-("         . tab-bar-move-tab-backward)
+     ("M-)"         . tab-bar-move-tab)
+     ("M-t"         . tab-bar-new-tab)
+     ("M-T"         . tab-bar-undo-close-tab)
+     ("M-w"         . tab-bar-close-tab)
+     ("M-S-<left>"  . frame-width-decrease)
+     ("M-S-<right>" . frame-width-increase)
+     ("M-S-<up>"    . frame-height-increase)
+     ("M-S-<down>"  . frame-height-decrease))
    ;; Dynamically generated keybindings for M-1 through M-8
    (mapcar (lambda (i)
 	     (cons (format "M-%s" i)

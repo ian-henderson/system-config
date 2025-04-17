@@ -4,8 +4,8 @@
     // "type": "small"
   },
   "modules": [
-    "title",
-    "separator",
+    // "title",
+    // "separator",
     {
       "key": "OS",
       "type": "os",
