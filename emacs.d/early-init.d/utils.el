@@ -2,19 +2,17 @@
 ;;; Commentary:
 ;;; Code:
 
+(declare-function global-set-key-list "early-init.el" cons-list)
+
 (prefer-coding-system 'utf-8)
 (setq-default default-buffer-file-coding-system 'utf-8
 	      coding-system-for-read 'utf-8
 	      coding-system-for-write 'utf-8)
 
-(defvar utils-keybindings-list
-  '(("C-c c" . clipboard-kill-ring-save)
-    ("C-c v" . clipboard-yank)
-    ("C-c x" . clipboard-kill-region)
-    ("C-c i" . rcirc)
-    ("C-c u" . browse-url-at-point)))
-
-(global-set-key-list utils-keybindings-list)
+(global-set-key-list '(("C-c u" . browse-url-at-point)
+		       ("C-c c" . clipboard-kill-ring-save)
+		       ("C-c v" . clipboard-yank)
+		       ("C-c x" . clipboard-kill-region)))
 
 ;; desktop-save-mode
 (desktop-save-mode 1)

@@ -4,17 +4,19 @@
 
 (declare-function global-set-key-list "early-init.el" cons-list)
 
-(defvar-local fixed-pitch-font-height 200)
+(defvar-local fixed-pitch-font-height 180)
 
-;; Anonymous Pro, FreeMono, Go Mono, Hack, Liberation Mono, ProggyVector
+;; Anka/Coder, Anonymous Pro, Courier Prime, Courier Prime Code, FreeMono,
+;; Go Mono, Hack, Iosevka, Liberation Mono, ProggyVector
 (dolist (face '(default fixed-pitch))
   (set-face-attribute face nil
-		      :family "Liberation Mono"
+		      :family "Hack"
 		      :height fixed-pitch-font-height))
 
 (defvar-local variable-pitch-font-height 350)
 
-;; DejaVu Serif, EB Garamond, FreeSerif, Libre Baskerville, Liberation Serif
+;; DejaVu Serif, EB Garamond, FreeSerif, Go, Libre Baskerville,
+;; Liberation Serif
 (set-face-attribute 'variable-pitch nil
 		    :family "Liberation Serif"
 		    :height variable-pitch-font-height)

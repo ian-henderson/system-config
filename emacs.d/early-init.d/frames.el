@@ -4,32 +4,32 @@
 
 (declare-function global-set-key-list "early-init.el" cons-list)
 
-(defun frame-change-dimension (set-frame-function operation)
+(defun frame-change-dimension (set-frame-function factor)
   "Change the current frame height or width.
 Arguments: SET-FRAME-FUNCTION (`set-frame-height` or `set-frame-width`)
-and OPERATION (`+` or `-`)."
+and FACTOR (number)."
   (funcall set-frame-function
-	   (selected-frame) (funcall operation (frame-height) 10)))
+	   (selected-frame) (* factor (frame-height))))
 
 (defun frame-height-decrease ()
   "Decrease the current frame height."
   (interactive)
-  (frame-change-dimension #'set-frame-height #'-))
+  (frame-change-dimension #'set-frame-height 0.9))
 
 (defun frame-height-increase ()
   "Increase the current frame height."
   (interactive)
-  (frame-change-dimension #'set-frame-height #'+))
+  (frame-change-dimension #'set-frame-height 1.1))
 
 (defun frame-width-decrease ()
   "Decrease the current frame width."
   (interactive)
-  (frame-change-dimension #'set-frame-width #'-))
+  (frame-change-dimension #'set-frame-width 0.9))
 
 (defun frame-width-increase ()
   "Increase the current frame width."
   (interactive)
-  (frame-change-dimension #'set-frame-width #'+))
+  (frame-change-dimension #'set-frame-width 1.1))
 
 (defvar frames-keybindings-list
   (append

@@ -10,7 +10,6 @@
   :init (auto-package-update-maybe))
 
 ;; https://github.com/dholm/benchmark-init-el
-;; Disables collection of benchmark data after init is done.
 (use-package benchmark-init :hook (after-init . benchmark-init/deactivate))
 
 ;; https://company-mode.github.io
@@ -110,9 +109,6 @@
 ;; https://magit.vc/manual
 (use-package magit)
 
-;; https://github.com/minad/marginalia
-(use-package marginalia :init (marginalia-mode t))
-
 ;; https://github.com/jrblevin/markdown-mode
 (use-package markdown-mode
   :custom (markdown-command "multimarkdown")
@@ -149,32 +145,6 @@
   :custom (rust-format-on-save t)
   :mode "\\.rs\\'"
   :config (add-hook 'rust-mode-hook (lambda () (flycheck-mode nil))))
-
-;; https://github.com/minad/vertico
-(use-package vertico :init (vertico-mode t))
-
-;; Persist history over Emacs restarts. Vertico sorts by history position.
-(use-package savehist :init (savehist-mode t))
-
-(use-package vertico-directory
-  :after vertico
-  :ensure nil
-  ;; More convenient directory navigation commands
-  :bind (:map vertico-map
-	      ("RET" . vertico-directory-enter)
-	      ("DEL" . vertico-directory-delete-char)
-	      ("M-DEL" . vertico-directory-delete-word))
-  ;; Tidy shadowed file names
-  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
-
-(use-package orderless
-  :custom
-  ;; Configure a custom style dispatcher (see the Consult wiki)
-  ;; (orderless-style-dispatchers '(+orderless-consult-dispatch orderless-affix-dispatch))
-  ;; (orderless-component-separator #'orderless-escapable-split-on-space)
-  (completion-styles '(orderless basic))
-  (completion-category-defaults nil)
-  (completion-category-overrides '((file (styles partial-completion)))))
 
 ;; https://github.com/akermu/emacs-libvterm
 ;; Debian dependencies: libvterm-dev, cmake

@@ -1,7 +1,5 @@
 #!/usr/bin/env fish
 
-set script_dir "$HOME/Developer/system-config"
-
 function create-symbolic-link
     set -l src $argv[1]
     set -l target $argv[2]
@@ -25,6 +23,8 @@ function create-symbolic-link
     ln -s "$src" "$target"
     echo "Symbolically linked $src -> $target"
 end
+
+set script_dir "$HOME/Developer/system-config"
 
 set home_dotfiles "emacs.d" gitconfig
 

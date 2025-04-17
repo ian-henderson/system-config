@@ -2,6 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
+(declare-function global-set-key-list "early-init.el" cons-list)
+
 (defvar windows-keybindings-list
   '(("C-c f"     . toggle-frame-fullscreen)
     ("C-c m"     . toggle-frame-maximized)
@@ -19,10 +21,12 @@
 (global-visual-line-mode 1)
 (which-key-mode 1)
 
-;; line numbers
-(setq-default display-line-numbers-type 'relative)
+;; line numbers and fill-column
+(setq-default display-line-numbers-type 'relative
+	      fill-column 80)
 (dolist (hook '(conf-toml-mode-hook prog-mode-hook))
-  (add-hook hook #'display-line-numbers-mode))
+  (add-hook hook #'display-line-numbers-mode)
+  (add-hook hook #'display-fill-column-indicator-mode))
 
 ;; prettify symbols
 ;; Going to explicitly list which modes. The default ligatures look terrible.
