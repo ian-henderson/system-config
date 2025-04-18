@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(declare-function global-set-key-list "early-init.el" cons-list)
+(declare-function global-set-key-list "early-init.el" alist)
 
 (prefer-coding-system 'utf-8)
 (setq-default default-buffer-file-coding-system 'utf-8

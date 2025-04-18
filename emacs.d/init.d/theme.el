@@ -2,9 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-;; https://github.com/ianyepan/acme-emacs-theme
-(use-package acme-theme :custom (acme-theme-black-fg t))
-
 ;; https://protesilaos.com/emacs/modus-themes
 (use-package modus-themes
   :custom
@@ -19,7 +16,11 @@
   :custom
   (calendar-latitude 38.833881)
   (calendar-longitude -104.821365)
-  (circadian-themes '((:sunrise . acme) (:sunset . modus-vivendi)))
+  (circadian-themes '((:sunrise . modus-operandi-tinted)
+		      ("12:00" . modus-operandi)
+		      ("15:30" . modus-operandi-tinted)
+		      (:sunset . modus-vivendi-tinted)
+		      ("20:00" . modus-vivendi)))
   :hook (emacs-startup . circadian-setup))
 
 (provide 'theme)

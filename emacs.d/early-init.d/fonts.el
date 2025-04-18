@@ -2,16 +2,12 @@
 ;;; Commentary:
 ;;; Code:
 
-(declare-function global-set-key-list "early-init.el" cons-list)
+(declare-function global-set-key-list "early-init.el" alist)
 
-;; Anonymous Pro, Courier Prime, Courier Prime Code, FreeMono, Go Mono, Hack,
-;; Iosevka, Liberation Mono
-(defvar-local font-family-default "FreeMono")
-(defvar-local font-height-default 220)
+(defvar-local font-family-default "Hack")
+(defvar-local font-height-default 180)
 
-;; DejaVu Serif, EB Garamond, FreeSerif, Go, Libre Baskerville,
-;; Liberation Serif
-(defvar-local font-family-variable "FreeSerif")
+(defvar-local font-family-variable "Liberation Serif")
 (defvar-local font-height-variable 300)
 
 (defun font-size-reset ()
@@ -27,11 +23,14 @@
 
 (font-size-reset)
 
-(defun font-size-set (set-font)
-  "Set font size with SET-FONT (lambda number)."
+(defun font-size-set (calc-font-size)
+  "Set font size using CALC-FONT-SIZE lambda.
+CALC-FONT-SIZE takes the current face height and returns a new height.
+The function is applied to the :height attribute of each relevant face (default,
+fixed-pitch, variable-pitch)."
   (dolist (face '(default fixed-pitch variable-pitch))
     (set-face-attribute
-     face nil :height (funcall set-font (face-attribute face :height)))))
+     face nil :height (funcall calc-font-size (face-attribute face :height)))))
 
 (defun font-size-increase ()
   "Increase font size."

@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(declare-function global-set-key-list "early-init.el" cons-list)
+(declare-function global-set-key-list "early-init.el" alist)
 
 (defvar windows-keybindings-list
   '(("C-c f"     . toggle-frame-fullscreen)

@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(declare-function global-set-key-list "early-init.el" cons-list)
+(declare-function global-set-key-list "early-init.el" alist)
 
 (defvar frames-keybindings-list
   (append
@@ -16,10 +16,9 @@
      ("M-w"         . tab-bar-close-tab))
    ;; Dynamically generated keybindings for M-1 through M-8
    (mapcar (lambda (i)
-	     (cons (format "M-%s" i)
-		   `(lambda ()
-		      (interactive)
-		      (tab-bar-select-tab ,i))))
+	     (cons (format "M-%s" i) `(lambda ()
+					(interactive)
+					(tab-bar-select-tab ,i))))
 	   (number-sequence 1 8))))
 
 (global-set-key-list frames-keybindings-list)

@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(declare-function global-set-key-list "early-init.el" cons-list)
+(declare-function global-set-key-list "early-init.el" alist)
 
 (global-set-key-list '(("C-c i" . rcirc)))
 
