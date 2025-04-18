@@ -90,6 +90,7 @@ sudo apt autoremove --purge -y \
     lightsoff \
     malcontent \
     quadrapassel \
+    rhythmbox \
     shotwell \
     swell-foop \
     tali \
