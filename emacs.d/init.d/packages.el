@@ -94,6 +94,12 @@
    '(git-gutter:hide-gutter t))
   (global-git-gutter-mode t))
 
+;; https://github.com/json-emacs/json-mode
+(use-package json-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode))
+  (add-to-list 'auto-mode-alist '("\\.jsonc\\'" . jsonc-mode)))
+
 ;; https://github.com/magit/magit
 ;; https://magit.vc/manual
 (use-package magit)
