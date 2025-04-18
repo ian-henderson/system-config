@@ -27,6 +27,8 @@
     (dolist (file (directory-files init-d t "\\.el$"))
       (load-file file))))
 
+(message "Emacs started in %s seconds." (emacs-init-time))
+
 (provide 'init)
 
 ;;; init.el ends here

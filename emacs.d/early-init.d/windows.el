@@ -29,10 +29,8 @@
   (add-hook hook #'display-fill-column-indicator-mode))
 
 ;; prettify symbols
-;; Going to explicitly list which modes. The default ligatures look terrible.
-(mapc (lambda (hook)
-	(add-hook hook #'prettify-symbols-mode))
-      '(emacs-lisp-mode-hook scheme-mode-hook))
+(dolist (hook '(emacs-lisp-mode-hook scheme-mode-hook))
+  (add-hook hook #'prettify-symbols-mode))
 
 (defun remove-mode-line-modes-from-mode-line ()
   "Remove modes from modeline."

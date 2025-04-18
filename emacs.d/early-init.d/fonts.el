@@ -13,12 +13,12 @@
 		      :family "Hack"
 		      :height fixed-pitch-font-height))
 
-(defvar-local variable-pitch-font-height 350)
+(defvar-local variable-pitch-font-height 300)
 
 ;; DejaVu Serif, EB Garamond, FreeSerif, Go, Libre Baskerville,
 ;; Liberation Serif
 (set-face-attribute 'variable-pitch nil
-		    :family "Liberation Serif"
+		    :family "DejaVu Serif"
 		    :height variable-pitch-font-height)
 
 (defun font-size-change (factor)

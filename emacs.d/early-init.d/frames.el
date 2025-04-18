@@ -4,33 +4,6 @@
 
 (declare-function global-set-key-list "early-init.el" cons-list)
 
-(defun frame-change-dimension (set-frame-function factor)
-  "Change the current frame height or width.
-Arguments: SET-FRAME-FUNCTION (`set-frame-height` or `set-frame-width`)
-and FACTOR (number)."
-  (funcall set-frame-function
-	   (selected-frame) (* factor (frame-height))))
-
-(defun frame-height-decrease ()
-  "Decrease the current frame height."
-  (interactive)
-  (frame-change-dimension #'set-frame-height 0.9))
-
-(defun frame-height-increase ()
-  "Increase the current frame height."
-  (interactive)
-  (frame-change-dimension #'set-frame-height 1.1))
-
-(defun frame-width-decrease ()
-  "Decrease the current frame width."
-  (interactive)
-  (frame-change-dimension #'set-frame-width 0.9))
-
-(defun frame-width-increase ()
-  "Increase the current frame width."
-  (interactive)
-  (frame-change-dimension #'set-frame-width 1.1))
-
 (defvar frames-keybindings-list
   (append
    '(("C-c n"       . tab-rename)
@@ -40,11 +13,7 @@ and FACTOR (number)."
      ("M-)"         . tab-bar-move-tab)
      ("M-t"         . tab-bar-new-tab)
      ("M-T"         . tab-bar-undo-close-tab)
-     ("M-w"         . tab-bar-close-tab)
-     ("M-S-<left>"  . frame-width-decrease)
-     ("M-S-<right>" . frame-width-increase)
-     ("M-S-<up>"    . frame-height-increase)
-     ("M-S-<down>"  . frame-height-decrease))
+     ("M-w"         . tab-bar-close-tab))
    ;; Dynamically generated keybindings for M-1 through M-8
    (mapcar (lambda (i)
 	     (cons (format "M-%s" i)

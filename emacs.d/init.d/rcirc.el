@@ -4,7 +4,7 @@
 
 (declare-function global-set-key-list "early-init.el" cons-list)
 
-(global-set-key-list '(("C-c r" . rcirc)))
+(global-set-key-list '(("C-c i" . rcirc)))
 
 (setq-default rcirc-authinfo `(("libera" nickserv
 				,(getenv "LIBERA_USERNAME")

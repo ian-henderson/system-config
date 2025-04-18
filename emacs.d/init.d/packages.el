@@ -75,9 +75,10 @@
 ;; https://github.com/patrickvane/shfmt
 (use-package format-all
   :commands format-all-mode
-  :custom (format-all-formatters
-	   '(("C" (clang-format "--style" "Mozilla"))
-	     ("Shell" (shfmt "-ci"))))
+  :config
+  (setq-default format-all-formatters
+		'(("C" (clang-format "--style" "Mozilla"))
+		  ("Shell" (shfmt "-ci"))))
   :hook
   (prog-mode . format-all-mode)
   (prog-mode . format-all-ensure-formatter))
@@ -92,18 +93,6 @@
    '(git-gutter:update-interval 2)
    '(git-gutter:hide-gutter t))
   (global-git-gutter-mode t))
-
-;; https://github.com/roman/golden-ratio.el
-(use-package golden-ratio
-  :init (golden-ratio-mode 1)
-  :config
-  (dolist (f '(evil-window-left
-	       evil-window-right
-	       evil-window-up
-	       evil-window-down
-	       evil-window-next
-	       evil-window-prev))
-    (advice-add f :after (lambda (&rest _) (golden-ratio)))))
 
 ;; https://github.com/magit/magit
 ;; https://magit.vc/manual
