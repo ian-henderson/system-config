@@ -24,8 +24,7 @@
 ;; Loads el files in init.d
 (let ((init-d (expand-file-name "init.d" user-emacs-directory)))
   (when (file-directory-p init-d)
-    (dolist (file (directory-files init-d t "\\.el$"))
-      (load-file file))))
+    (mapc #'load-file (directory-files init-d t "\\.el$"))))
 
 (message "Emacs started in %s seconds." (emacs-init-time))
 

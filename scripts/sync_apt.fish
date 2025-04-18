@@ -36,15 +36,12 @@ sudo apt update -y
 
 sudo apt dist-upgrade -y
 
-sudo apt upgrade -y
-
 sudo apt install -y \
     bat \
     brave-browser \
     btop \
     cbonsai \
     curl \
-    distrobox \
     fastfetch \
     fish \
     flatpak \

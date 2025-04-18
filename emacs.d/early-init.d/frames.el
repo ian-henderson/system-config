@@ -6,14 +6,14 @@
 
 (defvar frames-keybindings-list
   (append
-   '(("C-c n"       . tab-rename)
-     ("M-9"         . tab-bar-switch-to-prev-tab)
-     ("M-0"         . tab-bar-switch-to-next-tab)
-     ("M-("         . tab-bar-move-tab-backward)
-     ("M-)"         . tab-bar-move-tab)
-     ("M-t"         . tab-bar-new-tab)
-     ("M-T"         . tab-bar-undo-close-tab)
-     ("M-w"         . tab-bar-close-tab))
+   '(("C-c n" . tab-rename)
+     ("M-9"   . tab-bar-switch-to-prev-tab)
+     ("M-0"   . tab-bar-switch-to-next-tab)
+     ("M-("   . tab-bar-move-tab-backward)
+     ("M-)"   . tab-bar-move-tab)
+     ("M-t"   . tab-bar-new-tab)
+     ("M-T"   . tab-bar-undo-close-tab)
+     ("M-w"   . tab-bar-close-tab))
    ;; Dynamically generated keybindings for M-1 through M-8
    (mapcar (lambda (i)
 	     (cons (format "M-%s" i) `(lambda ()
