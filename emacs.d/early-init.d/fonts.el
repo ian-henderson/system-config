@@ -7,8 +7,8 @@
 (defvar-local font-family-default "Hack")
 (defvar-local font-height-default 180)
 
-(defvar-local font-family-variable "Liberation Serif")
-(defvar-local font-height-variable 300)
+(defvar-local font-family-variable "DejaVu Sans")
+(defvar-local font-height-variable 200)
 
 (defun font-size-reset ()
   "Set font sizes to default sizes."

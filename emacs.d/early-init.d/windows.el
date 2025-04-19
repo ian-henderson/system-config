@@ -16,6 +16,14 @@
 
 (global-set-key-list windows-keybindings-list)
 
+;; disables trackpad pinch-to-zoom
+(dolist (binding '("<pinch>" "<magnify>"))
+  (global-set-key (kbd binding) #'ignore))
+
+;; disables C-scroll-wheel
+(dolist (binding '("C-<wheel-up>" "C-<wheel-down>"))
+  (global-unset-key (kbd binding)))
+
 (column-number-mode 1)
 (electric-pair-mode 1)
 (global-visual-line-mode 1)
