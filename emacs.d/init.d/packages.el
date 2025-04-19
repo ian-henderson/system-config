@@ -2,6 +2,14 @@
 ;;; Commentary:
 ;;; Code:
 
+;; https://github.com/Malabarba/aggressive-indent-mode
+(use-package aggressive-indent
+  :config
+  ;; (dolist (hook '(emacs-lisp-mode lisp-mode scheme-mode))
+  ;;   (add-hook hook #'aggressive-indent-mode))
+  ;; (add-to-list 'aggressive-indent-excluded-modes 'html-mode)
+  (global-aggressive-indent-mode 1))
+
 ;; https://github.com/rranelli/auto-package-update.el
 (use-package auto-package-update
   :custom
@@ -100,6 +108,19 @@
   (add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode))
   (add-to-list 'auto-mode-alist '("\\.jsonc\\'" . jsonc-mode)))
 
+;; https://github.com/roman/golden-ratio.el
+(use-package golden-ratio
+  :config
+  (dolist (f '(evil-window-left
+	       evil-window-right
+	       evil-window-up
+	       evil-window-down
+	       windmove-left
+	       windmove-right
+	       windmove-up
+	       windmove-down))
+    (add-to-list 'golden-ratio-extra-commands f)))
+
 ;; https://github.com/magit/magit
 ;; https://magit.vc/manual
 (use-package magit)
@@ -140,6 +161,9 @@
   :custom (rust-format-on-save t)
   :mode "\\.rs\\'"
   :config (add-hook 'rust-mode-hook (lambda () (flycheck-mode nil))))
+
+;; https://github.com/slime/slime
+(use-package slime :custom (inferior-lisp-program "sbcl"))
 
 ;; https://github.com/akermu/emacs-libvterm
 ;; Debian dependencies: libvterm-dev, cmake

@@ -40,7 +40,6 @@ sudo apt install -y \
     bat \
     brave-browser \
     btop \
-    cbonsai \
     curl \
     fastfetch \
     fish \
@@ -59,7 +58,7 @@ sudo apt install -y \
     libssl-dev \
     pkg-config
 
-# SICP packages
+# Guile packages
 sudo apt install -y \
     guile-3.0 \
     guile-3.0-dev
