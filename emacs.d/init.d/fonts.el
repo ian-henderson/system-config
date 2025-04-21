@@ -4,11 +4,11 @@
 
 (declare-function global-set-key-list "early-init.el" alist)
 
-(defvar-local font-family-default "Hack")
-(defvar-local font-height-default 180)
+(defvar-local font-family-default "Liberation Mono")
+(defvar-local font-height-default 200)
 
-(defvar-local font-family-variable "DejaVu Sans")
-(defvar-local font-height-variable 200)
+(defvar-local font-family-variable "Liberation Sans")
+(defvar-local font-height-variable 300)
 
 (defun font-size-reset ()
   "Set font sizes to default sizes."

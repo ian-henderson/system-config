@@ -25,7 +25,6 @@
   (global-unset-key (kbd binding)))
 
 (column-number-mode 1)
-(electric-pair-mode 1)
 (global-visual-line-mode 1)
 (which-key-mode 1)
 

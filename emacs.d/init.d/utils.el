@@ -27,6 +27,14 @@
 
 (load-custom-file)
 
+(use-package eww
+  :custom
+  (eww-search-prefix "https://lite.duckduckgo.com/lite?q=")
+  (shr-width nil)
+  :config
+  (dolist (keybinding '("M-n" "M-N"))
+    (define-key eww-mode-map (kbd keybinding) nil)))
+
 ;; https://orgmode.org/
 (use-package org
   :ensure nil ; (built-in)

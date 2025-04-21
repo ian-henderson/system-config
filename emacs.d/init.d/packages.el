@@ -54,8 +54,7 @@
     "Toggle evil mode."
     (interactive)
     (evil-mode (if (bound-and-true-p evil-mode) 0 1)))
-  (global-set-key (kbd "C-c e") 'toggle-evil-mode)
-  (evil-mode 1))
+  (global-set-key (kbd "C-c e") 'toggle-evil-mode))
 
 ;; https://github.com/emacs-evil/evil-collection
 (use-package evil-collection
@@ -102,12 +101,6 @@
    '(git-gutter:hide-gutter t))
   (global-git-gutter-mode t))
 
-;; https://github.com/json-emacs/json-mode
-(use-package json-mode
-  :config
-  (add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode))
-  (add-to-list 'auto-mode-alist '("\\.jsonc\\'" . jsonc-mode)))
-
 ;; https://github.com/roman/golden-ratio.el
 (use-package golden-ratio
   :config
@@ -120,6 +113,12 @@
 	       windmove-up
 	       windmove-down))
     (add-to-list 'golden-ratio-extra-commands f)))
+
+;; https://github.com/json-emacs/json-mode
+(use-package json-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode))
+  (add-to-list 'auto-mode-alist '("\\.jsonc\\'" . jsonc-mode)))
 
 ;; https://github.com/magit/magit
 ;; https://magit.vc/manual
@@ -138,6 +137,13 @@
   (neo-theme 'ascii)
   (neo-window-width 30)
   :bind ("<f8>" . neotree-toggle))
+
+;; https://www.emacswiki.org/emacs/%20%20ParEdit
+;; https://mumble.net/~campbell/emacs/paredit.html
+(use-package paredit
+  :config
+  (dolist (hook '(emacs-lisp-mode-hook lisp-mode-hook scheme-mode-hook))
+    (add-hook hook #'enable-paredit-mode)))
 
 ;; https://github.com/bbatsov/projectile
 ;; https://docs.projectile.mx/projectile/index.html
@@ -175,8 +181,8 @@
     (let ((meta-keys (mapcar (lambda (i) (format "M-%s" i))
 			     (append
 			      (number-sequence 0 9)
-			      '("t" "T" "w" "(" ")" "<up>"
-				"<down>" "<left>" "<right>")))))
+			      '("t" "T" "w" "v" "n" "N" "p" "P" "<up>" "<down>"
+				"<left>" "<right>")))))
       (mapc (lambda (key)
 	      (define-key vterm-mode-map (kbd key) nil))
 	    (append meta-keys '("<f5>")))))
