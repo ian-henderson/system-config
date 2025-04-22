@@ -31,6 +31,7 @@
 ;; line numbers and fill-column
 (setq-default display-line-numbers-type 'relative
 	      fill-column 80)
+
 (dolist (hook '(conf-toml-mode-hook prog-mode-hook))
   (add-hook hook #'display-line-numbers-mode)
   (add-hook hook #'display-fill-column-indicator-mode))

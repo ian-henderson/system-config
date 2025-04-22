@@ -1,5 +1,5 @@
 ;;; Package --- theme.el
-;;; Commentary:
+n;;; Commentary:
 ;;; Code:
 
 ;; https://protesilaos.com/emacs/modus-themes
@@ -8,11 +8,15 @@
   (modus-themes-bold-constructs nil)
   (modus-themes-italic-constructs t))
 
+;; https://github.com/kuanyui/moe-theme.el
+(use-package moe-theme)
+
 ;; https://protesilaos.com/emacs/standard-themes
 (use-package standard-themes)
 
 ;; https://github.com/GuidoSchmidt/circadian.el
 (use-package circadian
+  :after standard-themes
   :custom
   (calendar-latitude 38.833881)
   (calendar-longitude -104.821365)

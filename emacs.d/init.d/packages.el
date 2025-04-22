@@ -17,9 +17,6 @@
   (auto-package-update-hide-results t)
   :init (auto-package-update-maybe))
 
-;; https://github.com/dholm/benchmark-init-el
-(use-package benchmark-init :hook (after-init . benchmark-init/deactivate))
-
 ;; https://company-mode.github.io
 ;; complete anything (auto complete)
 (use-package company :hook (after-init . global-company-mode))
@@ -82,10 +79,8 @@
 ;; https://github.com/patrickvane/shfmt
 (use-package format-all
   :commands format-all-mode
-  :config
-  (setq-default format-all-formatters
-		'(("C" (clang-format "--style" "Mozilla"))
-		  ("Shell" (shfmt "-ci"))))
+  :custom (format-all-formatter '(("C" (clang-format "--style" "Mozilla"))
+				  ("Shell" (shfmt "-ci"))))
   :hook
   (prog-mode . format-all-mode)
   (prog-mode . format-all-ensure-formatter))
@@ -131,13 +126,6 @@
   (add-to-list 'auto-mode-alist '("\\.markdown\\'" . gfm-mode))
   (add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode)))
 
-;; https://github.com/jaypei/emacs-neotree
-(use-package neotree
-  :custom
-  (neo-theme 'ascii)
-  (neo-window-width 30)
-  :bind ("<f8>" . neotree-toggle))
-
 ;; https://www.emacswiki.org/emacs/%20%20ParEdit
 ;; https://mumble.net/~campbell/emacs/paredit.html
 (use-package paredit
@@ -151,12 +139,11 @@
   :config
   (projectile-mode t)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  (mapc (lambda (path)
-	  (projectile-add-known-project (concat "~/Developer/" path)))
-	'("guile"
-	  "rust/codecrafters-shell-rust"
-	  "rust/data_structures_and_algorithms"
-	  "system-config"))
+  (dolist (path '("guile"
+		  "rust/codecrafters-shell-rust"
+		  "rust/data_structures_and_algorithms"
+		  "system-config"))
+    (projectile-add-known-project (concat "~/Developer/" path)))
   (projectile-cleanup-known-projects))
 
 ;; https://github.com/Fanael/rainbow-delimiters
@@ -167,9 +154,6 @@
   :custom (rust-format-on-save t)
   :mode "\\.rs\\'"
   :config (add-hook 'rust-mode-hook (lambda () (flycheck-mode nil))))
-
-;; https://github.com/slime/slime
-(use-package slime :custom (inferior-lisp-program "sbcl"))
 
 ;; https://github.com/akermu/emacs-libvterm
 ;; Debian dependencies: libvterm-dev, cmake
@@ -183,9 +167,8 @@
 			      (number-sequence 0 9)
 			      '("t" "T" "w" "v" "n" "N" "p" "P" "<up>" "<down>"
 				"<left>" "<right>")))))
-      (mapc (lambda (key)
-	      (define-key vterm-mode-map (kbd key) nil))
-	    (append meta-keys '("<f5>")))))
+      (dolist (key (append meta-keys '("<f5>")))
+	(define-key vterm-mode-map (kbd key) nil))))
   :hook (vterm-mode . unset-vterm-keys))
 
 ;; https://github.com/yoshiki/yaml-mode

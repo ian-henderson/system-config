@@ -28,6 +28,7 @@
 (load-custom-file)
 
 (use-package eww
+  :ensure nil
   :custom
   (eww-search-prefix "https://lite.duckduckgo.com/lite?q=")
   (shr-width nil)
@@ -37,7 +38,7 @@
 
 ;; https://orgmode.org/
 (use-package org
-  :ensure nil ; (built-in)
+  :ensure nil
   :custom
   (org-hide-leading-stars t)
   (org-startup-indented t)
@@ -53,6 +54,19 @@
   :hook (org-mode . org-bullets-mode))
 
 (savehist-mode t)
+
+(global-set-key-list '(("C-c u" . browse-url-at-point)
+		       ("C-c c" . clipboard-kill-ring-save)
+		       ("C-c v" . clipboard-yank)
+		       ("C-c x" . clipboard-kill-region)))
+
+(desktop-save-mode 1)
+(setq-default desktop-lazy-verbose t
+              desktop-load-locked-desktop t
+              desktop-save t)
+
+;; Deletes trailing whitespace
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (provide 'utils)
 
