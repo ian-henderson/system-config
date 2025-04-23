@@ -1,0 +1,14 @@
+[Unit]
+Description=Emacs
+Documentation=info:emacs man:emacs(1) https://gnu.org/software/emacs
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/emacs --fg-daemon
+ExecStop=/usr/bin/emacsclient --eval "(kill-emacs)"
+Restart=on-failure
+Environment=WAYLAND_DISPLAY=wayland-0
+Environment=XDG_RUNTIME_DIR=/run/user/1000
+
+[Install]
+WantedBy=default.target
