@@ -12,11 +12,11 @@
 
 (setq-default coding-system-for-read 'utf-8
 	      coding-system-for-write 'utf-8
+	      completion-ignore-case t
 	      default-buffer-file-coding-system 'utf-8
 	      read-buffer-completion-ignore-case t
 	      read-file-name-completion-ignore-case t
-	      ring-bell-function 'ignore
-	      setq-default completion-ignore-case t)
+	      ring-bell-function 'ignore)
 
 ;; tab bar
 ;; https://lambdaland.org/posts/2022-07-20_adding_a_clock_to_emacs/
@@ -38,10 +38,10 @@
 
 ;; removes client-side decorations in GNOME+Linux
 (when (and (eq system-type 'gnu/linux)
-           (string-match "GNOME" (or (getenv "XDG_CURRENT_DESKTOP") "")))
-  (setq default-frame-alist (append '((undecorated . t)) default-frame-alist)))
+           (string-match "GNOME" (getenv "XDG_CURRENT_DESKTOP") ))
+  (add-to-list 'default-frame-alist '(undecorated . t)))
 
-;; ensures emacs is maximized on boot
+;; maximize frame on startup
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 (provide 'early-init)
