@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(declare-function global-set-key-list "early-init.el" alist)
+(declare-function global-set-key-list "init.el" alist)
 
 (defvar frames-keybindings-list
   (append

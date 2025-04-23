@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(declare-function global-set-key-list "early-init.el" alist)
+(declare-function global-set-key-list "init.el" alist)
 
 (defvar windows-keybindings-list
   '(("C-c f"     . toggle-frame-fullscreen)
@@ -25,6 +25,7 @@
   (global-unset-key (kbd binding)))
 
 (column-number-mode 1)
+(electric-pair-mode 1)
 (global-visual-line-mode 1)
 (which-key-mode 1)
 

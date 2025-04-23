@@ -31,8 +31,8 @@
 			      (recents  . "r")))
   (dashboard-navigation-cycle t)
   (dashboard-projects-backend 'projectile)
-  (dashboard-startup-banner
-   (expand-file-name "images/stallman-boat.jpg" user-emacs-directory))
+  (dashboard-startup-banner 2)
+  ;; (expand-file-name "images/stallman-boat.jpg" user-emacs-directory))
   (dashboard-vertically-center-content t)
   (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
   :init (dashboard-setup-startup-hook))
@@ -51,7 +51,8 @@
     "Toggle evil mode."
     (interactive)
     (evil-mode (if (bound-and-true-p evil-mode) 0 1)))
-  (global-set-key (kbd "C-c e") 'toggle-evil-mode))
+  (global-set-key (kbd "C-c e") 'toggle-evil-mode)
+  (evil-mode 1))
 
 ;; https://github.com/emacs-evil/evil-collection
 (use-package evil-collection
@@ -126,25 +127,19 @@
   (add-to-list 'auto-mode-alist '("\\.markdown\\'" . gfm-mode))
   (add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode)))
 
-;; https://www.emacswiki.org/emacs/%20%20ParEdit
-;; https://mumble.net/~campbell/emacs/paredit.html
-(use-package paredit
-  :config
-  (dolist (hook '(emacs-lisp-mode-hook lisp-mode-hook scheme-mode-hook))
-    (add-hook hook #'enable-paredit-mode)))
-
 ;; https://github.com/bbatsov/projectile
 ;; https://docs.projectile.mx/projectile/index.html
+;; A project should have either a git directory or .projectile file.
+;; If a project isn't detected, run `(projectile-invalidate-cache)`.
 (use-package projectile
+  :init (projectile-mode 1)
   :config
-  (projectile-mode t)
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (define-key projectile-mode-map (kbd "C-c p") #'projectile-command-map)
   (dolist (path '("guile"
 		  "rust/codecrafters-shell-rust"
-		  "rust/data_structures_and_algorithms"
+  		  "rust/data_structures_and_algorithms"
 		  "system-config"))
-    (projectile-add-known-project (concat "~/Developer/" path)))
-  (projectile-cleanup-known-projects))
+    (projectile-add-known-project (expand-file-name path "~/Developer"))))
 
 ;; https://github.com/Fanael/rainbow-delimiters
 (use-package rainbow-delimiters :hook (prog-mode . rainbow-delimiters-mode))

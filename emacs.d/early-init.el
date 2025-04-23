@@ -2,11 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(defun global-set-key-list (alist)
-  "Set global keybindings.  ALIST: list of key and function pairs."
-  (dolist (pair alist)
-    (global-set-key (kbd (car pair)) (cdr pair))))
-
 (prefer-coding-system 'utf-8)
 
 (display-battery-mode 1)
@@ -18,9 +13,9 @@
 (setq-default coding-system-for-read 'utf-8
 	      coding-system-for-write 'utf-8
 	      default-buffer-file-coding-system 'utf-8
-	      ring-bell-function 'ignore
 	      read-buffer-completion-ignore-case t
 	      read-file-name-completion-ignore-case t
+	      ring-bell-function 'ignore
 	      setq-default completion-ignore-case t)
 
 ;; tab bar

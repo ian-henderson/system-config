@@ -2,12 +2,12 @@
 ;;; Commentary:
 ;;; Code:
 
-(declare-function global-set-key-list "early-init.el" alist)
+(declare-function global-set-key-list "init.el" alist)
 
-(defvar-local font-family-default "Liberation Mono")
-(defvar-local font-height-default 200)
+(defvar-local font-family-default "Adwaita Mono")
+(defvar-local font-height-default 180)
 
-(defvar-local font-family-variable "Liberation Sans")
+(defvar-local font-family-variable "Adwaita Sans")
 (defvar-local font-height-variable 300)
 
 (defun font-size-reset ()
