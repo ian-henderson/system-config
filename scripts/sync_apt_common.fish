@@ -43,7 +43,6 @@ sudo apt install -y \
     curl \
     fastfetch \
     fish \
-    flatpak \
     git \
     lolcat \
     neovim \
@@ -74,20 +73,3 @@ sudo apt install -y \
     make \
     pkg-config \
     shfmt
-
-sudo apt autoremove --purge -y \
-    evolution \
-    firefox-esr \
-    gnome-games \
-    gnome-maps \
-    gnome-music \
-    gnome-system-monitor \
-    gnome-tour \
-    lightsoff \
-    malcontent \
-    quadrapassel \
-    rhythmbox \
-    shotwell \
-    swell-foop \
-    tali \
-    yelp
