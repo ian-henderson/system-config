@@ -34,6 +34,10 @@ for i in $home_dotfiles
     create-symbolic-link "$src" "$target"
 end
 
+if -e "$HOME/.emacs"
+	rm "$HOME/.emacs"
+end
+
 set config "$HOME/.config"
 
 if not test -d "$config"

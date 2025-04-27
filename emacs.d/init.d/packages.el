@@ -150,6 +150,9 @@
   :mode "\\.rs\\'"
   :config (add-hook 'rust-mode-hook (lambda () (flycheck-mode nil))))
 
+;; https://github.com/holomorph/systemd-mode
+(use-package systemd)
+
 ;; https://github.com/akermu/emacs-libvterm
 ;; Debian dependencies: libvterm-dev, cmake
 (use-package vterm
