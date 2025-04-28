@@ -1,9 +1,10 @@
 [Unit]
 Description=Emacs
 Documentation=info:emacs man:emacs(1) https://gnu.org/software/emacs
+After=graphical-session.target
 
 [Service]
-Type=forking
+Type=simple
 ExecStart=/usr/bin/emacs --daemon
 ExecStop=/usr/bin/emacsclient --eval "(kill-emacs)"
 Restart=on-failure

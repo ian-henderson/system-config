@@ -1,9 +1,5 @@
 #!/usr/bin/env fish
 
-# enable fractional scaling
-gsettings set org.gnome.mutter experimental-features \
-    "['scale-monitor-framebuffer', 'xwayland-native-scaling']"
-
 # add brave repo
 sudo zypper addrepo \
     https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-start_date=$(date -d "4/24/2025 12:00" +%s)
+start_date=$(date -d "4/27/2025 17:30" +%s)
 today=$(date +%s)
 duration_seconds=$((today - start_date))
 duration_days=$((duration_seconds / 86400))

@@ -4,10 +4,10 @@
 
 (declare-function global-set-key-list "init.el" alist)
 
-(defvar-local font-family-default "Ubuntu Sans Mono")
-(defvar-local font-height-default 160)
+(defvar-local font-family-default "Hack Nerd Font")
+(defvar-local font-height-default 180)
 
-(defvar-local font-family-variable "Ubuntu Sans")
+(defvar-local font-family-variable "DejaVu Sans")
 (defvar-local font-height-variable 250)
 
 (defun font-size-reset ()

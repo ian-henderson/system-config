@@ -34,7 +34,7 @@ for i in $home_dotfiles
     create-symbolic-link "$src" "$target"
 end
 
-if -e "$HOME/.emacs"
+if test -e "$HOME/.emacs"
 	rm "$HOME/.emacs"
 end
 

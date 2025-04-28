@@ -51,16 +51,21 @@ function update
         sudo apt dist-upgrade -y
     end
 
-    if type -q zypper
-        echo -e "\nUPDATING ZYPPER"
-        sudo zypper refresh
-        sudo zypper update -y
-        sudo zypper dist-upgrade -y
+    if type -q paru
+        echo -e "\nUPDATING PARU"
+        paru -Syyu
     end
 
     if type -q flatpak
         echo -e "\nUPDATING FLATPAK"
         sudo flatpak update -y
+    end
+
+    if type -q zypper
+        echo -e "\nUPDATING ZYPPER"
+        sudo zypper refresh
+        sudo zypper update -y
+        sudo zypper dist-upgrade -y
     end
 end
 
