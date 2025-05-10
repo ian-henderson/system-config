@@ -7,10 +7,10 @@ sudo flatpak install -y \
     app.devsuite.Ptyxis \
     ca.desrt.dconf-editor \
     ch.protonmail.protonmail-bridge \
-    com.discordapp.Discord \
     com.github.johnfactotum.Foliate \
     com.github.tchx84.Flatseal \
     com.mattjakeman.ExtensionManager \
+    com.plexamp.Plexamp \
     com.protonvpn.www \
     de.haeckerfelix.Fragments \
     de.haeckerfelix.Shortwave \

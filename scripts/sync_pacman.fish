@@ -2,36 +2,48 @@
 
 sudo pacman -Syyu
 
-sudo pacman -S \
+set -l main_packages \
     bat \
     btop \
     fastfetch \
+    ghc \
     git \
+    htop \
+    lolcat \
     man-db \
+    microsoft-edge-stable-bin \
     neovim \
     power-profiles-daemon \
+    proton-pass-bin \
     thunderbird \
-    wl-clipboard
-
-# ttf-font options: gnu-free-fonts, noto-fonts, ttf-bitstream-vera, ttf-croscore
-#                   ttf-dejavu, ttf-droid, ttf-ibm-plex, ttf-input,
-#                   ttf-input-nerd, ttf-liberation, ttf-roboto
-sudo pacman -S \
+    timeshift \
+    tree \
     ttf-dejavu \
     ttf-hack-nerd \
-    ttf-liberation
+    ttf-liberation \
+    wireguard-tools \
+    wl-clipboard
 
-sudo systemctl enable --now power-profiles-daemon
-
-# Emacs
-sudo pacman -S \
+set -l c_packages \
+    bear \
+    clang \
     cmake \
+    gtk4 \
+    meson
+
+set -l emacs_packages \
     emacs-wayland \
     ispell \
     shfmt
 
+sudo pacman -S --needed --noconfirm \
+    $main_packages $c_packages $emacs_packages
+
+sudo systemctl enable --now \
+    bluetooth \
+    power-profiles-daemon
+
 sudo pacman -Rns \
-    epiphany \
     gnome-extensions \
     gnome-maps \
     gnome-music \

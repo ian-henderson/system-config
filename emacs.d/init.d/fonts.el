@@ -4,11 +4,11 @@
 
 (declare-function global-set-key-list "init.el" alist)
 
-(defvar-local font-family-default "Hack Nerd Font")
-(defvar-local font-height-default 180)
+(defvar-local font-family-default "Adwaita Mono")
+(defvar-local font-height-default 160)
 
-(defvar-local font-family-variable "DejaVu Sans")
-(defvar-local font-height-variable 250)
+(defvar-local font-family-variable "Adwaita Sans")
+(defvar-local font-height-variable 200)
 
 (defun font-size-reset ()
   "Set font sizes to default sizes."

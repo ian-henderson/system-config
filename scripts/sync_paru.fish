@@ -23,7 +23,3 @@ end
 makepkg -si
 
 cd "$initial_pwd"
-
-paru -Sy \
-    1password \
-    brave-bin

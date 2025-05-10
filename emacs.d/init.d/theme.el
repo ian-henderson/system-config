@@ -2,13 +2,19 @@
 ;;; Commentary:
 ;;; Code:
 
-;; https://protesilaos.com/emacs/modus-themes
-(use-package modus-themes
-  :custom
-  (modus-themes-bold-constructs nil)
-  (modus-themes-italic-constructs t))
+;; https://github.com/protesilaos/ef-themes
+;; https://protesilaos.com/emacs/ef-themes
+;; https://protesilaos.com/emacs/ef-themes-pictures
+(use-package ef-themes)
 
+;; https://github.com/protesilaos/modus-themes
+;; https://protesilaos.com/emacs/modus-themes
+;; https://protesilaos.com/emacs/modus-themes-pictures
+(use-package modus-themes)
+
+;; https://github.com/protesilaos/standard-themes
 ;; https://protesilaos.com/emacs/standard-themes
+;; https://protesilaos.com/emacs/standard-themes-pictures
 (use-package standard-themes)
 
 ;; https://github.com/GuidoSchmidt/circadian.el
@@ -16,18 +22,12 @@
   :custom
   (calendar-latitude 38.833881)
   (calendar-longitude -104.821365)
-  (circadian-themes '(
-		      ;; (:sunrise . modus-operandi-tinted)
-  		      ;; ("11:00"  . modus-operandi)
-  		      ;; ("15:30"  . modus-operandi-tinted)
-  		      ;; ("17:30"  . modus-vivendi-tinted)
-  		      ;; (:sunset  . modus-vivendi)
-		      (:sunrise . standard-light-tinted)
-  		      ("11:00"  . standard-light)
-  		      ("15:30"  . standard-light-tinted)
-  		      ("17:30"  . standard-dark-tinted)
-  		      (:sunset  . standard-dark)
-		      ))
+  (circadian-themes '(("05:00"  . ef-dream)
+		      (:sunrise . ef-reverie)
+		      ("12:00"  . ef-spring)
+		      ("16:00"  . ef-day)
+		      ("19:00"  . modus-vivendi-tinted)
+  		      (:sunset  . ef-night)))
   :hook (emacs-startup . circadian-setup))
 
 (provide 'theme)

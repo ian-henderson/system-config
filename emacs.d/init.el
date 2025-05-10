@@ -2,6 +2,18 @@
 ;;; Commentary:
 ;;; Code:
 
+;; Generate custom.el if one doesn't exist and load it
+(setq custom-file (expand-file-name "init.d/custom.el" user-emacs-directory))
+(unless (file-exists-p custom-file)
+  (with-temp-buffer
+    (insert ";;; Package --- custom.el\n")
+    (insert ";;; Commentary:\n")
+    (insert ";;; Code:\n\n")
+    (insert "(provide 'custom)\n\n")
+    (insert ";;; custom.el ends here\n")
+    (write-region (point-min) (point-max) custom-file)))
+(load custom-file)
+
 ;; MELPA (Milkypostman's Emacs Lisp Package Archive)
 ;; https://melpa.org
 (require 'package)
@@ -36,21 +48,3 @@
 (provide 'init)
 
 ;;; init.el ends here
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   '("aa545934ce1b6fd16b4db2cf6c2ccf126249a66712786dd70f880806a187ac0b"
-     "465345d03688959882820007491df63856afccca64c6ed19dfb781a95c6cf724"
-     "8717434774f34f325aca6fedb24b572026a0e61dca6e3fe5c03f8c3af8f412f6" default))
- '(git-gutter:hide-gutter t)
- '(git-gutter:update-interval 2)
- '(package-selected-packages nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )

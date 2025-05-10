@@ -9,18 +9,6 @@
 (dolist (hook '(markdown-mode-hook org-mode-hook text-mode-hook))
   (add-hook hook #'flyspell-mode))
 
-;; Generate custom.el if one doesn't exist and load it
-(let ((custom-file (expand-file-name "init.d/custom.el" user-emacs-directory)))
-  (unless (file-exists-p custom-file)
-    (with-temp-buffer
-      (insert ";;; Package --- custom.el\n")
-      (insert ";;; Commentary:\n")
-      (insert ";;; Code:\n\n")
-      (insert "(provide 'custom)\n\n")
-      (insert ";;; custom.el ends here\n")
-      (write-region (point-min) (point-max) custom-file)))
-  (load custom-file))
-
 (use-package eww
   :ensure nil
   :custom
@@ -30,22 +18,11 @@
   (dolist (keybinding '("M-n" "M-N"))
     (define-key eww-mode-map (kbd keybinding) nil)))
 
-;; https://orgmode.org/
-(use-package org
+(use-package man
   :ensure nil
-  :custom
-  (org-hide-leading-stars t)
-  (org-startup-indented t)
-  :hook
-  (org-mode . org-indent-mode)
-  (org-mode . variable-pitch-mode)
-  :bind (:map org-mode-map
-	      ("C-c l" . org-toggle-link-display)))
-
-;; https://github.com/sabof/org-bullets
-(use-package org-bullets
-  :after org
-  :hook (org-mode . org-bullets-mode))
+  :config
+  (dolist (keybinding '("M-n" "M-p"))
+    (define-key Man-mode-map (kbd keybinding) nil)))
 
 (savehist-mode t)
 

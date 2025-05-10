@@ -28,7 +28,7 @@ end
 function fflol
     if not type -q lolcat
         echo " fflol: lolcat not installed"
-        return 127 # command not found code
+        return 127 # command not found
     end
 
     fastfetch $argv | lolcat
@@ -41,36 +41,6 @@ end
 function reload
     source $fish_dir/config.fish
     echo "🐟 Fish config reloaded!"
-end
-
-function update
-    if type -q apt
-        echo -e "\nUPDATING APT"
-        sudo apt update -y
-        sudo apt upgrade -y
-        sudo apt dist-upgrade -y
-    end
-
-    if type -q paru
-        echo -e "\nUPDATING PARU"
-        paru -Syyu
-    end
-
-    if type -q flatpak
-        echo -e "\nUPDATING FLATPAK"
-        sudo flatpak update -y
-    end
-
-    if type -q zypper
-        echo -e "\nUPDATING ZYPPER"
-        sudo zypper refresh
-        sudo zypper update -y
-        sudo zypper dist-upgrade -y
-    end
-end
-
-function up
-    update
 end
 
 function vi

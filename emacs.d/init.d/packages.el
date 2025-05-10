@@ -2,14 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-;; https://github.com/Malabarba/aggressive-indent-mode
-(use-package aggressive-indent
-  :config
-  ;; (dolist (hook '(emacs-lisp-mode lisp-mode scheme-mode))
-  ;;   (add-hook hook #'aggressive-indent-mode))
-  ;; (add-to-list 'aggressive-indent-excluded-modes 'html-mode)
-  (global-aggressive-indent-mode 1))
-
 ;; https://github.com/rranelli/auto-package-update.el
 (use-package auto-package-update
   :custom
@@ -37,12 +29,6 @@
   (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
   :init (dashboard-setup-startup-hook))
 
-;; https://joaotavora.github.io/eglot
-(use-package eglot
-  :hook (rust-mode . eglot-ensure)
-  :config (add-to-list 'eglot-server-programs
-		       '(rust-mode . ("rust-analyzer"))))
-
 ;; https://github.com/emacs-evil/evil
 (use-package evil
   :custom (evil-want-keybinding nil)
@@ -52,7 +38,12 @@
     (interactive)
     (evil-mode (if (bound-and-true-p evil-mode) 0 1)))
   (global-set-key (kbd "C-c e") 'toggle-evil-mode)
-  (evil-mode 1))
+  (evil-mode 1)
+  ;; TODO: find a cleaner way to handle this
+  (eval-after-load 'vterm
+    (dolist (keybinding (mapcar (lambda (i) (format "C-%s" i))
+				'("a" "d" "e" "k" "n" "p" "r")))
+      (define-key evil-insert-state-map (kbd keybinding) 'vterm--self-insert))))
 
 ;; https://github.com/emacs-evil/evil-collection
 (use-package evil-collection
@@ -72,23 +63,6 @@
   (exec-path-from-shell-copy-envs
    '("LIBERA_USERNAME" "LIBERA_PASSWORD" "LIBERA_FULL_NAME")))
 
-;; https://github.com/wwwjfy/emacs-fish
-(use-package fish-mode)
-
-;; https://github.com/lassik/emacs-format-all-the-code
-;; https://clang.llvm.org/docs/ClangFormat.html
-;; https://github.com/patrickvane/shfmt
-(use-package format-all
-  :commands format-all-mode
-  :custom (format-all-formatter '(("C" (clang-format "--style" "Mozilla"))
-				  ("Shell" (shfmt "-ci"))))
-  :hook
-  (prog-mode . format-all-mode)
-  (prog-mode . format-all-ensure-formatter))
-
-;; https://www.flycheck.org/en/latest/user/installation.html
-(use-package flycheck :config (global-flycheck-mode 1))
-
 ;; https://github.com/emacsorphanage/git-gutter
 (use-package git-gutter
   :config
@@ -100,32 +74,20 @@
 ;; https://github.com/roman/golden-ratio.el
 (use-package golden-ratio
   :config
-  (dolist (f '(evil-window-left
-	       evil-window-right
-	       evil-window-up
-	       evil-window-down
-	       windmove-left
-	       windmove-right
-	       windmove-up
-	       windmove-down))
-    (add-to-list 'golden-ratio-extra-commands f)))
-
-;; https://github.com/json-emacs/json-mode
-(use-package json-mode
-  :config
-  (add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode))
-  (add-to-list 'auto-mode-alist '("\\.jsonc\\'" . jsonc-mode)))
+  (setq golden-ratio-extra-commands
+	(append golden-ratio-extra-commands
+		'(evil-window-left
+		  evil-window-right
+		  evil-window-up
+		  evil-window-down
+		  windmove-left
+		  windmove-right
+		  windmove-up
+		  windmove-down))))
 
 ;; https://github.com/magit/magit
 ;; https://magit.vc/manual
 (use-package magit)
-
-;; https://github.com/jrblevin/markdown-mode
-(use-package markdown-mode
-  :custom (markdown-command "multimarkdown")
-  :config
-  (add-to-list 'auto-mode-alist '("\\.markdown\\'" . gfm-mode))
-  (add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode)))
 
 ;; https://github.com/bbatsov/projectile
 ;; https://docs.projectile.mx/projectile/index.html
@@ -135,7 +97,8 @@
   :init (projectile-mode 1)
   :config
   (define-key projectile-mode-map (kbd "C-c p") #'projectile-command-map)
-  (dolist (path '("guile"
+  (dolist (path '("c"
+		  "guile"
 		  "rust/codecrafters-shell-rust"
   		  "rust/data_structures_and_algorithms"
 		  "system-config"))
@@ -144,36 +107,22 @@
 ;; https://github.com/Fanael/rainbow-delimiters
 (use-package rainbow-delimiters :hook (prog-mode . rainbow-delimiters-mode))
 
-;; https://github.com/rust-lang/rust-mode
-(use-package rust-mode
-  :custom (rust-format-on-save t)
-  :mode "\\.rs\\'"
-  :config (add-hook 'rust-mode-hook (lambda () (flycheck-mode nil))))
-
-;; https://github.com/holomorph/systemd-mode
-(use-package systemd)
-
 ;; https://github.com/akermu/emacs-libvterm
-;; Debian dependencies: libvterm-dev, cmake
 (use-package vterm
-  :custom (vterm-shell (or (executable-find "fish") (executable-find "bash")))
+  :after evil-mode
+  :custom
+  (vterm-shell (or (executable-find "fish") (executable-find "bash")))
   :config
   (defun unset-vterm-keys ()
     "Unset vterm keys that overwrite existing keybindings."
     (let ((meta-keys (mapcar (lambda (i) (format "M-%s" i))
-			     (append
-			      (number-sequence 0 9)
-			      '("t" "T" "w" "v" "n" "N" "p" "P" "<up>" "<down>"
-				"<left>" "<right>")))))
-      (dolist (key (append meta-keys '("<f5>")))
+			     (append (number-sequence 0 9)
+				     '("t" "T" "w" "v" "n" "N" "p" "P" "<up>"
+				       "<down>" "<left>" "<right>")))))
+      (dolist (key meta-keys)
 	(define-key vterm-mode-map (kbd key) nil))))
-  :hook (vterm-mode . unset-vterm-keys))
-
-;; https://github.com/yoshiki/yaml-mode
-(use-package yaml-mode
-  :init
-  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
-  (add-to-list 'auto-mode-alist '("\\.yaml\\'" . yaml-mode)))
+  :hook
+  (vterm-mode . unset-vterm-keys))
 
 (provide 'packages)
 
