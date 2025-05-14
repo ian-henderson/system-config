@@ -31,10 +31,9 @@
 		       ("C-c v" . clipboard-yank)
 		       ("C-c x" . clipboard-kill-region)))
 
+;; desktop save mode
 (desktop-save-mode 1)
-(setq-default desktop-lazy-verbose t
-              desktop-load-locked-desktop t
-              desktop-save t)
+(setq-default desktop-load-locked-desktop t)
 
 ;; Deletes trailing whitespace
 (add-hook 'before-save-hook 'delete-trailing-whitespace)

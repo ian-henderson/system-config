@@ -14,6 +14,7 @@ sudo flatpak install -y \
     com.protonvpn.www \
     de.haeckerfelix.Fragments \
     de.haeckerfelix.Shortwave \
+    io.gitlab.librewolf-community \
     io.missioncenter.MissionCenter \
     me.timschneeberger.GalaxyBudsClient \
     org.gimp.GIMP \
@@ -21,5 +22,6 @@ sudo flatpak install -y \
     org.gnome.Boxes \
     org.gnome.Papers \
     org.gnome.Snapshot \
+    org.mozilla.Thunderbird \
     org.signal.Signal \
     us.zoom.Zoom

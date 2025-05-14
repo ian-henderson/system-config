@@ -14,14 +14,12 @@
 (use-package eglot
   :hook
   (c-mode . eglot-ensure)
-  (c++-mode . eglot-ensure)
   (rust-mode . eglot-ensure)
   :config
-  (setq eglot-server-programs
-	(append eglot-server-programs
-		'((rust-mode . ("rust-analyzer"))
-		  (c-mode . ("clangd"))
-		  (c++-mode . ("clangd"))))))
+  (dolist (server-program '((c-mode . ("ccls"))
+			    (rust-mode . ("rust-analyzer"))))
+    (add-to-list 'eglot-server-programs server-program))
+  (define-key eglot-mode-map (kbd "C-c e r") 'eglot-rename))
 
 ;; https://github.com/wwwjfy/emacs-fish
 (use-package fish-mode)
@@ -29,12 +27,12 @@
 ;; https://www.flycheck.org/en/latest/user/installation.html
 (use-package flycheck
   :custom
-  (flycheck-global-modes '(not c-mode c++-mode rust-mode))
+  (flycheck-global-modes '(not c-mode rust-mode))
   :config
   (global-flycheck-mode 1))
 
 ;; https://github.com/lassik/emacs-format-all-the-code
-;; https://clang.llvm.org/docs/ClangFormat.html
+;; https://clang.llvm.org/docs/ClangFormatStyleOptions.html
 ;; https://github.com/patrickvane/shfmt
 (use-package format-all
   :commands
@@ -43,8 +41,7 @@
   (setq-default
    format-all-formatters
    '(("C" (clang-format
-	   "--style"
-	   "{BasedOnStyle: GNU, ColumnLimit: 80, SpaceBeforeParens: Always}"))
+	   "--style=file:/home/ian/Developer/system-config/clang-format.yaml"))
      ("Shell" (shfmt "-ci"))))
   :hook
   (prog-mode . format-all-mode)
@@ -68,6 +65,10 @@
 
 ;; https://github.com/wentasah/meson-mode
 (use-package meson-mode)
+
+(use-package nxml-mode
+  :ensure nil ; (built-in)
+  :custom (nxml-slash-auto-complete-flag t))
 
 ;; https://github.com/rust-lang/rust-mode
 (use-package rust-mode

@@ -31,24 +31,21 @@
 
 ;; https://github.com/emacs-evil/evil
 (use-package evil
-  :custom (evil-want-keybinding nil)
+  :custom
+  (evil-want-keybinding nil)
   :config
   (defun toggle-evil-mode ()
     "Toggle evil mode."
     (interactive)
     (evil-mode (if (bound-and-true-p evil-mode) 0 1)))
   (global-set-key (kbd "C-c e") 'toggle-evil-mode)
-  (evil-mode 1)
-  ;; TODO: find a cleaner way to handle this
-  (eval-after-load 'vterm
-    (dolist (keybinding (mapcar (lambda (i) (format "C-%s" i))
-				'("a" "d" "e" "k" "n" "p" "r")))
-      (define-key evil-insert-state-map (kbd keybinding) 'vterm--self-insert))))
+  (evil-mode 1))
 
 ;; https://github.com/emacs-evil/evil-collection
 (use-package evil-collection
   :after evil
-  :config (evil-collection-init))
+  :config
+  (evil-collection-init))
 
 ;; https://github.com/emacs-evil/evil-surround
 (use-package evil-surround
@@ -98,31 +95,28 @@
   :config
   (define-key projectile-mode-map (kbd "C-c p") #'projectile-command-map)
   (dolist (path '("c"
+		  "gnome/reader"
 		  "guile"
-		  "rust/codecrafters-shell-rust"
-  		  "rust/data_structures_and_algorithms"
 		  "system-config"))
-    (projectile-add-known-project (expand-file-name path "~/Developer"))))
+    (projectile-add-known-project (expand-file-name path "~/Developer")))
+  (projectile-cleanup-known-projects))
 
 ;; https://github.com/Fanael/rainbow-delimiters
 (use-package rainbow-delimiters :hook (prog-mode . rainbow-delimiters-mode))
 
 ;; https://github.com/akermu/emacs-libvterm
 (use-package vterm
-  :after evil-mode
+  :after evil
   :custom
-  (vterm-shell (or (executable-find "fish") (executable-find "bash")))
+  (vterm-shell (or (executable-find "fish")
+		   (executable-find "bash")))
   :config
-  (defun unset-vterm-keys ()
-    "Unset vterm keys that overwrite existing keybindings."
-    (let ((meta-keys (mapcar (lambda (i) (format "M-%s" i))
-			     (append (number-sequence 0 9)
-				     '("t" "T" "w" "v" "n" "N" "p" "P" "<up>"
-				       "<down>" "<left>" "<right>")))))
-      (dolist (key meta-keys)
-	(define-key vterm-mode-map (kbd key) nil))))
+  (dolist (key (mapcar (lambda (key) (format "M-%s" key))
+		       '("w" "t" "T" "p" "P" "n" "N")))
+    (define-key vterm-mode-map (kbd key) nil))
+  (define-key vterm-mode-map (kbd "C-c v") 'vterm-yank)
   :hook
-  (vterm-mode . unset-vterm-keys))
+  (vterm-mode . evil-emacs-state))
 
 (provide 'packages)
 

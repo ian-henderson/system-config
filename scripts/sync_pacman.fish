@@ -6,28 +6,30 @@ set -l main_packages \
     bat \
     btop \
     fastfetch \
-    ghc \
     git \
+    gnome-builder \
     htop \
     lolcat \
     man-db \
-    microsoft-edge-stable-bin \
     neovim \
     power-profiles-daemon \
     proton-pass-bin \
-    thunderbird \
     timeshift \
     tree \
-    ttf-dejavu \
-    ttf-hack-nerd \
     ttf-liberation \
+    ttf-roboto \
+    ttf-roboto-mono \
+    ttf-roboto-serif \
     wireguard-tools \
     wl-clipboard
 
-set -l c_packages \
+set -l c_dev_packages \
     bear \
+    ccls \
     clang \
     cmake \
+    flatpak-builder \
+    gdb \
     gtk4 \
     meson
 
@@ -37,7 +39,7 @@ set -l emacs_packages \
     shfmt
 
 sudo pacman -S --needed --noconfirm \
-    $main_packages $c_packages $emacs_packages
+    $main_packages $c_dev_packages $emacs_packages
 
 sudo systemctl enable --now \
     bluetooth \
@@ -48,5 +50,4 @@ sudo pacman -Rns \
     gnome-maps \
     gnome-music \
     gnome-system-monitor \
-    gnome-tour \
-    htop
+    gnome-tour

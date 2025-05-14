@@ -6,6 +6,8 @@ if test -f "$fish_dir/secrets.fish"
     source "$fish_dir/secrets.fish"
 end
 
+set -x PKG_CONFIG_PATH /usr/lib/pkgconfig
+
 if status is-interactive
     set -x CONFIG "$HOME/.config"
     set -x EDITOR nvim

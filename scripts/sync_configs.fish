@@ -35,7 +35,7 @@ for i in $home_dotfiles
 end
 
 if test -e "$HOME/.emacs"
-	rm "$HOME/.emacs"
+    rm "$HOME/.emacs"
 end
 
 set config "$HOME/.config"

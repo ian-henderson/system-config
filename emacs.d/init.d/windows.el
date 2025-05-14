@@ -4,17 +4,28 @@
 
 (declare-function global-set-key-list "init.el" alist)
 
-(defvar windows-keybindings-list
-  '(("C-c f"     . toggle-frame-fullscreen)
-    ("C-c m"     . toggle-frame-maximized)
-    ("C-c s"     . window-swap-states)
-    ("C-c ="     . balance-windows)
-    ("M-<down>"  . shrink-window)
-    ("M-<up>"    . enlarge-window)
-    ("M-<left>"  . shrink-window-horizontally)
-    ("M-<right>" . enlarge-window-horizontally)))
-
-(global-set-key-list windows-keybindings-list)
+(global-set-key-list
+ (append '(("C-c f"     . toggle-frame-fullscreen)
+	   ("C-c m"     . toggle-frame-maximized)
+	   ("C-c s"     . window-swap-states)
+	   ("C-c ="     . balance-windows)
+	   ("M-<down>"  . shrink-window)
+	   ("M-<up>"    . enlarge-window)
+	   ("M-<left>"  . shrink-window-horizontally)
+	   ("M-<right>" . enlarge-window-horizontally)
+	   ("M-t"       . tab-bar-new-tab)
+	   ("M-T"       . tab-bar-undo-close-tab)
+	   ("M-w"       . tab-bar-close-tab)
+	   ("M-p"       . tab-bar-switch-to-prev-tab)
+	   ("M-n"       . tab-bar-switch-to-next-tab)
+	   ("M-P"     . tab-bar-move-tab-backward)
+	   ("M-N"     . tab-bar-move-tab))
+	 (mapcar (lambda (i)
+		   (cons (format "C-<f%s>" i)
+			 `(lambda ()
+			    (interactive)
+			    (tab-bar-select-tab ,i))))
+		 (number-sequence 1 12))))
 
 ;; disables trackpad pinch-to-zoom
 (dolist (binding '("<pinch>" "<magnify>"))
@@ -29,6 +40,9 @@
 (global-visual-line-mode 1)
 (which-key-mode 1)
 
+;; code folding (hs-minor-mode)
+(add-hook 'prog-mode-hook #'hs-minor-mode)
+
 ;; line numbers and fill-column
 (setq-default display-line-numbers-type 'relative
 	      fill-column 80)
@@ -36,7 +50,8 @@
 (dolist (hook '(conf-toml-mode-hook
 		haskell-mode-hook
 		nxml-mode-hook
-		prog-mode-hook))
+		prog-mode-hook
+		yaml-mode-hook))
   (add-hook hook #'display-line-numbers-mode)
   (add-hook hook #'display-fill-column-indicator-mode))
 
