@@ -11,7 +11,6 @@ sudo flatpak install -y \
     com.github.tchx84.Flatseal \
     com.google.Chrome \
     com.mattjakeman.ExtensionManager \
-    com.microsoft.Edge \
     com.plexamp.Plexamp \
     com.protonvpn.www \
     de.haeckerfelix.Fragments \
