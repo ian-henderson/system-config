@@ -11,9 +11,8 @@
 		   ,(getenv "LIBERA_PASSWORD")))
  rcirc-default-full-name (getenv "LIBERA_FULL_NAME")
  rcirc-server-alist `(("irc.libera.chat"
-		       :channels ("##politics" "##rust" "#archlinux" "#debian"
-				  "#emacs" "#guile" "#libera" "#linux" "#lisp"
-				  "#networking" "#scheme" "#systemcrafters")
+		       :channels ("##politics" "#archlinux" "#c" "#emacs"
+				  "#guile" "#libera" "#linux" "#lisp" "#scheme")
 		       :encryption tls
 		       :nick ,(getenv "LIBERA_USERNAME")
 		       :port 6697)))

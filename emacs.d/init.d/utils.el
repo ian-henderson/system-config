@@ -27,9 +27,9 @@
 (savehist-mode t)
 
 (global-set-key-list '(("C-c u" . browse-url-at-point)
-		       ("C-c c" . clipboard-kill-ring-save)
-		       ("C-c v" . clipboard-yank)
-		       ("C-c x" . clipboard-kill-region)))
+					   ("C-c c" . clipboard-kill-ring-save)
+					   ("C-c v" . clipboard-yank)
+					   ("C-c x" . clipboard-kill-region)))
 
 ;; desktop save mode
 (desktop-save-mode 1)
@@ -37,6 +37,8 @@
 
 ;; Deletes trailing whitespace
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+(set-frame-parameter nil 'alpha-background 100)
 
 (provide 'utils)
 

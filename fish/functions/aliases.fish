@@ -43,6 +43,14 @@ function reload
     echo "🐟 Fish config reloaded!"
 end
 
+function sail
+    if test -f sail
+        sh sail $argv
+    else
+        sh vendor/bin/sail $argv
+    end
+end
+
 function vi
     nvim $argv
 end

@@ -1,4 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env fish
 
-sudo apt install -y fish
-chsh -s "$(which fish)" "$USER"
+sudo pacman -S --needed --noconfirm fish
+
+# fisher
+curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+
+# https://github.com/jorgebucaran/nvm.fish
+fisher install jorgebucaran/nvm.fish

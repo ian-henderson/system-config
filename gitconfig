@@ -7,6 +7,7 @@
 	br = branch
 	cl = clone
 	cm = commit
+	co = checkout
 	d  = diff
 	p  = push
 	s  = status

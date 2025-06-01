@@ -18,12 +18,12 @@
   :custom
   (dashboard-center-content t)
   (dashboard-items '((projects . 5)
-		     (recents  . 5)))
+					 (recents  . 5)))
   (dashboard-item-shortcuts '((projects . "p")
-			      (recents  . "r")))
+							  (recents  . "r")))
   (dashboard-navigation-cycle t)
   (dashboard-projects-backend 'projectile)
-  (dashboard-startup-banner 2)
+  (dashboard-startup-banner 3)
   ;; (expand-file-name "images/stallman-boat.jpg" user-emacs-directory))
   (dashboard-vertically-center-content t)
   (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
@@ -68,20 +68,6 @@
    '(git-gutter:hide-gutter t))
   (global-git-gutter-mode t))
 
-;; https://github.com/roman/golden-ratio.el
-(use-package golden-ratio
-  :config
-  (setq golden-ratio-extra-commands
-	(append golden-ratio-extra-commands
-		'(evil-window-left
-		  evil-window-right
-		  evil-window-up
-		  evil-window-down
-		  windmove-left
-		  windmove-right
-		  windmove-up
-		  windmove-down))))
-
 ;; https://github.com/magit/magit
 ;; https://magit.vc/manual
 (use-package magit)
@@ -91,13 +77,14 @@
 ;; A project should have either a git directory or .projectile file.
 ;; If a project isn't detected, run `(projectile-invalidate-cache)`.
 (use-package projectile
-  :init (projectile-mode 1)
+  :init
+  (projectile-mode 1)
   :config
   (define-key projectile-mode-map (kbd "C-c p") #'projectile-command-map)
   (dolist (path '("c"
-		  "gnome/reader"
-		  "guile"
-		  "system-config"))
+				  "gnome/reader"
+				  "guile"
+				  "system-config"))
     (projectile-add-known-project (expand-file-name path "~/Developer")))
   (projectile-cleanup-known-projects))
 
@@ -109,10 +96,10 @@
   :after evil
   :custom
   (vterm-shell (or (executable-find "fish")
-		   (executable-find "bash")))
+				   (executable-find "bash")))
   :config
   (dolist (key (mapcar (lambda (key) (format "M-%s" key))
-		       '("w" "t" "T" "p" "P" "n" "N")))
+					   '("w" "t" "T" "p" "P" "n" "N")))
     (define-key vterm-mode-map (kbd key) nil))
   (define-key vterm-mode-map (kbd "C-c v") 'vterm-yank)
   :hook

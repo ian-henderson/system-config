@@ -14,7 +14,12 @@ function update
     if type -q paru
         echo -e "\nUPDATING PARU"
         paru -Syyu
-        paru -Rns (paru -Qdtq)
+        set -l orphaned_packages (paru -Qdtq)
+        if test (count $orphaned_packages) -gt 0
+            paru -Rns $orphaned_packages
+        else
+            echo "No orphaned packages found"
+        end
     end
 
     if type -q zypper
@@ -23,6 +28,8 @@ function update
         sudo zypper update -y
         sudo zypper dist-upgrade -y
     end
+
+    echo -e "\nDONE\n"
 end
 
 function up

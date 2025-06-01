@@ -7,17 +7,20 @@
   :config
   ;; (dolist (hook '(emacs-lisp-mode lisp-mode scheme-mode))
   ;;   (add-hook hook #'aggressive-indent-mode))
-  (add-to-list 'aggressive-indent-excluded-modes 'c-mode)
+  (dolist (mode '(c-mode php-mode))
+	(add-to-list 'aggressive-indent-excluded-modes mode))
   (global-aggressive-indent-mode 1))
 
 ;; https://joaotavora.github.io/eglot
 (use-package eglot
   :hook
   (c-mode . eglot-ensure)
+  (php-mode . eglot-ensure)
   (rust-mode . eglot-ensure)
   :config
   (dolist (server-program '((c-mode . ("ccls"))
-			    (rust-mode . ("rust-analyzer"))))
+							(php-mode . ("phpactor" "language-server"))
+							(rust-mode . ("rust-analyzer"))))
     (add-to-list 'eglot-server-programs server-program))
   (define-key eglot-mode-map (kbd "C-c e r") 'eglot-rename))
 
@@ -41,7 +44,7 @@
   (setq-default
    format-all-formatters
    '(("C" (clang-format
-	   "--style=file:/home/ian/Developer/system-config/clang-format.yaml"))
+		   "--style=file:/home/ian/Developer/system-config/clang-format.yaml"))
      ("Shell" (shfmt "-ci"))))
   :hook
   (prog-mode . format-all-mode)
@@ -70,6 +73,9 @@
   :ensure nil ; (built-in)
   :custom (nxml-slash-auto-complete-flag t))
 
+;; https://github.com/emacs-php/php-mode
+(use-package php-mode)
+
 ;; https://github.com/rust-lang/rust-mode
 (use-package rust-mode
   :custom
@@ -79,6 +85,9 @@
 
 ;; https://github.com/holomorph/systemd-mode
 (use-package systemd)
+
+;; https://github.com/emacs-typescript/typescript.el
+(use-package typescript-mode)
 
 ;; https://github.com/yoshiki/yaml-mode
 (use-package yaml-mode

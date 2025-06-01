@@ -16,12 +16,11 @@
   :custom
   (calendar-latitude 38.833881)
   (calendar-longitude -104.821365)
-  (circadian-themes '((:sunrise . modus-vivendi-tinted)
-		      ("10:00"  . modus-operandi-tinted)
-		      ("12:00"  . modus-operandi)
-		      ("16:00"  . modus-operandi-tinted)
-		      ("18:00"  . modus-vivendi-tinted)
-  		      (:sunset  . modus-vivendi)))
+  (circadian-themes '((:sunrise . modus-operandi-tinted)
+					  ("12:00"  . modus-operandi)
+					  ("15:30"  . modus-operandi-tinted)
+					  ("17:00"  . modus-vivendi-tinted)
+  					  (:sunset  . modus-vivendi)))
   :hook (emacs-startup . circadian-setup))
 
 (provide 'theme)

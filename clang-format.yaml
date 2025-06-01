@@ -1,7 +1,6 @@
 # https://clang.llvm.org/docs/ClangFormatStyleOptions.html
 BasedOnStyle: LLVM
 ColumnLimit: 80
-# Cpp11BracedListStyle: false
-# IndentCaseLabels: true
+IndentCaseLabels: true
 IndentWidth: 4
-# SpaceBeforeParens: Always
+UseTab: Never
