@@ -4,22 +4,14 @@
 
 (declare-function global-set-key-list "init.el" alist)
 
-(defvar-local font-family-default "Adwaita Mono")
-(defvar-local font-height-default 160)
-
-(defvar-local font-family-variable "Adwaita Sans")
-(defvar-local font-height-variable 180)
-
 (defun font-size-reset ()
   "Set font sizes to default sizes."
   (interactive)
-  (dolist (face '(default fixed-pitch))
+  (dolist (face '(default fixed-pitch))	; monospace fonts
     (set-face-attribute face nil
-			:family font-family-default
-			:height font-height-default))
-  (set-face-attribute 'variable-pitch nil
-		      :family font-family-variable
-		      :height font-height-variable))
+			:family "Iosevka" :height 140 :weight 'regular))
+  (set-face-attribute 'variable-pitch nil ; variable-pitch fonts
+		      :family "Lato" :height 140 :weight 'regular))
 
 (font-size-reset)
 

@@ -2,6 +2,13 @@
 ;;; Commentary:
 ;;; Code:
 
+(defun set-theme (theme)
+  "Disable all enabled themes and enable THEME."
+  (dolist (theme custom-enabled-themes)
+    (disable-theme theme))
+  (load-theme theme t)
+  (message "Set theme to '%s" theme))
+
 ;; https://protesilaos.com/emacs/ef-themes-pictures
 (use-package ef-themes)
 
@@ -12,16 +19,15 @@
 (use-package standard-themes)
 
 ;; https://github.com/GuidoSchmidt/circadian.el
-(use-package circadian
-  :custom
-  (calendar-latitude 38.833881)
-  (calendar-longitude -104.821365)
-  (circadian-themes '((:sunrise . modus-operandi-tinted)
-					  ("12:00"  . modus-operandi)
-					  ("15:30"  . modus-operandi-tinted)
-					  ("17:00"  . modus-vivendi-tinted)
-  					  (:sunset  . modus-vivendi)))
-  :hook (emacs-startup . circadian-setup))
+;; (use-package circadian
+;;   :custom
+;;   (calendar-latitude 38.833881)
+;;   (calendar-longitude -104.821365)
+;;   (circadian-themes '((:sunrise . standard-light-tinted)
+;;    		      (:sunset  . standard-dark)))
+;;   :hook (emacs-startup . circadian-setup))
+
+(set-theme 'standard-dark)
 
 (provide 'theme)
 

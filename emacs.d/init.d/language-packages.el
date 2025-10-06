@@ -7,8 +7,8 @@
   :config
   ;; (dolist (hook '(emacs-lisp-mode lisp-mode scheme-mode))
   ;;   (add-hook hook #'aggressive-indent-mode))
-  (dolist (mode '(c-mode php-mode))
-	(add-to-list 'aggressive-indent-excluded-modes mode))
+  (dolist (mode '(c-mode fish-mode sh-mode))
+    (add-to-list 'aggressive-indent-excluded-modes mode))
   (global-aggressive-indent-mode 1))
 
 ;; https://joaotavora.github.io/eglot
@@ -19,13 +19,25 @@
   (rust-mode . eglot-ensure)
   :config
   (dolist (server-program '((c-mode . ("ccls"))
-							(php-mode . ("phpactor" "language-server"))
-							(rust-mode . ("rust-analyzer"))))
+			    (java-mode . ("eglot-java"))
+			    (php-mode . ("phpactor" "language-server"))
+			    (rust-mode . ("rust-analyzer"))))
     (add-to-list 'eglot-server-programs server-program))
   (define-key eglot-mode-map (kbd "C-c e r") 'eglot-rename))
 
 ;; https://github.com/wwwjfy/emacs-fish
 (use-package fish-mode)
+
+;; https://github.com/lassik/emacs-format-all-the-code
+(use-package format-all
+  :commands format-all-mode
+  :hook (prog-mode . format-all-mode)
+  :config
+  (setq-default
+   format-all-formatters
+   '(("C" (clang-format
+	   "--style=file:/home/ian/Developer/system-config/clang-format.yaml"))
+     ("Shell" (shfmt "-ci")))))
 
 ;; https://www.flycheck.org/en/latest/user/installation.html
 (use-package flycheck
@@ -40,12 +52,15 @@
 (use-package format-all
   :commands
   format-all-mode
+  :custom
+  (format-all-debug t)
   :config
   (setq-default
    format-all-formatters
-   '(("C" (clang-format
-		   "--style=file:/home/ian/Developer/system-config/clang-format.yaml"))
-     ("Shell" (shfmt "-ci"))))
+   '((c-mode (clang-format
+	      "--style=file:/home/ian/Developer/system-config/clang-format.yaml"))
+     (php-mode (php-cs-fixer "fix" "--no-interaction" "--silent"))
+     ((sh-mode fish-mode) (shfmt "-ci"))))
   :hook
   (prog-mode . format-all-mode)
   (prog-mode . format-all-ensure-formatter))

@@ -6,6 +6,12 @@ function update
         sudo apt autoremove -y
     end
 
+    if type -q dnf
+        echo -e "\nUPDATING DNF"
+        sudo dnf update -y
+        sudo dnf autoremove -y
+    end
+
     if type -q flatpak
         echo -e "\nUPDATING FLATPAK"
         sudo flatpak update -y
@@ -29,7 +35,7 @@ function update
         sudo zypper dist-upgrade -y
     end
 
-    echo -e "\nDONE\n"
+    echo -e "\nDONE"
 end
 
 function up

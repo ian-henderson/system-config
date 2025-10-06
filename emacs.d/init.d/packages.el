@@ -18,9 +18,9 @@
   :custom
   (dashboard-center-content t)
   (dashboard-items '((projects . 5)
-					 (recents  . 5)))
+		     (recents  . 5)))
   (dashboard-item-shortcuts '((projects . "p")
-							  (recents  . "r")))
+			      (recents  . "r")))
   (dashboard-navigation-cycle t)
   (dashboard-projects-backend 'projectile)
   (dashboard-startup-banner 3)
@@ -54,7 +54,8 @@
 
 ;; https://github.com/purcell/exec-path-from-shell
 (use-package exec-path-from-shell
-  :custom (shell-file-name (or (executable-find "fish") (executable-find "bash")))
+  :custom (shell-file-name (or (executable-find "fish")
+			       (executable-find "bash")))
   :config
   (exec-path-from-shell-initialize)
   (exec-path-from-shell-copy-envs
@@ -81,10 +82,7 @@
   (projectile-mode 1)
   :config
   (define-key projectile-mode-map (kbd "C-c p") #'projectile-command-map)
-  (dolist (path '("c"
-				  "gnome/reader"
-				  "guile"
-				  "system-config"))
+  (dolist (path '("c" "system-config"))
     (projectile-add-known-project (expand-file-name path "~/Developer")))
   (projectile-cleanup-known-projects))
 
@@ -96,10 +94,10 @@
   :after evil
   :custom
   (vterm-shell (or (executable-find "fish")
-				   (executable-find "bash")))
+		   (executable-find "bash")))
   :config
   (dolist (key (mapcar (lambda (key) (format "M-%s" key))
-					   '("w" "t" "T" "p" "P" "n" "N")))
+		       '("w" "t" "T" "p" "P" "n" "N")))
     (define-key vterm-mode-map (kbd key) nil))
   (define-key vterm-mode-map (kbd "C-c v") 'vterm-yank)
   :hook
