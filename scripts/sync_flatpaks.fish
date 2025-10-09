@@ -9,6 +9,7 @@ sudo flatpak install -y \
     com.brave.Browser \
     com.github.johnfactotum.Foliate \
     com.github.tchx84.Flatseal \
+    com.google.AndroidStudio \
     com.jetbrains.IntelliJ-IDEA-Community \
     com.mattjakeman.ExtensionManager \
     com.plexamp.Plexamp \

@@ -13,6 +13,8 @@ function install_vscode
     dnf check-update
 end
 
+install_vscode
+
 set -l main_packages \
     bat \
     btop \
@@ -39,21 +41,15 @@ set -l emacs_packages \
 set -l font_packages \
     adobe-source-sans-pro-fonts \
     cascadia-code-fonts \
-    fira-code-fonts \
     google-roboto-fonts \
     google-roboto-mono-fonts \
     ibm-plex-fonts-all \
     jetbrains-mono-fonts \
-    mozilla-fira-sans-fonts \
     liberation-fonts-all \
     source-foundry-hack-fonts
 
 set -l java_packages \
     java-21-openjdk
-
-set -l php_packages \
-    composer \
-    php
 
 sudo dnf install -y \
     $main_packages \
@@ -61,8 +57,7 @@ sudo dnf install -y \
     $docker_packages \
     $emacs_packages \
     $font_packages \
-    $java_packages \
-    $php_packages
+    $java_packages
 
 sudo dnf remove -y \
     evince \
