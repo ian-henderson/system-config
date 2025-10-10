@@ -16,7 +16,6 @@ sudo flatpak install -y \
     com.protonvpn.www \
     com.slack.Slack \
     de.haeckerfelix.Fragments \
-    de.haeckerfelix.Shortwave \
     io.missioncenter.MissionCenter \
     me.timschneeberger.GalaxyBudsClient \
     me.proton.Mail \
