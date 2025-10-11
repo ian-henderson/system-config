@@ -24,6 +24,7 @@ sudo flatpak install -y \
     org.gnome.Boxes \
     org.gnome.Papers \
     org.gnome.Snapshot \
+    org.libreoffice.LibreOffice \
     org.mozilla.Thunderbird \
     org.signal.Signal \
     us.zoom.Zoom
