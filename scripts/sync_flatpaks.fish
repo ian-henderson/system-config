@@ -18,7 +18,6 @@ sudo flatpak install -y \
     de.haeckerfelix.Fragments \
     io.missioncenter.MissionCenter \
     me.timschneeberger.GalaxyBudsClient \
-    me.proton.Mail \
     me.proton.Pass \
     org.gimp.GIMP \
     org.gnome.baobab \
