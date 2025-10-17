@@ -41,6 +41,8 @@ set -l emacs_packages \
 set -l font_packages \
     adobe-source-sans-pro-fonts \
     cascadia-code-fonts \
+    dejavu-fonts-all \
+    google-go-mono-fonts \
     google-roboto-fonts \
     google-roboto-mono-fonts \
     ibm-plex-fonts-all \
@@ -51,13 +53,17 @@ set -l font_packages \
 set -l java_packages \
     java-21-openjdk
 
+set - l python_packages \
+	conda
+
 sudo dnf install -y \
     $main_packages \
     $c_packages \
     $docker_packages \
     $emacs_packages \
     $font_packages \
-    $java_packages
+    $java_packages \
+    $python_packages
 
 sudo dnf remove -y \
     evince \

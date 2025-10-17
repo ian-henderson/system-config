@@ -13,6 +13,7 @@ end
 set -x PHP_CS_FIXER_IGNORE_ENV 1
 set -x PKG_CONFIG_PATH /usr/lib/pkgconfig
 
+fish_add_path "/var/lib/flatpak/exports/share"
 fish_add_path "$HOME/.local/bin"
 fish_add_path "$HOME/.composer/vendor/bin"
 fish_add_path "$HOME/.local/share/nvm/v24.1.0/bin"
