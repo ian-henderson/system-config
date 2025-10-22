@@ -5,7 +5,6 @@ sudo flatpak remote-add --if-not-exists \
 
 sudo flatpak install -y \
     ca.desrt.dconf-editor \
-    ch.protonmail.protonmail-bridge \
     com.brave.Browser \
     com.github.johnfactotum.Foliate \
     com.github.tchx84.Flatseal \
@@ -19,6 +18,7 @@ sudo flatpak install -y \
     de.haeckerfelix.Fragments \
     io.missioncenter.MissionCenter \
     me.timschneeberger.GalaxyBudsClient \
+    me.proton.Mail \
     me.proton.Pass \
     org.gimp.GIMP \
     org.gnome.baobab \
@@ -26,6 +26,5 @@ sudo flatpak install -y \
     org.gnome.Papers \
     org.gnome.Snapshot \
     org.libreoffice.LibreOffice \
-    org.mozilla.Thunderbird \
     org.signal.Signal \
     us.zoom.Zoom
