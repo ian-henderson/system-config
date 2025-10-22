@@ -13,7 +13,6 @@ sudo flatpak install -y \
     com.mattjakeman.ExtensionManager \
     com.plexamp.Plexamp \
     com.protonvpn.www \
-    com.slack.Slack \
     com.valvesoftware.Steam \
     de.haeckerfelix.Fragments \
     io.missioncenter.MissionCenter \
