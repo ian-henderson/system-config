@@ -11,9 +11,6 @@ sudo flatpak install -y \
     com.google.AndroidStudio \
     com.jetbrains.IntelliJ-IDEA-Community \
     com.mattjakeman.ExtensionManager \
-    com.plexamp.Plexamp \
-    com.protonvpn.www \
-    com.valvesoftware.Steam \
     de.haeckerfelix.Fragments \
     io.missioncenter.MissionCenter \
     me.timschneeberger.GalaxyBudsClient \
@@ -22,8 +19,6 @@ sudo flatpak install -y \
     org.gimp.GIMP \
     org.gnome.baobab \
     org.gnome.Boxes \
-    org.gnome.Papers \
     org.gnome.Snapshot \
     org.libreoffice.LibreOffice \
-    org.signal.Signal \
-    us.zoom.Zoom
+    org.signal.Signal

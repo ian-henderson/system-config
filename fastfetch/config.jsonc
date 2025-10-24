@@ -14,11 +14,6 @@
 	"host",
 	"kernel",
 	"uptime",
-	{
-	    "key": "System Age",
-	    "text": "~/.config/fastfetch/install_age.sh",
-	    "type": "command"
-	},
 	"packages",
 	"shell",
 	// "de",
