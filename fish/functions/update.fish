@@ -18,15 +18,17 @@ function update
 	end
 
 	if type -q pacman
-		echo -e "\nUPDATING PACMAN"
-		sudo pacman -Syu --noconfirm
-		pacman_remove_orphaned_packages
-	end
-
-	if type -q paru
-		echo -e "\nUPDATING PARU"
-		paru -Syu
-		pacman_remove_orphaned_packages
+		set -l package_manager (get_arch_package_manager)
+		if test $status -eq 0
+			switch $package_manager
+				case pacman
+					echo -e "\nUPDATING PACMAN"
+				case paru
+					echo -e "\nUPDATING PARU"
+			end
+			sudo $package_manager -Syu --noconfirm
+			arch_remove_orphaned_packages
+		end
 	end
 
 	if type -q zypper
@@ -43,13 +45,34 @@ function up
 	update
 end
 
-function pacman_remove_orphaned_packages
-	set -l orphaned_packages (pacman -Qdtq)
+function arch_remove_orphaned_packages
+	set -l package_manager (get_arch_package_manager)
+
+	if test $status -ne 0
+		echo "Error: Could not find Arch package manager `pacman` or `paru`"
+		return 1
+	end
+
+	set -l orphaned_packages (sudo $package_manager -Qdtq)
 
 	if test (count $orphaned_packages) -eq 0
 		echo "No orphaned packages found"
 		return 0
 	end
 
-	paru -Rns $orphaned_packages
+	sudo $package_manager -Rns $orphaned_packages
+end
+
+function get_arch_package_manager
+	if type -q paru
+		echo paru
+		return 0
+	end
+
+	if type -q pacman
+		echo pacman
+		return 0
+	end
+
+	return 1
 end

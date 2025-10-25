@@ -20,8 +20,12 @@ set -l emacs_packages \
 	ispell \
 	shfmt
 
+set -l rust_packages \
+	rust \
+	rustup
+
 sudo pacman -S --needed --noconfirm \
-	$main_packages $emacs_packages
+	$main_packages $emacs_packages $rust_packages
 
 sudo systemctl enable --now \
 	bluetooth \
