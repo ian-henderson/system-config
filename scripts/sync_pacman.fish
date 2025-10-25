@@ -27,6 +27,9 @@ set -l rust_packages \
 sudo pacman -S --needed --noconfirm \
 	$main_packages $emacs_packages $rust_packages
 
+# install rust stable channel and set as default
+rustup default stable
+
 sudo systemctl enable --now \
 	bluetooth \
 	power-profiles-daemon

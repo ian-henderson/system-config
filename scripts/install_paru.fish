@@ -21,9 +21,13 @@ mkdir -p ~/Developer
 
 set -l paru_dir ~/Developer/paru
 
-git clone https://aur.archlinux.org/paru.git $paru_dir
-
-cd $paru_dir
+if test -d $paru_dir
+	cd $paru_dir
+	git pull
+else
+	git clone https://aur.archlinux.org/paru.git $paru_dir
+	cd $paru_dir
+end
 
 makepkg -si
 
