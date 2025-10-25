@@ -19,7 +19,7 @@ function update
 
 	if type -q pacman
 		echo -e "\nUPDATING PACMAN"
-		sudo pacman -Syu
+		sudo pacman -Syu --noconfirm
 		pacman_remove_orphaned_packages
 	end
 
