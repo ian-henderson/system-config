@@ -1,5 +1,7 @@
 #!/usr/bin/env fish
 
+# https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+
 set ssh_key ~/.ssh/id_ed25519
 
 echo "Generating ssh key and copying public key to clipboard..."
