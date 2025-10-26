@@ -11,3 +11,6 @@
 	d  = diff
 	p  = push
 	s  = status
+
+[init]
+	defaultBranch = main

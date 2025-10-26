@@ -23,8 +23,8 @@
 			      (recents  . "r")))
   (dashboard-navigation-cycle t)
   (dashboard-projects-backend 'projectile)
-  (dashboard-startup-banner 3)
-  ;; (expand-file-name "images/stallman-boat.jpg" user-emacs-directory))
+  (dashboard-startup-banner
+   (expand-file-name "images/stallman-light.png" user-emacs-directory))
   (dashboard-vertically-center-content t)
   (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
   :init (dashboard-setup-startup-hook))
