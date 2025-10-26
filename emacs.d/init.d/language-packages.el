@@ -13,10 +13,11 @@
 (use-package eglot
   :hook
   (c-mode . eglot-ensure)
-  (php-mode . eglot-ensure)
+  (c++-mode . eglot-ensure)
   (rust-mode . eglot-ensure)
   :config
   (dolist (server-program '((c-mode . ("ccls"))
+			    (c++-mode . ("ccls"))
 			    (rust-mode . ("rust-analyzer"))))
     (add-to-list 'eglot-server-programs server-program))
   (define-key eglot-mode-map (kbd "C-c e r") 'eglot-rename))
@@ -27,7 +28,7 @@
 ;; https://www.flycheck.org/en/latest/user/installation.html
 (use-package flycheck
   :custom
-  (flycheck-global-modes '(not c-mode rust-mode))
+  (flycheck-global-modes '(not c-mode c++-mode rust-mode))
   :config
   (global-flycheck-mode 1))
 

@@ -82,7 +82,7 @@
   (projectile-mode 1)
   :config
   (define-key projectile-mode-map (kbd "C-c p") #'projectile-command-map)
-  (dolist (path '("system-config"))
+  (dolist (path '("build_your_own_lisp" "system-config"))
     (projectile-add-known-project (expand-file-name path "~/Developer")))
   (projectile-cleanup-known-projects))
 

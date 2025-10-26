@@ -1,5 +1,5 @@
 # https://clang.llvm.org/docs/ClangFormatStyleOptions.html
-BasedOnStyle: LLVM
+BasedOnStyle: Microsoft
 ColumnLimit: 80
 IndentCaseLabels: true
 IndentWidth: 4

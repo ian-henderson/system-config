@@ -14,12 +14,12 @@
 	"host",
 	"kernel",
 	"uptime",
-	"packages",
 	{
 	    "key": "Install Age",
 	    "type": "command",
 	    "text": "/home/ian/Developer/system-config/fastfetch/install_age.fish",
 	},
+	"packages",
 	"shell",
 	"de",
 	"terminal",
