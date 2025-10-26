@@ -82,7 +82,7 @@
   (projectile-mode 1)
   :config
   (define-key projectile-mode-map (kbd "C-c p") #'projectile-command-map)
-  (dolist (path '("c" "system-config"))
+  (dolist (path '("system-config"))
     (projectile-add-known-project (expand-file-name path "~/Developer")))
   (projectile-cleanup-known-projects))
 

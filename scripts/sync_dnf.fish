@@ -54,7 +54,7 @@ set -l java_packages \
     java-21-openjdk
 
 set - l python_packages \
-	conda
+    conda
 
 sudo dnf install -y \
     $main_packages \

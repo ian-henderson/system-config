@@ -15,8 +15,13 @@
 	"kernel",
 	"uptime",
 	"packages",
+	{
+	    "key": "Install Age",
+	    "type": "command",
+	    "text": "/home/ian/Developer/system-config/fastfetch/install_age.fish",
+	},
 	"shell",
-	// "de",
+	"de",
 	"terminal",
 	{
 	    "key": "CPU",

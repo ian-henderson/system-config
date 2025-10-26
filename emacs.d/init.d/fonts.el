@@ -9,9 +9,9 @@
   (interactive)
   (dolist (face '(default fixed-pitch))	; monospace fonts
     (set-face-attribute face nil
-			:family "Iosevka" :height 140 :weight 'regular))
+			:family "Ubuntu Sans Mono" :height 140 :weight 'regular))
   (set-face-attribute 'variable-pitch nil ; variable-pitch fonts
-		      :family "Lato" :height 140 :weight 'regular))
+		      :family "Ubuntu Sans" :height 140 :weight 'regular))
 
 (font-size-reset)
 

@@ -19,15 +19,13 @@
 (use-package standard-themes)
 
 ;; https://github.com/GuidoSchmidt/circadian.el
-;; (use-package circadian
-;;   :custom
-;;   (calendar-latitude 38.833881)
-;;   (calendar-longitude -104.821365)
-;;   (circadian-themes '((:sunrise . standard-light-tinted)
-;;    		      (:sunset  . standard-dark)))
-;;   :hook (emacs-startup . circadian-setup))
-
-(set-theme 'standard-dark)
+(use-package circadian
+  :custom
+  (calendar-latitude 38.833881)
+  (calendar-longitude -104.821365)
+  (circadian-themes '((:sunrise . modus-operandi-tinted)
+   		      (:sunset  . modus-vivendi)))
+  :hook (emacs-startup . circadian-setup))
 
 (provide 'theme)
 
