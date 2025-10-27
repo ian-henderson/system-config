@@ -6,8 +6,7 @@
 (use-package aggressive-indent
   :config
   (dolist (hook '(emacs-lisp-mode lisp-mode scheme-mode))
-    (add-hook hook #'aggressive-indent-mode))
-  (global-aggressive-indent-mode 1))
+    (add-hook hook #'aggressive-indent-mode)))
 
 ;; https://joaotavora.github.io/eglot
 (use-package eglot
@@ -44,8 +43,7 @@
 	       "--style=file:/home/ian/Developer/system-config/clang-format.yaml"))
      ("C++"   (clang-format
 	       "--style=file:/home/ian/Developer/system-config/clang-format.yaml"))
-     ("Shell" (shfmt "-ci"))
-     ("Fish"  (shfmt "-ci"))))
+     ("Shell" (shfmt "-ci"))))
   :hook
   (prog-mode . format-all-mode)
   (prog-mode . format-all-ensure-formatter))

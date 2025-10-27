@@ -24,7 +24,7 @@
   (dashboard-navigation-cycle t)
   (dashboard-projects-backend 'projectile)
   (dashboard-startup-banner
-   (expand-file-name "images/stallman-light.png" user-emacs-directory))
+   (expand-file-name "images/stallman.gif" user-emacs-directory))
   (dashboard-vertically-center-content t)
   (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
   :init (dashboard-setup-startup-hook))

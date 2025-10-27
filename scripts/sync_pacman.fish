@@ -14,6 +14,7 @@ set -l main_packages \
     wl-clipboard
 
 set -l c_packages \
+    bear \
     ccls \
     cmake \
     gcc
