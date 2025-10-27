@@ -1,6 +1,6 @@
 #!/usr/bin/env fish
 
-set reference_path /etc/shadow
+set reference_path /etc/shadow-
 
 set start_date (date -r $reference_path +%s)
 
