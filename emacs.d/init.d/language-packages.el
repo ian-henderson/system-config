@@ -48,6 +48,27 @@
   (prog-mode . format-all-mode)
   (prog-mode . format-all-ensure-formatter))
 
+;; https://github.com/yveszoundi/eglot-java
+(use-package eglot-java
+  :config
+  (let ((eglot-java-keys
+         '(("n" . eglot-java-file-new)
+           ("x" . eglot-java-run-main)
+           ("t" . eglot-java-run-test)
+           ("N" . eglot-java-project-new)
+           ("T" . eglot-java-project-build-task)
+           ("R" . eglot-java-project-build-refresh))))
+    (dolist (pair eglot-java-keys)
+      (define-key eglot-java-mode-map
+		  (kbd (concat "C-c j " (car pair)))
+		  (cdr pair))))
+  :hook
+  (eglot-managed-mode-hook
+   . (lambda ()
+       (when (eq major-mode 'java-mode)
+	 (add-hook 'before-save-hook 'eglot-format-buffer nil t))))
+  (java-mode . eglot-java-mode))
+
 ;; https://github.com/haskell/haskell-mode
 (use-package haskell-mode)
 

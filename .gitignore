@@ -7,7 +7,9 @@ emacs.d/*.elc
 emacs.d/.emacs.desktop
 emacs.d/.emacs.desktop.lock
 emacs.d/auto-save-list
+emacs.d/eglot-java-eclipse-jdt-cache
 emacs.d/history
+emacs.d/share
 emacs.d/tramp
 emacs.d/.org-id-locations
 emacs.d/*_archive
