@@ -16,11 +16,12 @@
   (java-mode       . eglot-ensure)
   (typescript-mode . eglot-ensure)
   (rust-mode       . eglot-ensure)
-  :init
-  (add-to-list 'eglot-server-programs '(c-mode          . ("ccls")))
-  (add-to-list 'eglot-server-programs '(c++-mode        . ("ccls")))
-  (add-to-list 'eglot-server-programs '(typescript-mode . ("typescript-language-server" "--stdio")))
-  (add-to-list 'eglot-server-programs '(rust-mode       . ("rust-analyzer")))
+  :custom
+  (eglot-server-programs
+   '((c-mode          . ("ccls"))
+     (c++-mode        . ("ccls"))
+     (typescript-mode . ("typescript-language-server" "--stdio"))
+     (rust-mode       . ("rust-analyzer"))))
   :config
   (define-key eglot-mode-map (kbd "C-c e r") 'eglot-rename))
 

@@ -73,6 +73,16 @@
 ;; https://magit.vc/manual
 (use-package magit)
 
+;; https://orgmode.org/
+(use-package org
+  :ensure nil ; built-in
+  :custom
+  (org-adapt-indentation nil)
+  (org-hide-leading-stars t)
+  (org-startup-indented t)
+  :hook
+  (org-mode . org-indent-mode))
+
 ;; https://github.com/bbatsov/projectile
 ;; https://docs.projectile.mx/projectile/index.html
 ;; A project should have either a git directory or .projectile file.
