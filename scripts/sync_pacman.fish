@@ -26,15 +26,25 @@ set -l emacs_packages \
 
 # jdk-openjdk \
 set -l java_packages \
-    amazon-corretto-25-bin \
-    maven
+    amazon-corretto-25-bin
+
+set -l node_packages \
+    nodejs \
+    typescript \
+    typescript-language-server
 
 set -l rust_packages \
     rust \
-    rustup
+    rustup \
+    rust-analyzer
 
 sudo pacman -Syyu --needed --noconfirm \
-    $main_packages $c_packages $emacs_packages $java_packages $rust_packages
+    $main_packages \
+    $c_packages \
+    $emacs_packages \
+    $java_packages \
+    $node_packages \
+    $rust_packages
 
 # install rust stable channel and set as default
 rustup default stable

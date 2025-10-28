@@ -6,11 +6,16 @@
 (use-package org
   :ensure nil ; built-in
   :custom
+  (org-adapt-indentation nil)
   (org-hide-leading-stars t)
   (org-startup-indented t)
   :hook
   (org-mode . org-indent-mode)
   (org-mode . variable-pitch-mode))
+
+;; https://github.com/sabof/org-bullets
+(use-package org-bullets
+  :hook (org-mode . org-bullets-mode))
 
 ;; https://github.com/bastibe/org-journal
 (use-package org-journal

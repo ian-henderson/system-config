@@ -11,15 +11,40 @@
 ;; https://joaotavora.github.io/eglot
 (use-package eglot
   :hook
-  (c-mode . eglot-ensure)
-  (c++-mode . eglot-ensure)
-  (rust-mode . eglot-ensure)
+  (c-mode          . eglot-ensure)
+  (c++-mode        . eglot-ensure)
+  (java-mode       . eglot-ensure)
+  (typescript-mode . eglot-ensure)
+  (rust-mode       . eglot-ensure)
+  :init
+  (add-to-list 'eglot-server-programs '(c-mode          . ("ccls")))
+  (add-to-list 'eglot-server-programs '(c++-mode        . ("ccls")))
+  (add-to-list 'eglot-server-programs '(typescript-mode . ("typescript-language-server" "--stdio")))
+  (add-to-list 'eglot-server-programs '(rust-mode       . ("rust-analyzer")))
   :config
-  (dolist (server-program '((c-mode . ("ccls"))
-			    (c++-mode . ("ccls"))
-			    (rust-mode . ("rust-analyzer"))))
-    (add-to-list 'eglot-server-programs server-program))
   (define-key eglot-mode-map (kbd "C-c e r") 'eglot-rename))
+
+;; https://github.com/yveszoundi/eglot-java
+(defun eglot-java-format-on-save ()
+  "Add eglot-format-buffer to `before-save-hook` in `java-mode` buffers."
+  (when (eq major-mode 'java-mode)
+    (add-hook 'before-save-hook 'eglot-format-buffer nil :local)))
+(use-package eglot-java
+  :config
+  (let ((eglot-java-keys
+         '(("n" . eglot-java-file-new)
+           ("x" . eglot-java-run-main)
+           ("t" . eglot-java-run-test)
+           ("N" . eglot-java-project-new)
+           ("T" . eglot-java-project-build-task)
+           ("R" . eglot-java-project-build-refresh))))
+    (dolist (pair eglot-java-keys)
+      (define-key eglot-java-mode-map
+		  (kbd (concat "C-c j " (car pair)))
+		  (cdr pair))))
+  :hook
+  (eglot-managed-mode-hook . eglot-java-format-on-save)
+  (java-mode . eglot-java-mode))
 
 ;; https://github.com/wwwjfy/emacs-fish
 (use-package fish-mode)
@@ -47,27 +72,6 @@
   :hook
   (prog-mode . format-all-mode)
   (prog-mode . format-all-ensure-formatter))
-
-;; https://github.com/yveszoundi/eglot-java
-(use-package eglot-java
-  :config
-  (let ((eglot-java-keys
-         '(("n" . eglot-java-file-new)
-           ("x" . eglot-java-run-main)
-           ("t" . eglot-java-run-test)
-           ("N" . eglot-java-project-new)
-           ("T" . eglot-java-project-build-task)
-           ("R" . eglot-java-project-build-refresh))))
-    (dolist (pair eglot-java-keys)
-      (define-key eglot-java-mode-map
-		  (kbd (concat "C-c j " (car pair)))
-		  (cdr pair))))
-  :hook
-  (eglot-managed-mode-hook
-   . (lambda ()
-       (when (eq major-mode 'java-mode)
-	 (add-hook 'before-save-hook 'eglot-format-buffer nil t))))
-  (java-mode . eglot-java-mode))
 
 ;; https://github.com/haskell/haskell-mode
 (use-package haskell-mode)
@@ -97,16 +101,14 @@
 
 ;; https://github.com/rust-lang/rust-mode
 (use-package rust-mode
-  :custom
-  (rust-format-on-save t)
-  :mode
-  "\\.rs\\'")
+  :custom (rust-format-on-save t)
+  :mode "\\.rs\\'")
 
 ;; https://github.com/holomorph/systemd-mode
 (use-package systemd)
 
-;; https://github.com/emacs-typescript/typescript.el
-(use-package typescript-mode)
+(use-package typescript-mode
+  :hook (js-mode . typescript-mode))
 
 ;; https://github.com/yoshiki/yaml-mode
 (use-package yaml-mode
