@@ -14,13 +14,10 @@
     (write-region (point-min) (point-max) custom-file)))
 (load custom-file)
 
-;; MELPA (Milkypostman's Emacs Lisp Package Archive)
-;; https://melpa.org
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
-;; Bootstraps MELPA use-package if not installed
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))

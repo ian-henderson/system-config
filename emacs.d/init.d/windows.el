@@ -45,7 +45,7 @@
 
 ;; line numbers and fill-column
 (setq-default display-line-numbers-type 'relative
-	      fill-column 80)
+	      fill-column 70)
 
 (dolist (hook '(conf-toml-mode-hook
 		haskell-mode-hook

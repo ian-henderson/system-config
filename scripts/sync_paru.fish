@@ -6,6 +6,7 @@ if ! test -q paru
 end
 
 set -l packages \
+    amazon-corretto-25-bin \
     clang-format-static-bin \
     miniconda3 \
     visual-studio-code-bin

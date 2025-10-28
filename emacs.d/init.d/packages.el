@@ -99,6 +99,12 @@
 ;; https://github.com/Fanael/rainbow-delimiters
 (use-package rainbow-delimiters :hook (prog-mode . rainbow-delimiters-mode))
 
+;; https://codeberg.org/joostkremers/visual-fill-column
+(use-package visual-fill-column
+  :hook
+  (org-mode . visual-fill-column-for-vline)
+  (org-mode . visual-fill-column-toggle-center-text))
+
 ;; https://github.com/akermu/emacs-libvterm
 (use-package vterm
   :after evil

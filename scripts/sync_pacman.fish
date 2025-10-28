@@ -24,9 +24,7 @@ set -l emacs_packages \
     ispell \
     shfmt
 
-# jdk-openjdk \
-set -l java_packages \
-    amazon-corretto-25-bin
+# set -l java_packages jdk-openjdk \
 
 set -l node_packages \
     nodejs \
@@ -42,7 +40,6 @@ sudo pacman -Syyu --needed --noconfirm \
     $main_packages \
     $c_packages \
     $emacs_packages \
-    $java_packages \
     $node_packages \
     $rust_packages
 
