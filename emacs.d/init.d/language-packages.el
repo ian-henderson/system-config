@@ -23,14 +23,12 @@
      (typescript-mode . ("typescript-language-server" "--stdio"))
      (rust-mode       . ("rust-analyzer"))))
   :config
-  (define-key eglot-mode-map (kbd "C-c e r") 'eglot-rename))
+  (define-key eglot-mode-map (kbd "C-c e r") 'eglot-rename)
+  (add-hook 'before-save-hook 'eglot-format-buffer))
 
 ;; https://github.com/yveszoundi/eglot-java
-(defun eglot-java-format-on-save ()
-  "Add eglot-format-buffer to `before-save-hook` in `java-mode` buffers."
-  (when (eq major-mode 'java-mode)
-    (add-hook 'before-save-hook 'eglot-format-buffer nil :local)))
 (use-package eglot-java
+  :after eglot
   :config
   (let ((eglot-java-keys
          '(("n" . eglot-java-file-new)
@@ -44,7 +42,6 @@
 		  (kbd (concat "C-c j " (car pair)))
 		  (cdr pair))))
   :hook
-  (eglot-managed-mode-hook . eglot-java-format-on-save)
   (java-mode . eglot-java-mode))
 
 ;; https://github.com/wwwjfy/emacs-fish
@@ -62,17 +59,12 @@
 ;; https://github.com/patrickvane/shfmt
 (use-package format-all
   :commands format-all-mode
+  :hook (prog-mode . format-all-mode)
   :config
-  (setq-default
-   format-all-formatters
-   '(("C"     (clang-format
-	       "--style=file:/home/ian/Developer/system-config/clang-format.yaml"))
-     ("C++"   (clang-format
-	       "--style=file:/home/ian/Developer/system-config/clang-format.yaml"))
-     ("Shell" (shfmt "-ci"))))
-  :hook
-  (prog-mode . format-all-mode)
-  (prog-mode . format-all-ensure-formatter))
+  (setq-default format-all-formatters
+		'(("C"     (clang-format "--style=file:/home/ian/Developer/system-config/clang-format.yaml"))
+		  ("C++"   (clang-format "--style=file:/home/ian/Developer/system-config/clang-format.yaml"))
+		  ("Shell" (shfmt "-ci")))))
 
 ;; https://github.com/haskell/haskell-mode
 (use-package haskell-mode)

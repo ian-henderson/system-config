@@ -7,11 +7,14 @@
 (defun font-size-reset ()
   "Set font sizes to default sizes."
   (interactive)
-  (dolist (face '(default fixed-pitch))	; monospace fonts
-    (set-face-attribute face nil
-			:family "Ubuntu Sans Mono" :height 140 :weight 'regular))
-  (set-face-attribute 'variable-pitch nil ; variable-pitch fonts
-		      :family "Ubuntu Sans" :height 160 :weight 'regular))
+  (set-face-attribute
+   'fixed-pitch nil :family "Ubuntu Sans Mono" :height 140 :weight 'regular)
+  (set-face-attribute
+   'variable-pitch nil :family "Ubuntu Sans" :height 160 :weight 'regular)
+  (custom-set-faces
+   '(org-block ((t (:inherit fixed-pitch))))
+   '(org-code ((t (:inherit fixed-pitch))))
+   '(org-verbatim ((t (:inherit fixed-pitch))))))
 
 (font-size-reset)
 

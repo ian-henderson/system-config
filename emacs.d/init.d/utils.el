@@ -42,8 +42,9 @@
 
 ;; Backup config
 (let ((backups (expand-file-name "backups" user-emacs-directory)))
-  (mkdir backups)
-  (setq backup-directory-alist '(("." . backups))
+  (if (not (file-directory-p backups))
+      (mkdir backups))
+  (setq backup-directory-alist `(("." . ,backups))
 	make-backup-files t)) ; t by default
 
 (provide 'utils)

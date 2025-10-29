@@ -81,7 +81,12 @@
   (org-hide-leading-stars t)
   (org-startup-indented t)
   :hook
-  (org-mode . org-indent-mode))
+  (org-mode . org-indent-mode)
+  (org-mode . variable-pitch-mode))
+
+;; https://github.com/sabof/org-bullets
+(use-package org-bullets
+  :hook (org-mode . org-bullets-mode))
 
 ;; https://github.com/bbatsov/projectile
 ;; https://docs.projectile.mx/projectile/index.html
@@ -101,9 +106,9 @@
 
 ;; https://codeberg.org/joostkremers/visual-fill-column
 (use-package visual-fill-column
-  :hook
-  (org-mode . visual-fill-column-for-vline)
-  (org-mode . visual-fill-column-toggle-center-text))
+  :hook (org-mode . visual-fill-column-mode)
+  :config (add-hook 'visual-fill-column-mode-hook
+		    #'visual-fill-column-toggle-center-text))
 
 ;; https://github.com/akermu/emacs-libvterm
 (use-package vterm
