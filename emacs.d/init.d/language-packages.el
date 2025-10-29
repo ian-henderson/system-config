@@ -4,27 +4,27 @@
 
 ;; https://github.com/Malabarba/aggressive-indent-mode
 (use-package aggressive-indent
-  :config
-  (dolist (hook '(emacs-lisp-mode lisp-mode scheme-mode))
-    (add-hook hook #'aggressive-indent-mode)))
+  :hook
+  ((emacs-lisp-mode lisp-mode scheme-mode) . aggressive-indent-mode))
 
 ;; https://joaotavora.github.io/eglot
 (use-package eglot
-  :hook
-  (c-mode          . eglot-ensure)
-  (c++-mode        . eglot-ensure)
-  (java-mode       . eglot-ensure)
-  (typescript-mode . eglot-ensure)
-  (rust-mode       . eglot-ensure)
   :custom
   (eglot-server-programs
    '((c-mode          . ("ccls"))
      (c++-mode        . ("ccls"))
+     (java-mode       . ("jdtls"))
+     (python-mode     . ("pylsp"))
      (typescript-mode . ("typescript-language-server" "--stdio"))
      (rust-mode       . ("rust-analyzer"))))
+  (eglot-workspace-configuration
+   '(:pylsp (:plugins (:black (:enabled t)))))
   :config
   (define-key eglot-mode-map (kbd "C-c e r") 'eglot-rename)
-  (add-hook 'before-save-hook 'eglot-format-buffer))
+  (add-hook 'before-save-hook 'eglot-format-buffer)
+  (mapc (lambda (mode)
+	  (add-hook (intern (format "%s-hook" mode)) #'eglot-ensure))
+	'(c-mode c++-mode java-mode python-mode typescript-mode rust-mode)))
 
 ;; https://github.com/yveszoundi/eglot-java
 (use-package eglot-java

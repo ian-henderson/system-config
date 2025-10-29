@@ -31,6 +31,10 @@ set -l node_packages \
     typescript \
     typescript-language-server
 
+set -l python_packages \
+    python-lsp-black \
+    python-lsp-server
+
 set -l rust_packages \
     rust \
     rustup \
@@ -41,6 +45,7 @@ sudo pacman -Syyu --needed --noconfirm \
     $c_packages \
     $emacs_packages \
     $node_packages \
+    $python_packages \
     $rust_packages
 
 # install rust stable channel and set as default
