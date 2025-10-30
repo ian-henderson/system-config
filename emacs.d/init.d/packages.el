@@ -17,14 +17,16 @@
 (use-package dashboard
   :custom
   (dashboard-center-content t)
-  (dashboard-items '((projects . 5)
-		     (recents  . 5)))
-  (dashboard-item-shortcuts '((projects . "p")
-			      (recents  . "r")))
+  (dashboard-items '((bookmarks . 5)
+		     (projects  . 5)
+		     (recents   . 5)))
+  (dashboard-item-shortcuts '((bookmarks . "m")
+			      (projects  . "p")
+			      (recents   . "r")))
   (dashboard-navigation-cycle t)
   (dashboard-projects-backend 'projectile)
-  (dashboard-startup-banner
-   (expand-file-name "images/stallman.gif" user-emacs-directory))
+  (dashboard-startup-banner 1)
+  ;; (expand-file-name "images/stallman.gif" user-emacs-directory))
   (dashboard-vertically-center-content t)
   (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
   :init (dashboard-setup-startup-hook))
