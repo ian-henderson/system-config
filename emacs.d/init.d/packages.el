@@ -111,8 +111,19 @@
 		    #'visual-fill-column-toggle-center-text))
 
 ;; https://github.com/akermu/emacs-libvterm
+(defun my-rename-vterm-buffer()
+  "Rename vterm buffer to *vterm<i>*, where i is the next available number."
+  (when (eq major-mode 'vterm-mode)
+    (let ((n 0)
+	  (base "*vterm<%d>*"))
+      (while (get-buffer (format base n))
+	(setq n (1+ n)))
+      (rename-buffer (format base n) t))))
 (use-package vterm
   :after evil
+  :hook
+  (vterm-mode . evil-emacs-state)
+  (vterm-mode . my-rename-vterm-buffer)
   :custom
   (vterm-shell (or (executable-find "fish")
 		   (executable-find "bash")))
@@ -120,9 +131,7 @@
   (dolist (key (mapcar (lambda (key) (format "M-%s" key))
 		       '("w" "t" "T" "p" "P" "n" "N")))
     (define-key vterm-mode-map (kbd key) nil))
-  (define-key vterm-mode-map (kbd "C-c v") 'vterm-yank)
-  :hook
-  (vterm-mode . evil-emacs-state))
+  (define-key vterm-mode-map (kbd "C-c v") 'vterm-yank))
 
 (provide 'packages)
 
