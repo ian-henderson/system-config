@@ -8,10 +8,10 @@
   "Set font sizes to default sizes."
   (interactive)
   (mapc (lambda (font-face)
-	  (set-face-attribute font-face nil :family "Ubuntu Sans Mono"
+	  (set-face-attribute font-face nil :family "Roboto Mono"
 			      :height 140 :weight 'regular))
 	'(default fixed-pitch))
-  (set-face-attribute 'variable-pitch nil :family "Ubuntu Sans"
+  (set-face-attribute 'variable-pitch nil :family "Roboto"
 		      :height 160 :weight 'regular)
   (custom-set-faces
    '(org-block ((t (:inherit fixed-pitch))))
