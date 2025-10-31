@@ -75,6 +75,14 @@
 ;; https://magit.vc/manual
 (use-package magit)
 
+;; https://depp.brause.cc/nov.el/
+(use-package nov
+  :ensure t
+  :mode ("\\.epub\\'" . nov-mode)
+  :hook (nov-mode . visual-fill-column-mode)
+  :custom
+  (nov-text-width 80))
+
 ;; https://orgmode.org/
 (use-package org
   :ensure nil ; built-in
@@ -89,6 +97,14 @@
 (use-package org-bullets
   ;; :hook (org-mode . org-bullets-mode)
   )
+
+;; https://github.com/vedang/pdf-tools?tab=readme-ov-file
+(use-package pdf-tools
+  :magic ("%PDF" . pdf-view-mode)
+  :config
+  (pdf-tools-install)
+  (setq-default pdf-view-display-size 'fit-width)
+  (setq pdf-view-resize-factor 1.1))
 
 ;; https://github.com/bbatsov/projectile
 ;; https://docs.projectile.mx/projectile/index.html
