@@ -4,6 +4,8 @@
 
 (defun set-theme (theme)
   "Disable all enabled themes and enable THEME."
+  (interactive ; Prompts user for a theme
+   (list (intern (completing-read "Load theme: " (custom-available-themes)))))
   (dolist (theme custom-enabled-themes)
     (disable-theme theme))
   (load-theme theme t)
@@ -24,9 +26,9 @@
   (calendar-latitude 38.833881)
   (calendar-longitude -104.821365)
   (circadian-themes '((:sunrise . ef-reverie)
-		      ("10:30"  . ef-day)
+		      ("11:00"  . ef-day)
 		      ("15:30"  . ef-dream)
-		      (:sunset  . ef-night)))
+		      (:sunset  . ef-winter)))
   :hook (emacs-startup . circadian-setup))
 
 (provide 'theme)

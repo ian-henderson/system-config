@@ -54,3 +54,7 @@ end
 function vi
     nvim $argv
 end
+
+function weather
+    curl wttr.in/Colorado+Springs?u
+end

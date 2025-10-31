@@ -9,7 +9,7 @@
   (interactive)
   (mapc (lambda (font-face)
 	  (set-face-attribute font-face nil :family "Ubuntu Sans Mono"
-			      :height 130 :weight 'regular))
+			      :height 140 :weight 'regular))
 	'(default fixed-pitch))
   (set-face-attribute 'variable-pitch nil :family "Ubuntu Sans"
 		      :height 160 :weight 'regular)

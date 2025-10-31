@@ -25,7 +25,7 @@
 			      (recents   . "r")))
   (dashboard-navigation-cycle t)
   (dashboard-projects-backend 'projectile)
-  (dashboard-startup-banner 1)
+  (dashboard-startup-banner 3)
   ;; (expand-file-name "images/stallman.gif" user-emacs-directory))
   (dashboard-vertically-center-content t)
   (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
