@@ -83,12 +83,12 @@
   (org-hide-leading-stars t)
   (org-startup-indented t)
   :hook
-  (org-mode . org-indent-mode)
-  (org-mode . variable-pitch-mode))
+  (org-mode . org-indent-mode))
 
 ;; https://github.com/sabof/org-bullets
 (use-package org-bullets
-  :hook (org-mode . org-bullets-mode))
+  ;; :hook (org-mode . org-bullets-mode)
+  )
 
 ;; https://github.com/bbatsov/projectile
 ;; https://docs.projectile.mx/projectile/index.html
