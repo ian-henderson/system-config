@@ -8,7 +8,7 @@
   "Set font sizes to default sizes."
   (interactive)
   (mapc (lambda (font-face)
-	  (set-face-attribute font-face nil :family "ProggyDotted"
+	  (set-face-attribute font-face nil :family "Adwaita Mono"
 			      :height 140 :weight 'regular))
 	'(default fixed-pitch))
   (set-face-attribute 'variable-pitch nil :family "Adwaita Sans"

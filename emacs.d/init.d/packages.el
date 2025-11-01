@@ -149,7 +149,8 @@
   (dolist (key (mapcar (lambda (key) (format "M-%s" key))
 		       '("w" "t" "T" "p" "P" "n" "N")))
     (define-key vterm-mode-map (kbd key) nil))
-  (define-key vterm-mode-map (kbd "C-c v") 'vterm-yank))
+  (define-key vterm-mode-map (kbd "C-c v") 'vterm-yank)
+  (define-key vterm-mode-map (kbd "M-<backspace>") 'vterm-send-C-w))
 
 (provide 'packages)
 
