@@ -26,7 +26,7 @@ end
 
 set script_dir "$HOME/Developer/system-config"
 
-set home_dotfiles "emacs.d" gitconfig
+set home_dotfiles clang-format "emacs.d" gitconfig
 
 for i in $home_dotfiles
     set src "$script_dir/$i"

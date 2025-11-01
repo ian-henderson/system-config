@@ -26,7 +26,7 @@
   (dashboard-navigation-cycle t)
   (dashboard-projects-backend 'projectile)
   (dashboard-startup-banner 3)
-  ;; (expand-file-name "images/stallman.gif" user-emacs-directory))
+  ;; (expand-file-name "images/emacs.svg" user-emacs-directory))
   (dashboard-vertically-center-content t)
   (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
   :init (dashboard-setup-startup-hook))
@@ -124,9 +124,9 @@
 
 ;; https://codeberg.org/joostkremers/visual-fill-column
 (use-package visual-fill-column
-  :hook (org-mode . visual-fill-column-mode)
-  :config (add-hook 'visual-fill-column-mode-hook
-		    #'visual-fill-column-toggle-center-text))
+  :hook
+  (org-mode . visual-fill-column-mode)
+  (visual-fill-column-mode . visual-fill-column-toggle-center-text))
 
 ;; https://github.com/akermu/emacs-libvterm
 (defun my-rename-vterm-buffer()

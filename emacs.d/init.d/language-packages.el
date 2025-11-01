@@ -60,11 +60,8 @@
 (use-package format-all
   :commands format-all-mode
   :hook (prog-mode . format-all-mode)
-  :config
-  (setq-default format-all-formatters
-		'(("C"     (clang-format "--style=file:/home/ian/Developer/system-config/clang-format.yaml"))
-		  ("C++"   (clang-format "--style=file:/home/ian/Developer/system-config/clang-format.yaml"))
-		  ("Shell" (shfmt "-ci")))))
+  :custom
+  (format-all-formatters '(("Shell" (shfmt "-ci")))))
 
 ;; https://github.com/haskell/haskell-mode
 (use-package haskell-mode)
@@ -106,8 +103,9 @@
 ;; https://github.com/yoshiki/yaml-mode
 (use-package yaml-mode
   :init
-  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
-  (add-to-list 'auto-mode-alist '("\\.yaml\\'" . yaml-mode)))
+  (mapc (lambda (s)
+	  (add-to-list 'auto-mode-alist (cons s 'yaml-mode)))
+	'("\\.yml\\'" "\\.yaml\\'" "\\.clang-format\\'" "\\clang-format\\'")))
 
 (provide 'language-packages)
 

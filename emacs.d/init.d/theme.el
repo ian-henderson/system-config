@@ -6,8 +6,7 @@
   "Disable all enabled themes and enable THEME."
   (interactive ; Prompts user for a theme
    (list (intern (completing-read "Load theme: " (custom-available-themes)))))
-  (dolist (theme custom-enabled-themes)
-    (disable-theme theme))
+  (mapc (lambda (theme) (disable-theme theme)) custom-enabled-themes)
   (load-theme theme t)
   (message "Set theme to '%s" theme))
 

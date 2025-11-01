@@ -12,7 +12,6 @@ sudo flatpak install -y \
     com.jetbrains.IntelliJ-IDEA-Community \
     com.mattjakeman.ExtensionManager \
     de.haeckerfelix.Fragments \
-    io.github.ungoogled_software.ungoogled_chromium \
     io.missioncenter.MissionCenter \
     me.timschneeberger.GalaxyBudsClient \
     me.proton.Mail \

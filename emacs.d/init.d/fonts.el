@@ -8,10 +8,10 @@
   "Set font sizes to default sizes."
   (interactive)
   (mapc (lambda (font-face)
-	  (set-face-attribute font-face nil :family "Roboto Mono"
+	  (set-face-attribute font-face nil :family "ProggyDotted"
 			      :height 140 :weight 'regular))
 	'(default fixed-pitch))
-  (set-face-attribute 'variable-pitch nil :family "Roboto"
+  (set-face-attribute 'variable-pitch nil :family "Adwaita Sans"
 		      :height 160 :weight 'regular)
   (custom-set-faces
    '(org-block ((t (:inherit fixed-pitch))))
