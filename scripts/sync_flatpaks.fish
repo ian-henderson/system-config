@@ -6,9 +6,11 @@ sudo flatpak remote-add --if-not-exists \
 sudo flatpak install -y \
     ca.desrt.dconf-editor \
     com.brave.Browser \
+    com.discordapp.Discord \
     com.github.johnfactotum.Foliate \
     com.github.tchx84.Flatseal \
     com.google.AndroidStudio \
+    com.google.Chrome \
     com.jetbrains.IntelliJ-IDEA-Community \
     com.mattjakeman.ExtensionManager \
     de.haeckerfelix.Fragments \
