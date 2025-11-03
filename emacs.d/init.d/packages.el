@@ -94,9 +94,8 @@
   (org-mode . org-indent-mode))
 
 ;; https://github.com/sabof/org-bullets
-(use-package org-bullets
+(use-package org-bullets)
   ;; :hook (org-mode . org-bullets-mode)
-  )
 
 ;; https://github.com/vedang/pdf-tools?tab=readme-ov-file
 (use-package pdf-tools
@@ -115,7 +114,7 @@
   (projectile-mode 1)
   :config
   (define-key projectile-mode-map (kbd "C-c p") #'projectile-command-map)
-  (dolist (path '("build_your_own_lisp" "system-config"))
+  (dolist (path '("c" "python" "system-config"))
     (projectile-add-known-project (expand-file-name path "~/Developer")))
   (projectile-cleanup-known-projects))
 
@@ -129,7 +128,7 @@
   (visual-fill-column-mode . visual-fill-column-toggle-center-text))
 
 ;; https://github.com/akermu/emacs-libvterm
-(defun my-rename-vterm-buffer()
+(defun rename-vterm-buffer ()
   "Rename vterm buffer to *vterm<i>*, where i is the next available number."
   (when (eq major-mode 'vterm-mode)
     (let ((n 0)
@@ -141,10 +140,9 @@
   :after evil
   :hook
   (vterm-mode . evil-emacs-state)
-  (vterm-mode . my-rename-vterm-buffer)
-  :custom
-  (vterm-shell (or (executable-find "fish")
-		   (executable-find "bash")))
+  (vterm-mode . rename-vterm-buffer)
+  :custom (vterm-shell (or (executable-find "fish")
+			   (executable-find "bash")))
   :config
   (dolist (key (mapcar (lambda (key) (format "M-%s" key))
 		       '("w" "t" "T" "p" "P" "n" "N")))
