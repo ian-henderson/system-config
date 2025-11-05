@@ -8,10 +8,10 @@
   "Set font sizes to default sizes."
   (interactive)
   (mapc (lambda (font-face)
-	  (set-face-attribute font-face nil :family "Adwaita Mono"
-			      :height 140 :weight 'regular))
+	  (set-face-attribute font-face nil :family "Terminus"
+			      :height 180 :weight 'regular))
 	'(default fixed-pitch))
-  (set-face-attribute 'variable-pitch nil :family "Adwaita Sans"
+  (set-face-attribute 'variable-pitch nil :family "Ubuntu Sans"
 		      :height 160 :weight 'regular)
   (custom-set-faces
    '(org-block ((t (:inherit fixed-pitch))))

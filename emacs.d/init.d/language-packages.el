@@ -21,6 +21,7 @@
    '(:pylsp (:plugins (:black (:enabled t)))))
   :config
   (define-key eglot-mode-map (kbd "C-c e r") 'eglot-rename)
+  ;; TODO: use :hook instead
   (add-hook 'before-save-hook 'eglot-format-buffer)
   (mapc (lambda (mode)
 	  (add-hook (intern (format "%s-hook" mode)) #'eglot-ensure))

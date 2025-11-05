@@ -23,4 +23,5 @@ sudo flatpak install -y \
     org.gnome.Boxes \
     org.gnome.Snapshot \
     org.libreoffice.LibreOffice \
+    org.mozilla.firefox \
     org.signal.Signal

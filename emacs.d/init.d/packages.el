@@ -110,8 +110,7 @@
 ;; A project should have either a git directory or .projectile file.
 ;; If a project isn't detected, run `(projectile-invalidate-cache)`.
 (use-package projectile
-  :init
-  (projectile-mode 1)
+  :init (projectile-mode 1)
   :config
   (define-key projectile-mode-map (kbd "C-c p") #'projectile-command-map)
   (dolist (path '("c" "python" "system-config"))
@@ -124,7 +123,11 @@
 ;; https://codeberg.org/joostkremers/visual-fill-column
 (use-package visual-fill-column
   :hook
+  (help-mode . visual-fill-column-mode)
+  (Info-mode . visual-fill-column-mode)
+  (Man-mode . visual-fill-column-mode)
   (org-mode . visual-fill-column-mode)
+  (WoMan-mode . visual-fill-column-mode)
   (visual-fill-column-mode . visual-fill-column-toggle-center-text))
 
 ;; https://github.com/akermu/emacs-libvterm
