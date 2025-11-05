@@ -13,6 +13,13 @@
 ;; https://protesilaos.com/emacs/ef-themes-pictures
 (use-package ef-themes)
 
+;; https://codeberg.org/crmsnbleyd/flexoki-emacs-theme
+(use-package flexoki-themes
+  :custom
+  (flexoki-themes-use-bold-keywords t)
+  (flexoki-themes-use-bold-builtins t)
+  (flexoki-themes-use-italic-comments t))
+
 ;; https://protesilaos.com/emacs/modus-themes-pictures
 (use-package modus-themes)
 
@@ -24,7 +31,8 @@
   :custom
   (calendar-latitude 38.833881)
   (calendar-longitude -104.821365)
-  (circadian-themes '((:sunrise . ef-light) (:sunset . ef-dark)))
+  (circadian-themes '((:sunrise . flexoki-themes-light)
+		      (:sunset  . flexoki-themes-dark)))
   :hook (emacs-startup . circadian-setup))
 
 (provide 'theme)
