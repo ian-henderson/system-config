@@ -19,15 +19,15 @@
 	      ring-bell-function 'ignore)
 
 ;; tab bar
-;; https://lambdaland.org/posts/2022-07-20_adding_a_clock_to_emacs/
 (setq-default display-time-24hr-format t
 	      display-time-interval 1
 	      tab-bar-close-button-show nil
-	      tab-bar-format '(tab-bar-format-history
-			       tab-bar-format-tabs
-			       tab-bar-separator
-			       tab-bar-format-align-right
-			       tab-bar-format-global)
+	      ;; https://lambdaland.org/posts/2022-07-20_adding_a_clock_to_emacs/
+	      ;; tab-bar-format '(tab-bar-format-history
+	      ;; 		       tab-bar-format-tabs
+	      ;; 		       tab-bar-separator
+	      ;; 		       tab-bar-format-align-right
+	      ;; 		       tab-bar-format-global)
 	      tab-bar-new-tab-choice "*dashboard*")
 
 (tab-bar-mode 1)
