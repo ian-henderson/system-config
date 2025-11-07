@@ -31,8 +31,8 @@
   :custom
   (calendar-latitude 38.833881)
   (calendar-longitude -104.821365)
-  (circadian-themes '((:sunrise . flexoki-themes-light)
-		      (:sunset  . flexoki-themes-dark)))
+  (circadian-themes '((:sunrise . ef-day)
+		      (:sunset  . ef-dark)))
   :hook (emacs-startup . circadian-setup))
 
 (provide 'theme)
