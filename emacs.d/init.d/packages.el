@@ -26,7 +26,7 @@
   (dashboard-navigation-cycle t)
   (dashboard-projects-backend 'projectile)
   (dashboard-startup-banner 3)
-  ;; (expand-file-name "images/emacs.svg" user-emacs-directory))
+  ;; (expand-file-name "images/stallman-boat.jpg" user-emacs-directory))
   (dashboard-vertically-center-content t)
   (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
   :init (dashboard-setup-startup-hook))
