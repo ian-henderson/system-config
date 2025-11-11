@@ -38,9 +38,9 @@
 		display-time-mail-string ""))
 
 ;; removes client-side decorations in GNOME+Linux
-(when (and (eq system-type 'gnu/linux)
-           (string-match "GNOME" (getenv "XDG_CURRENT_DESKTOP") ))
-  (add-to-list 'default-frame-alist '(undecorated . t)))
+;; (when (and (eq system-type 'gnu/linux)
+;;            (string-match "GNOME" (getenv "XDG_CURRENT_DESKTOP") ))
+;;   (add-to-list 'default-frame-alist '(undecorated . t)))
 
 ;; maximize frame on startup
 (add-to-list 'default-frame-alist '(fullscreen . maximized))

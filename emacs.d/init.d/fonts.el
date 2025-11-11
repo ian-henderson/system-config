@@ -11,7 +11,7 @@
 	  (set-face-attribute font-face nil :family "Go Mono"
 			      :height 140 :weight 'regular))
 	'(default fixed-pitch))
-  (set-face-attribute 'variable-pitch nil :family "Ubuntu Sans"
+  (set-face-attribute 'variable-pitch nil :family "Go"
 		      :height 160 :weight 'regular)
   (custom-set-faces
    '(org-block ((t (:inherit fixed-pitch))))

@@ -10,29 +10,26 @@
   (load-theme theme t)
   (message "Set theme to '%s" theme))
 
+;; https://github.com/doomemacs/themes
+(use-package doom-themes
+  :custom
+  (doom-themes-enable-bold t)
+  (doom-themes-enable-italic t))
+
 ;; https://protesilaos.com/emacs/ef-themes-pictures
 (use-package ef-themes)
 
-;; https://codeberg.org/crmsnbleyd/flexoki-emacs-theme
-(use-package flexoki-themes
-  :custom
-  (flexoki-themes-use-bold-keywords t)
-  (flexoki-themes-use-bold-builtins t)
-  (flexoki-themes-use-italic-comments t))
-
-;; https://protesilaos.com/emacs/modus-themes-pictures
-(use-package modus-themes)
-
-;; https://protesilaos.com/emacs/standard-themes-pictures
-(use-package standard-themes)
+;; https://github.com/maio/eink-emacs
+(use-package eink-theme)
 
 ;; https://github.com/GuidoSchmidt/circadian.el
 (use-package circadian
   :custom
   (calendar-latitude 38.833881)
   (calendar-longitude -104.821365)
-  (circadian-themes '((:sunrise . ef-frost)
-		      (:sunset  . ef-dark)))
+  (circadian-themes '((:sunrise . eink)
+ 		      ("15:00"  . doom-xcode)
+ 		      (:sunset  . doom-1337)))
   :hook (emacs-startup . circadian-setup))
 
 (provide 'theme)
