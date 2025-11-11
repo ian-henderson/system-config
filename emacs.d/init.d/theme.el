@@ -19,9 +19,6 @@
 ;; https://protesilaos.com/emacs/ef-themes-pictures
 (use-package ef-themes)
 
-;; https://github.com/maio/eink-emacs
-(use-package eink-theme)
-
 ;; https://github.com/GuidoSchmidt/circadian.el
 (use-package circadian
   :custom
