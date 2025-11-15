@@ -14,6 +14,7 @@ sudo flatpak install -y \
     io.missioncenter.MissionCenter \
     me.timschneeberger.GalaxyBudsClient \
     me.proton.Pass \
+    org.freac.freac \
     org.gimp.GIMP \
     org.gnome.baobab \
     org.gnome.Boxes \
@@ -21,3 +22,5 @@ sudo flatpak install -y \
     org.kde.kid3 \
     org.libreoffice.LibreOffice \
     org.signal.Signal
+
+flatpak override --user --filesystem=~/.fonts
