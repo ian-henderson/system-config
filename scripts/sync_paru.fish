@@ -5,10 +5,10 @@ if ! test -q paru
     exit 1
 end
 
+# miniconda3 \
 set -l packages \
     amazon-corretto-25-bin \
     clang-format-static-bin \
-    miniconda3 \
     visual-studio-code-bin
 
 paru -S $packages --noconfirm

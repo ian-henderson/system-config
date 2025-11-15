@@ -9,7 +9,7 @@
   (interactive)
   (mapc (lambda (font-face)
 	  (set-face-attribute font-face nil :family "Go Mono"
-			      :height 140 :weight 'regular))
+			      :height 120 :weight 'regular))
 	'(default fixed-pitch))
   (set-face-attribute 'variable-pitch nil :family "Go"
 		      :height 160 :weight 'regular)
