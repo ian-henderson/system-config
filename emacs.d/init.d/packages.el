@@ -31,15 +31,6 @@
   (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
   :init (dashboard-setup-startup-hook))
 
-;; https://github.com/seagle0128/doom-modeline?tab=readme-ov-file
-(use-package doom-modeline
-  :custom
-  (doom-modeline-icon nil)
-  (doom-modeline-time-icon nil)
-  (doom-modeline-minor-modes nil)
-  (doom-modeline-buffer-encoding nil)
-  :hook (after-init . doom-modeline-mode))
-
 ;; https://github.com/emacs-evil/evil
 (use-package evil
   :custom

@@ -12,11 +12,12 @@ end
 
 set -x PHP_CS_FIXER_IGNORE_ENV 1
 set -x PKG_CONFIG_PATH /usr/lib/pkgconfig
+set -x -a XDG_DATA_DIRS /var/lib/flatpak/exports/share
 
-fish_add_path /var/lib/flatpak/exports/share
 fish_add_path "$HOME/.local/bin"
 fish_add_path "$HOME/.composer/vendor/bin"
 fish_add_path "$HOME/.local/share/nvm/v24.1.0/bin"
+
 
 if status is-interactive
     set -x CONFIG "$HOME/.config"
@@ -24,7 +25,6 @@ if status is-interactive
     set -x FONTS "$HOME/.fonts"
     set -x ICONS "$HOME/.icons"
     set -x THEMES "$HOME/.themes"
-    set -x ANDROID_HOME "$HOME/Developer/Android/Sdk"
 
     if test -d "$fish_dir/functions"
         for file in $fish_dir/functions/*.fish

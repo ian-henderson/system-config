@@ -10,6 +10,7 @@ sudo flatpak install -y \
     com.github.tchx84.Flatseal \
     com.jetbrains.IntelliJ-IDEA-Community \
     com.mattjakeman.ExtensionManager \
+    com.protonvpn.www \
     de.haeckerfelix.Fragments \
     io.missioncenter.MissionCenter \
     me.timschneeberger.GalaxyBudsClient \
@@ -21,6 +22,7 @@ sudo flatpak install -y \
     org.gnome.Snapshot \
     org.kde.kid3 \
     org.libreoffice.LibreOffice \
+    org.mozilla.firefox \
     org.signal.Signal
 
 flatpak override --user --filesystem=~/.fonts
