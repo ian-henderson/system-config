@@ -60,7 +60,8 @@ set -l packages_to_remove \
     gnome-maps \
     gnome-music \
     gnome-system-monitor \
-    gnome-tour
+    gnome-tour \
+    papers
 
 for package in $packages_to_remove
     if pacman -Q $package >/dev/null

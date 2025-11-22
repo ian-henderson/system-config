@@ -6,6 +6,7 @@ sudo flatpak remote-add --if-not-exists \
 sudo flatpak install -y \
     ca.desrt.dconf-editor \
     com.brave.Browser \
+    com.calibre_ebook.calibre \
     com.github.johnfactotum.Foliate \
     com.github.tchx84.Flatseal \
     com.jetbrains.IntelliJ-IDEA-Community \
@@ -19,10 +20,12 @@ sudo flatpak install -y \
     org.gimp.GIMP \
     org.gnome.baobab \
     org.gnome.Boxes \
+    org.gnome.Papers \
     org.gnome.Snapshot \
     org.kde.kid3 \
     org.libreoffice.LibreOffice \
     org.mozilla.firefox \
-    org.signal.Signal
+    org.signal.Signal \
+    org.telegram.desktop
 
 flatpak override --user --filesystem=~/.fonts

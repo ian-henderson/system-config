@@ -8,10 +8,10 @@
   "Set font sizes to default sizes."
   (interactive)
   (mapc (lambda (font-face)
-	  (set-face-attribute font-face nil :family "Go Mono"
+	  (set-face-attribute font-face nil :family "Maple Mono"
 			      :height 120 :weight 'regular))
 	'(default fixed-pitch))
-  (set-face-attribute 'variable-pitch nil :family "Go"
+  (set-face-attribute 'variable-pitch nil :family "Lato"
 		      :height 160 :weight 'regular)
   (custom-set-faces
    '(org-block ((t (:inherit fixed-pitch))))

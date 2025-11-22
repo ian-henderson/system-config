@@ -9,6 +9,9 @@
   (auto-package-update-hide-results t)
   :init (auto-package-update-maybe))
 
+;; https://github.com/abo-abo/avy
+(use-package avy :config (global-set-key (kbd "C-;") 'avy-goto-char-2))
+
 ;; https://company-mode.github.io
 ;; complete anything (auto complete)
 (use-package company :hook (after-init . global-company-mode))
@@ -46,8 +49,7 @@
 ;; https://github.com/emacs-evil/evil-collection
 (use-package evil-collection
   :after evil
-  :config
-  (evil-collection-init))
+  :config (evil-collection-init))
 
 ;; https://github.com/emacs-evil/evil-surround
 (use-package evil-surround
@@ -119,6 +121,9 @@
 
 ;; https://github.com/Fanael/rainbow-delimiters
 (use-package rainbow-delimiters :hook (prog-mode . rainbow-delimiters-mode))
+
+;; https://github.com/nflath/sudo-edit
+(use-package sudo-edit)
 
 ;; https://codeberg.org/joostkremers/visual-fill-column
 (use-package visual-fill-column
