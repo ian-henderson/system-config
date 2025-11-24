@@ -1,7 +1,3 @@
-[user]
-	email = ianhenderson@pm.me
-	name  = Ian Henderson
-
 [alias]
 	a  = add
 	br = branch
@@ -14,3 +10,10 @@
 
 [init]
 	defaultBranch = main
+
+[transfer]
+	fsckObjects = true
+
+[user]
+	email = ianhenderson@pm.me
+	name  = Ian Henderson

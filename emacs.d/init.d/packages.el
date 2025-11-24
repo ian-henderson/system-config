@@ -10,7 +10,7 @@
   :init (auto-package-update-maybe))
 
 ;; https://github.com/abo-abo/avy
-(use-package avy :config (global-set-key (kbd "C-;") 'avy-goto-char-2))
+(use-package avy :config (global-set-key (kbd "C-c j") 'avy-goto-char-2))
 
 ;; https://company-mode.github.io
 ;; complete anything (auto complete)
@@ -33,6 +33,14 @@
   (dashboard-vertically-center-content t)
   (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
   :init (dashboard-setup-startup-hook))
+
+;; https://github.com/seagle0128/doom-modeline
+(use-package doom-modeline
+  :hook (after-init . doom-modeline-mode)
+  :custom
+  (doom-modeline-buffer-encoding nil)
+  (doom-modeline-icon nil)
+  (doom-modeline-time-analogue-clock nil))
 
 ;; https://github.com/emacs-evil/evil
 (use-package evil
@@ -72,6 +80,11 @@
    '(git-gutter:update-interval 2)
    '(git-gutter:hide-gutter t))
   (global-git-gutter-mode t))
+
+;; https://github.com/roman/golden-ratio.el
+(use-package golden-ratio
+  :config (golden-ratio-mode 1)
+  :custom (golden-ratio-auto-scale t))
 
 ;; https://github.com/magit/magit
 ;; https://magit.vc/manual
@@ -128,11 +141,13 @@
 ;; https://codeberg.org/joostkremers/visual-fill-column
 (use-package visual-fill-column
   :hook
-  (help-mode . visual-fill-column-mode)
-  (Info-mode . visual-fill-column-mode)
-  (Man-mode . visual-fill-column-mode)
-  (org-mode . visual-fill-column-mode)
-  (WoMan-mode . visual-fill-column-mode)
+  (help-mode               . visual-fill-column-mode)
+  (Info-mode               . visual-fill-column-mode)
+  (Man-mode                . visual-fill-column-mode)
+  (markdown-mode           . visual-fill-column-mode)
+  (org-mode                . visual-fill-column-mode)
+  (outline-mode           . visual-fill-column-mode)
+  (WoMan-mode              . visual-fill-column-mode)
   (visual-fill-column-mode . visual-fill-column-toggle-center-text))
 
 ;; https://github.com/akermu/emacs-libvterm
@@ -152,8 +167,8 @@
   :custom (vterm-shell (or (executable-find "fish")
 			   (executable-find "bash")))
   :config
-  (dolist (key (mapcar (lambda (key) (format "M-%s" key))
-		       '("w" "t" "T" "p" "P" "n" "N")))
+  (dolist (key (mapcar (lambda (char) (format "M-%s" char))
+		       '("w" "t" "T" "[" "]" "{" "}")))
     (define-key vterm-mode-map (kbd key) nil))
   (define-key vterm-mode-map (kbd "C-c v") 'vterm-yank)
   (define-key vterm-mode-map (kbd "M-<backspace>") 'vterm-send-C-w))

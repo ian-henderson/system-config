@@ -7,10 +7,12 @@
 (defun font-size-reset ()
   "Set font sizes to default sizes."
   (interactive)
-  (mapc (lambda (font-face)
-	  (set-face-attribute font-face nil :family "Maple Mono"
-			      :height 120 :weight 'regular))
-	'(default fixed-pitch))
+  ;; monospace fonts
+  (mapc (lambda (f)
+	  (set-face-attribute
+	   f nil :family "mononoki" :height 160 :weight 'regular))
+	'(default fixed-pitch fixed-pitch-serif))
+  ;; variable pitched fonts
   (set-face-attribute 'variable-pitch nil :family "Lato"
 		      :height 160 :weight 'regular)
   (custom-set-faces
@@ -25,9 +27,10 @@
 CALC-FONT-SIZE takes the current face height and returns a new height.
 The function is applied to the :height attribute of each relevant face (default,
 fixed-pitch, variable-pitch)."
-  (dolist (face '(default fixed-pitch variable-pitch))
-    (set-face-attribute
-     face nil :height (funcall calc-font-size (face-attribute face :height)))))
+  (mapc (lambda (f)
+	  (set-face-attribute
+	   f nil :height (funcall calc-font-size (face-attribute f :height))))
+	'(default fixed-pitch variable-pitch)))
 
 (defun font-size-increase ()
   "Increase font size."

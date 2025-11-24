@@ -13,22 +13,23 @@
 ;; https://lambdaland.org/posts/2022-07-20_adding_a_clock_to_emacs/
 ;; the tab-bar clock doesn't work due to doom-modeline - disable doom-modeline
 ;; to get it working again
-(setq-default coding-system-for-read 'utf-8
-	      coding-system-for-write 'utf-8
-	      completion-ignore-case t
-	      default-buffer-file-coding-system 'utf-8
-	      display-time-24hr-format t
-	      display-time-interval 1
-	      read-buffer-completion-ignore-case t
-	      read-file-name-completion-ignore-case t
-	      ring-bell-function 'ignore
-	      tab-bar-close-button-show nil
-	      tab-bar-format '(tab-bar-format-history
-	       		       tab-bar-format-tabs
-	       		       tab-bar-separator
-	       		       tab-bar-format-align-right
-	       		       tab-bar-format-global)
-	      tab-bar-new-tab-choice "*dashboard*")
+(setq-default
+ coding-system-for-read 'utf-8
+ coding-system-for-write 'utf-8
+ completion-ignore-case t
+ default-buffer-file-coding-system 'utf-8
+ display-time-24hr-format t
+ display-time-interval 1
+ read-buffer-completion-ignore-case t
+ read-file-name-completion-ignore-case t
+ ring-bell-function 'ignore
+ tab-bar-close-button-show nil
+ tab-bar-format '(tab-bar-format-history
+	          tab-bar-format-tabs
+	          tab-bar-separator
+	          tab-bar-format-align-right
+	          tab-bar-format-global)
+ tab-bar-new-tab-choice "*dashboard*")
 
 
 (tab-bar-mode 1)

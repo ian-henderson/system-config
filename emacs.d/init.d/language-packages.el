@@ -78,7 +78,7 @@
   :custom (markdown-command "multimarkdown")
   :config
   (add-to-list 'auto-mode-alist '("\\.markdown\\'" . gfm-mode))
-  (add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode)))
+  (add-to-list 'auto-mode-alist '("\\.md\\'"       . gfm-mode)))
 
 ;; https://github.com/wentasah/meson-mode
 (use-package meson-mode)
