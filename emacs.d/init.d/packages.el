@@ -168,7 +168,7 @@
 			   (executable-find "bash")))
   :config
   (dolist (key (mapcar (lambda (char) (format "M-%s" char))
-		       '("w" "t" "T" "[" "]" "{" "}")))
+		       '("w" "t" "T" "f" "b" "F" "B")))
     (define-key vterm-mode-map (kbd key) nil))
   (define-key vterm-mode-map (kbd "C-c v") 'vterm-yank)
   (define-key vterm-mode-map (kbd "M-<backspace>") 'vterm-send-C-w))

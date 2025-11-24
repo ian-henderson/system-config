@@ -1,4 +1,5 @@
 ;;; Package --- theme.el
+
 ;;; Commentary:
 ;;; Code:
 
@@ -30,8 +31,8 @@
   :custom
   (calendar-latitude    38.833881)
   (calendar-longitude -104.821365)
-  (circadian-themes '((:sunrise . ef-frost)
- 		      (:sunset  . ef-winter)))
+  (circadian-themes '((:sunrise . doom-earl-grey)
+ 		      (:sunset  . doom-badger)))
   :hook (emacs-startup . circadian-setup))
 
 (provide 'theme)
