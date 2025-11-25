@@ -96,7 +96,7 @@
   :mode ("\\.epub\\'" . nov-mode)
   :hook (nov-mode . visual-fill-column-mode)
   :custom
-  (nov-text-width 80))
+  (nov-text-width 70))
 
 ;; https://orgmode.org/
 (use-package org
