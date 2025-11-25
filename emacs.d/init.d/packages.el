@@ -146,7 +146,7 @@
   (Man-mode                . visual-fill-column-mode)
   (markdown-mode           . visual-fill-column-mode)
   (org-mode                . visual-fill-column-mode)
-  (outline-mode           . visual-fill-column-mode)
+  (outline-mode            . visual-fill-column-mode)
   (WoMan-mode              . visual-fill-column-mode)
   (visual-fill-column-mode . visual-fill-column-toggle-center-text))
 

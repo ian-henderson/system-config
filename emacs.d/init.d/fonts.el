@@ -28,8 +28,7 @@ CALC-FONT-SIZE takes the current face height and returns a new height.
 The function is applied to the :height attribute of each relevant face (default,
 fixed-pitch, variable-pitch)."
   (mapc (lambda (f)
-	  (set-face-attribute
-	   f nil :height (funcall calc-font-size (face-attribute f :height))))
+	  (set-face-attribute f nil :height (funcall calc-font-size (face-attribute f :height))))
 	'(default fixed-pitch variable-pitch)))
 
 (defun font-size-increase ()
