@@ -10,11 +10,11 @@
   ;; monospace fonts
   (mapc (lambda (f)
 	  (set-face-attribute
-	   f nil :family "mononoki" :height 160 :weight 'regular))
+	   f nil :family "SF Mono" :height 130 :weight 'regular))
 	'(default fixed-pitch fixed-pitch-serif))
   ;; variable pitched fonts
-  (set-face-attribute 'variable-pitch nil :family "Lato"
-		      :height 160 :weight 'regular)
+  (set-face-attribute 'variable-pitch nil :family "SF Pro Text"
+		      :height 130 :weight 'regular)
   (custom-set-faces
    '(org-block ((t (:inherit fixed-pitch))))
    '(org-code ((t (:inherit fixed-pitch))))

@@ -13,6 +13,7 @@ sudo flatpak install -y \
     com.mattjakeman.ExtensionManager \
     com.protonvpn.www \
     de.haeckerfelix.Fragments \
+    io.bassi.Amberol \
     io.missioncenter.MissionCenter \
     me.timschneeberger.GalaxyBudsClient \
     me.proton.Pass \

@@ -31,9 +31,8 @@
   :custom
   (calendar-latitude    38.833881)
   (calendar-longitude -104.821365)
-  (circadian-themes '((:sunrise . doom-earl-grey)
-		      ("15:00"  . doom-xcode)
- 		      (:sunset  . doom-badger)))
+  (circadian-themes '((:sunrise . doom-homage-white)
+ 		      (:sunset  . doom-ir-black)))
   :hook (emacs-startup . circadian-setup))
 
 (provide 'theme)
