@@ -140,15 +140,12 @@
 
 ;; https://codeberg.org/joostkremers/visual-fill-column
 (use-package visual-fill-column
-  :hook
-  (help-mode               . visual-fill-column-mode)
-  (Info-mode               . visual-fill-column-mode)
-  (Man-mode                . visual-fill-column-mode)
-  (markdown-mode           . visual-fill-column-mode)
-  (org-mode                . visual-fill-column-mode)
-  (outline-mode            . visual-fill-column-mode)
-  (WoMan-mode              . visual-fill-column-mode)
-  (visual-fill-column-mode . visual-fill-column-toggle-center-text))
+  :config
+  (dolist (mode '(help Info Man markdown org outline text WoMan))
+    (add-hook (intern (concat (symbol-name mode) "-mode-hook"))
+	      'visual-fill-column-mode))
+  (add-hook 'visual-fill-column-mode-hook
+	    'visual-fill-column-toggle-center-text))
 
 ;; https://github.com/akermu/emacs-libvterm
 (defun rename-vterm-buffer ()

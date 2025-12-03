@@ -4,7 +4,7 @@
 
 (declare-function global-set-key-list "init.el" alist)
 
-(defvar monospace-font-family "Hack")
+(defvar monospace-font-family "Courier Code")
 
 (defvar variable-font-family "SF Pro Text")
 
