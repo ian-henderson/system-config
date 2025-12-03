@@ -35,12 +35,12 @@
   :init (dashboard-setup-startup-hook))
 
 ;; https://github.com/seagle0128/doom-modeline
-(use-package doom-modeline
-  :hook (after-init . doom-modeline-mode)
-  :custom
-  (doom-modeline-buffer-encoding nil)
-  (doom-modeline-icon nil)
-  (doom-modeline-time-analogue-clock nil))
+;; (use-package doom-modeline
+;;   :hook (after-init . doom-modeline-mode)
+;;   :custom
+;;   (doom-modeline-buffer-encoding nil)
+;;   (doom-modeline-icon nil)
+;;   (doom-modeline-time-analogue-clock nil))
 
 ;; https://github.com/emacs-evil/evil
 (use-package evil

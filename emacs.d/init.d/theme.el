@@ -1,5 +1,4 @@
 ;;; Package --- theme.el
-
 ;;; Commentary:
 ;;; Code:
 
@@ -11,18 +10,6 @@
   (load-theme theme t)
   (message "Set theme to '%s" theme))
 
-;; https://github.com/doomemacs/themes
-(use-package doom-themes
-  :custom
-  (doom-themes-enable-bold t)
-  (doom-themes-enable-italic t))
-
-;; https://protesilaos.com/emacs/ef-themes-pictures
-(use-package ef-themes)
-
-;; https://protesilaos.com/emacs/modus-themes
-(use-package modus-themes)
-
 ;; https://protesilaos.com/emacs/standard-themes
 (use-package standard-themes)
 
@@ -31,8 +18,10 @@
   :custom
   (calendar-latitude    38.833881)
   (calendar-longitude -104.821365)
-  (circadian-themes '((:sunrise . doom-homage-white)
- 		      (:sunset  . doom-ir-black)))
+  (circadian-themes '((:sunrise . standard-light)
+		      ("14:00"  . standard-light-tinted)
+		      ("15:30"  . standard-dark-tinted)
+		      (:sunset  . standard-dark)))
   :hook (emacs-startup . circadian-setup))
 
 (provide 'theme)

@@ -4,17 +4,26 @@
 
 (declare-function global-set-key-list "init.el" alist)
 
+(defvar monospace-font-family "Hack")
+
+(defvar variable-font-family "SF Pro Text")
+
+(defvar monospace-font-faces '(default fixed-pitch fixed-pitch-serif))
+
+(defvar variable-font-faces '(variable-pitch))
+
 (defun font-size-reset ()
   "Set font sizes to default sizes."
   (interactive)
-  ;; monospace fonts
-  (mapc (lambda (f)
-	  (set-face-attribute
-	   f nil :family "SF Mono" :height 130 :weight 'regular))
-	'(default fixed-pitch fixed-pitch-serif))
-  ;; variable pitched fonts
-  (set-face-attribute 'variable-pitch nil :family "SF Pro Text"
-		      :height 130 :weight 'regular)
+
+  (dolist (f monospace-font-faces)
+    (set-face-attribute
+     f nil :family monospace-font-family :height 140 :weight 'regular))
+
+  (dolist (f variable-font-faces)
+    (set-face-attribute
+     f nil :family variable-font-family :height 160 :weight 'regular))
+
   (custom-set-faces
    '(org-block ((t (:inherit fixed-pitch))))
    '(org-code ((t (:inherit fixed-pitch))))
@@ -27,9 +36,9 @@
 CALC-FONT-SIZE takes the current face height and returns a new height.
 The function is applied to the :height attribute of each relevant face (default,
 fixed-pitch, variable-pitch)."
-  (mapc (lambda (f)
-	  (set-face-attribute f nil :height (funcall calc-font-size (face-attribute f :height))))
-	'(default fixed-pitch variable-pitch)))
+  (dolist (f (append monospace-font-faces variable-font-faces))
+    (set-face-attribute
+     f nil :height (funcall calc-font-size (face-attribute f :height)))))
 
 (defun font-size-increase ()
   "Increase font size."

@@ -11,6 +11,7 @@ set -l main_packages \
     neovim \
     power-profiles-daemon \
     tree \
+    ttf-liberation \
     wl-clipboard
 
 set -l c_packages \
