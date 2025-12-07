@@ -4,8 +4,7 @@
 
 ;; https://github.com/Malabarba/aggressive-indent-mode
 (use-package aggressive-indent
-  :hook
-  ((emacs-lisp-mode lisp-mode scheme-mode) . aggressive-indent-mode))
+  :hook ((emacs-lisp-mode lisp-mode scheme-mode) . aggressive-indent-mode))
 
 ;; https://joaotavora.github.io/eglot
 (use-package eglot
@@ -21,11 +20,9 @@
    '(:pylsp (:plugins (:black (:enabled t)))))
   :config
   (define-key eglot-mode-map (kbd "C-c e r") 'eglot-rename)
-  ;; TODO: use :hook instead
   (add-hook 'before-save-hook 'eglot-format-buffer)
-  (mapc (lambda (mode)
-	  (add-hook (intern (format "%s-hook" mode)) #'eglot-ensure))
-	'(c-mode c++-mode java-mode python-mode typescript-mode rust-mode)))
+  (dolist (mode '(c c++ java python typescript rust))
+    (add-hook (intern (format "%s-mode-hook" mode)) #'eglot-ensure)))
 
 ;; https://github.com/yveszoundi/eglot-java
 (use-package eglot-java
@@ -50,10 +47,10 @@
 
 ;; https://www.flycheck.org/en/latest/user/installation.html
 (use-package flycheck
-  :custom
-  (flycheck-global-modes '(not c-mode c++-mode rust-mode))
+  :custom (flycheck-global-modes '(not c-mode c++-mode rust-mode))
   :config
-  (global-flycheck-mode 1))
+  (global-flycheck-mode 1)
+  (global-set-key (kbd "C-c SPC") 'flycheck-mode))
 
 ;; https://github.com/lassik/emacs-format-all-the-code
 ;; https://clang.llvm.org/docs/ClangFormatStyleOptions.html
@@ -61,8 +58,7 @@
 (use-package format-all
   :commands format-all-mode
   :hook (prog-mode . format-all-mode)
-  :custom
-  (format-all-formatters '(("Shell" (shfmt "-ci")))))
+  :custom (format-all-formatters '(("Shell" (shfmt "-ci")))))
 
 ;; https://github.com/haskell/haskell-mode
 (use-package haskell-mode)

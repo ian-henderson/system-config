@@ -6,7 +6,7 @@
   "Disable all enabled themes and enable THEME."
   (interactive ; Prompts user for a theme
    (list (intern (completing-read "Load theme: " (custom-available-themes)))))
-  (mapc (lambda (theme) (disable-theme theme)) custom-enabled-themes)
+  (dolist (theme custom-enabled-themes) (disable-theme theme))
   (load-theme theme t)
   (message "Set theme to '%s" theme))
 
@@ -18,9 +18,7 @@
   :custom
   (calendar-latitude    38.833881)
   (calendar-longitude -104.821365)
-  (circadian-themes '((:sunrise . standard-light)
-		      ("14:00"  . standard-light-tinted)
-		      ("15:30"  . standard-dark-tinted)
+  (circadian-themes '((:sunrise . standard-light-tinted)
 		      (:sunset  . standard-dark)))
   :hook (emacs-startup . circadian-setup))
 

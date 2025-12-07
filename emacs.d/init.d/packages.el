@@ -74,12 +74,17 @@
    '("LIBERA_USERNAME" "LIBERA_PASSWORD" "LIBERA_FULL_NAME")))
 
 ;; https://github.com/emacsorphanage/git-gutter
-(use-package git-gutter
-  :config
-  (custom-set-variables
-   '(git-gutter:update-interval 2)
-   '(git-gutter:hide-gutter t))
-  (global-git-gutter-mode t))
+;; (use-package git-gutter
+;;   :config
+;;   (custom-set-variables
+;;    '(git-gutter:hide-gutter t)
+;;    '(git-gutter:update-interval 2))
+;;   (global-git-gutter-mode t))
+
+;; https://github.com/emacsorphanage/git-gutter-fringe
+(use-package git-gutter-fringe
+  :config (global-git-gutter-mode 1)
+  :custom (git-gutter-fr:side 'right-fringe))
 
 ;; https://github.com/roman/golden-ratio.el
 (use-package golden-ratio
@@ -92,11 +97,9 @@
 
 ;; https://depp.brause.cc/nov.el/
 (use-package nov
-  :ensure t
   :mode ("\\.epub\\'" . nov-mode)
   :hook (nov-mode . visual-fill-column-mode)
-  :custom
-  (nov-text-width 70))
+  :custom (nov-text-width 70))
 
 ;; https://orgmode.org/
 (use-package org
@@ -105,8 +108,7 @@
   (org-adapt-indentation nil)
   (org-hide-leading-stars t)
   (org-startup-indented t)
-  :hook
-  (org-mode . org-indent-mode))
+  :hook (org-mode . org-indent-mode))
 
 ;; https://github.com/sabof/org-bullets
 (use-package org-bullets)
@@ -133,22 +135,27 @@
   (projectile-cleanup-known-projects))
 
 ;; https://github.com/Fanael/rainbow-delimiters
-(use-package rainbow-delimiters :hook (prog-mode . rainbow-delimiters-mode))
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
 
 ;; https://github.com/nflath/sudo-edit
 (use-package sudo-edit)
 
+(defun my-visual-fill-column-setup ()
+  "Initialize local state for visual-fill-column buffers."
+  (setq-local visual-fill-column-center-text t
+	      visual-fill-column-width (+ fill-column 6)))
+
 ;; https://codeberg.org/joostkremers/visual-fill-column
 (use-package visual-fill-column
   :config
-  (dolist (mode '(help Info Man markdown org outline text WoMan))
-    (add-hook (intern (concat (symbol-name mode) "-mode-hook"))
+  (global-visual-fill-column-mode 1)
+  (dolist (mode '(help))
+    (add-hook (intern (format "%s-mode-hook" mode))
 	      'visual-fill-column-mode))
-  (add-hook 'visual-fill-column-mode-hook
-	    'visual-fill-column-toggle-center-text))
+  :hook (visual-fill-column-mode . my-visual-fill-column-setup))
 
-;; https://github.com/akermu/emacs-libvterm
-(defun rename-vterm-buffer ()
+(defun my-vterm-setup ()
   "Rename vterm buffer to *vterm<i>*, where i is the next available number."
   (when (eq major-mode 'vterm-mode)
     (let ((n 0)
@@ -156,13 +163,14 @@
       (while (get-buffer (format base n))
 	(setq n (1+ n)))
       (rename-buffer (format base n) t))))
+
+;; https://github.com/akermu/emacs-libvterm
 (use-package vterm
   :after evil
   :hook
   (vterm-mode . evil-emacs-state)
-  (vterm-mode . rename-vterm-buffer)
-  :custom (vterm-shell (or (executable-find "fish")
-			   (executable-find "bash")))
+  (vterm-mode . my-vterm-setup)
+  :custom (vterm-shell (or (executable-find "fish") (executable-find "bash")))
   :config
   (dolist (key (mapcar (lambda (char) (format "M-%s" char))
 		       '("w" "t" "T" "f" "b" "F" "B")))

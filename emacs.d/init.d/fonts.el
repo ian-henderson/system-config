@@ -4,9 +4,9 @@
 
 (declare-function global-set-key-list "init.el" alist)
 
-(defvar monospace-font-family "Courier Code")
+(defvar monospace-font-family "Fira Mono")
 
-(defvar variable-font-family "SF Pro Text")
+(defvar variable-font-family "Fira Sans")
 
 (defvar monospace-font-faces '(default fixed-pitch fixed-pitch-serif))
 
@@ -22,14 +22,16 @@
 
   (dolist (f variable-font-faces)
     (set-face-attribute
-     f nil :family variable-font-family :height 160 :weight 'regular))
-
-  (custom-set-faces
-   '(org-block ((t (:inherit fixed-pitch))))
-   '(org-code ((t (:inherit fixed-pitch))))
-   '(org-verbatim ((t (:inherit fixed-pitch))))))
+     f nil :family variable-font-family :height 160 :weight 'regular)))
 
 (font-size-reset)
+
+(custom-set-faces
+ '(org-block ((t (:inherit fixed-pitch))))
+ '(org-code ((t (:inherit fixed-pitch))))
+ '(org-verbatim ((t (:inherit fixed-pitch))))
+ '(tab-bar-tab ((t (:inherit fixed-pitch))))
+ '(tab-bar-tab-active ((t (:inherit fixed-pitch)))))
 
 (defun font-size-set (calc-font-size)
   "Set font size using CALC-FONT-SIZE lambda.
