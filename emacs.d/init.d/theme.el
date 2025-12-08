@@ -1,4 +1,4 @@
-;;; Package --- theme.el
+;;; Package --- theme.el -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

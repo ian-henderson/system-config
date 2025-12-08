@@ -1,4 +1,4 @@
-;;; Package --- early-init.el
+;;; Package --- early-init.el -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -11,8 +11,6 @@
 (tool-bar-mode -1)
 
 ;; https://lambdaland.org/posts/2022-07-20_adding_a_clock_to_emacs/
-;; the tab-bar clock doesn't work due to doom-modeline - disable doom-modeline
-;; to get it working again
 (setq-default
  coding-system-for-read 'utf-8
  coding-system-for-write 'utf-8
@@ -30,7 +28,6 @@
 	          tab-bar-format-align-right
 	          tab-bar-format-global)
  tab-bar-new-tab-choice "*dashboard*")
-
 
 (tab-bar-mode 1)
 

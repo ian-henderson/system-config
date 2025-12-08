@@ -1,4 +1,4 @@
-;;; Package --- vertico.el
+;;; Package --- vertico.el -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

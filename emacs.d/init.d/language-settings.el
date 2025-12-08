@@ -1,4 +1,4 @@
-;;; Package --- language-settings.el
+;;; Package --- language-settings.el -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

@@ -1,4 +1,4 @@
-;;; Package --- windows.el
+;;; Package --- windows.el -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

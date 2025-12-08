@@ -1,4 +1,4 @@
-;;; Package --- rcirc.el
+;;; Package --- rcirc.el -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

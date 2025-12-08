@@ -1,4 +1,4 @@
-;;; Package --- fonts.el
+;;; Package --- fonts.el -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

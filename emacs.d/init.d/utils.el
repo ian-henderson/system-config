@@ -1,4 +1,4 @@
-;;; Package --- utils.el
+;;; Package --- utils.el -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

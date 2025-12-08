@@ -1,4 +1,4 @@
-;;; Package --- init.el
+;;; Package --- init.el -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

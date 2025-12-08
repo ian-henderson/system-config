@@ -1,4 +1,4 @@
-;;; Package --- language-packages.el
+;;; Package --- language-packages.el -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -6,8 +6,20 @@
 (use-package aggressive-indent
   :hook ((emacs-lisp-mode lisp-mode scheme-mode) . aggressive-indent-mode))
 
+(define-minor-mode eglot-format-on-save-mode
+  "Toggle Eglot automatic formatting before saving buffer."
+  :global nil :lighter " EglotFmt"
+  (if eglot-format-on-save-mode
+      (add-hook 'before-save-hook 'eglot-format-buffer nil 'local)
+    (remove-hook 'before-save-hook 'eglot-format-buffer 'local)))
+
 ;; https://joaotavora.github.io/eglot
 (use-package eglot
+  :config
+  (define-key eglot-mode-map (kbd "C-c e f") 'eglot-format-buffer)
+  (define-key eglot-mode-map (kbd "C-c e r") 'eglot-rename)
+  (dolist (mode '(c c++ java python typescript rust))
+    (add-hook (intern (format "%s-mode-hook" mode)) #'eglot-ensure))
   :custom
   (eglot-server-programs
    '((c-mode          . ("ccls"))
@@ -18,11 +30,8 @@
      (rust-mode       . ("rust-analyzer"))))
   (eglot-workspace-configuration
    '(:pylsp (:plugins (:black (:enabled t)))))
-  :config
-  (define-key eglot-mode-map (kbd "C-c e r") 'eglot-rename)
-  (add-hook 'before-save-hook 'eglot-format-buffer)
-  (dolist (mode '(c c++ java python typescript rust))
-    (add-hook (intern (format "%s-mode-hook" mode)) #'eglot-ensure)))
+  ;; :hook (eglot-activated . eglot-format-on-save-mode)
+  )
 
 ;; https://github.com/yveszoundi/eglot-java
 (use-package eglot-java
@@ -49,8 +58,7 @@
 (use-package flycheck
   :custom (flycheck-global-modes '(not c-mode c++-mode rust-mode))
   :config
-  (global-flycheck-mode 1)
-  (global-set-key (kbd "C-c SPC") 'flycheck-mode))
+  (global-flycheck-mode 1))
 
 ;; https://github.com/lassik/emacs-format-all-the-code
 ;; https://clang.llvm.org/docs/ClangFormatStyleOptions.html

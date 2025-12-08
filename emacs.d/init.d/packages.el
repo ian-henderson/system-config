@@ -1,4 +1,4 @@
-;;; Package --- packages.el
+;;; Package --- packages.el -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -34,24 +34,16 @@
   (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
   :init (dashboard-setup-startup-hook))
 
-;; https://github.com/seagle0128/doom-modeline
-;; (use-package doom-modeline
-;;   :hook (after-init . doom-modeline-mode)
-;;   :custom
-;;   (doom-modeline-buffer-encoding nil)
-;;   (doom-modeline-icon nil)
-;;   (doom-modeline-time-analogue-clock nil))
-
+;; https://evil.readthedocs.io/en/latest/index.html
 ;; https://github.com/emacs-evil/evil
 (use-package evil
-  :custom
-  (evil-want-keybinding nil)
+  :custom (evil-want-keybinding nil)
   :config
   (defun toggle-evil-mode ()
     "Toggle evil mode."
     (interactive)
     (evil-mode (if (bound-and-true-p evil-mode) 0 1)))
-  (global-set-key (kbd "C-c e") 'toggle-evil-mode)
+  (global-set-key (kbd "C-c SPC") 'toggle-evil-mode)
   (evil-mode 1))
 
 ;; https://github.com/emacs-evil/evil-collection
@@ -66,20 +58,12 @@
 
 ;; https://github.com/purcell/exec-path-from-shell
 (use-package exec-path-from-shell
-  :custom (shell-file-name (or (executable-find "fish")
-			       (executable-find "bash")))
   :config
   (exec-path-from-shell-initialize)
   (exec-path-from-shell-copy-envs
-   '("LIBERA_USERNAME" "LIBERA_PASSWORD" "LIBERA_FULL_NAME")))
-
-;; https://github.com/emacsorphanage/git-gutter
-;; (use-package git-gutter
-;;   :config
-;;   (custom-set-variables
-;;    '(git-gutter:hide-gutter t)
-;;    '(git-gutter:update-interval 2))
-;;   (global-git-gutter-mode t))
+   '("LIBERA_USERNAME" "LIBERA_PASSWORD" "LIBERA_FULL_NAME"))
+  :custom (shell-file-name (or (executable-find "fish")
+			       (executable-find "bash"))))
 
 ;; https://github.com/emacsorphanage/git-gutter-fringe
 (use-package git-gutter-fringe
@@ -109,10 +93,6 @@
   (org-hide-leading-stars t)
   (org-startup-indented t)
   :hook (org-mode . org-indent-mode))
-
-;; https://github.com/sabof/org-bullets
-(use-package org-bullets)
-  ;; :hook (org-mode . org-bullets-mode)
 
 ;; https://github.com/vedang/pdf-tools?tab=readme-ov-file
 (use-package pdf-tools
@@ -155,7 +135,7 @@
 	      'visual-fill-column-mode))
   :hook (visual-fill-column-mode . my-visual-fill-column-setup))
 
-(defun my-vterm-setup ()
+(defun rename-vterm-buffer ()
   "Rename vterm buffer to *vterm<i>*, where i is the next available number."
   (when (eq major-mode 'vterm-mode)
     (let ((n 0)
@@ -167,16 +147,15 @@
 ;; https://github.com/akermu/emacs-libvterm
 (use-package vterm
   :after evil
+  :config
+  (dolist (key '("w" "t" "T" "f" "b" "<left>" "<right>"))
+    (define-key vterm-mode-map (kbd (format "M-%s" key)) nil))
+  (define-key vterm-mode-map (kbd "C-c v") 'vterm-yank)
+  (define-key vterm-mode-map (kbd "M-<backspace>") 'vterm-send-C-w)
+  :custom (vterm-shell (or (executable-find "fish") (executable-find "bash")))
   :hook
   (vterm-mode . evil-emacs-state)
-  (vterm-mode . my-vterm-setup)
-  :custom (vterm-shell (or (executable-find "fish") (executable-find "bash")))
-  :config
-  (dolist (key (mapcar (lambda (char) (format "M-%s" char))
-		       '("w" "t" "T" "f" "b" "F" "B")))
-    (define-key vterm-mode-map (kbd key) nil))
-  (define-key vterm-mode-map (kbd "C-c v") 'vterm-yank)
-  (define-key vterm-mode-map (kbd "M-<backspace>") 'vterm-send-C-w))
+  (vterm-mode . rename-vterm-buffer))
 
 (provide 'packages)
 
