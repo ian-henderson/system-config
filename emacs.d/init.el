@@ -30,10 +30,10 @@
   :custom (garbage-collection-messages t)
   :config (gcmh-mode 1))
 
-(defun global-set-key-list (alist)
-  "Set global keybindings.  ALIST: list of key and function pairs."
-  (dolist (pair alist)
-    (global-set-key (kbd (car pair)) (cdr pair))))
+(defun global-set-key-list (key-fn-mappings)
+  "Set global keybindings.  KEY-FN-MAPPINGS: alist of key and function pairs."
+  (dolist (mapping key-fn-mappings)
+    (global-set-key (kbd (car mapping)) (cdr mapping))))
 
 ;; Loads el files in init.d
 (let ((init-d (expand-file-name "init.d" user-emacs-directory)))

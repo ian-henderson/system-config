@@ -13,16 +13,7 @@
   :ensure nil
   :custom
   (eww-search-prefix "https://lite.duckduckgo.com/lite?q=")
-  (shr-width nil)
-  :config
-  (dolist (keybinding '("M-n" "M-N"))
-    (define-key eww-mode-map (kbd keybinding) nil)))
-
-(use-package man
-  :ensure nil
-  :config
-  (dolist (keybinding '("M-n" "M-p"))
-    (define-key Man-mode-map (kbd keybinding) nil)))
+  (shr-width nil))
 
 (savehist-mode t)
 
