@@ -16,8 +16,8 @@
    ("M-t"       . tab-bar-new-tab)
    ("M-T"       . tab-bar-undo-close-tab)
    ("M-w"       . tab-bar-close-tab)
-   ("M-<right>" . tab-bar-move-tab)
-   ("M-<left>"  . tab-bar-move-tab-backward)
+   ("M-<next>"  . tab-bar-move-tab)
+   ("M-<prior>" . tab-bar-move-tab-backward)
    ("<f12>"     . tab-bar-select-tab)))
 
 ;; disables trackpad pinch-to-zoom

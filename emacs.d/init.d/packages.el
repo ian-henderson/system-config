@@ -121,34 +121,29 @@
 ;; https://github.com/nflath/sudo-edit
 (use-package sudo-edit)
 
-(defun my-visual-fill-column-setup ()
-  "Initialize local state for visual-fill-column buffers."
-  (setq-local visual-fill-column-center-text t
-	      visual-fill-column-width (+ fill-column 6)))
-
 ;; https://codeberg.org/joostkremers/visual-fill-column
 (use-package visual-fill-column
   :config
   (global-visual-fill-column-mode 1)
-  (dolist (mode '(help))
-    (add-hook (intern (format "%s-mode-hook" mode))
-	      'visual-fill-column-mode))
-  :hook (visual-fill-column-mode . my-visual-fill-column-setup))
+  (dolist (mode '(ert-results help lisp-interaction))
+    (add-hook (intern (format "%s-mode-hook" mode)) 'visual-fill-column-mode))
+  :custom (visual-fill-column-center-text t)
+  :hook (visual-fill-column-mode
+	 . (lambda () (setq-local visual-fill-column-width (+ fill-column 6)))))
 
 (defun rename-vterm-buffer ()
   "Rename vterm buffer to *vterm<i>*, where i is the next available number."
   (when (eq major-mode 'vterm-mode)
-    (let ((n 0)
-	  (base "*vterm<%d>*"))
-      (while (get-buffer (format base n))
-	(setq n (1+ n)))
+    (let ((base "*vterm<%d>*")
+	  (n 0))
+      (while (get-buffer (format base n)) (setq n (1+ n)))
       (rename-buffer (format base n) t))))
 
 ;; https://github.com/akermu/emacs-libvterm
 (use-package vterm
   :after evil
   :config
-  (dolist (key '("w" "t" "T" "f" "b" "<left>" "<right>"))
+  (dolist (key '("w" "t" "T" "f" "b"))
     (define-key vterm-mode-map (kbd (format "M-%s" key)) nil))
   (define-key vterm-mode-map (kbd "C-c v") 'vterm-yank)
   (define-key vterm-mode-map (kbd "M-<backspace>") 'vterm-send-C-w)
