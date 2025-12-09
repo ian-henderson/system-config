@@ -10,7 +10,7 @@
   :init (auto-package-update-maybe))
 
 ;; https://github.com/abo-abo/avy
-(use-package avy :config (global-set-key (kbd "C-c j") 'avy-goto-char-2))
+(use-package avy :bind ("C-c j" . 'avy-goto-char-2))
 
 ;; https://company-mode.github.io
 ;; complete anything (auto complete)
@@ -37,14 +37,9 @@
 ;; https://evil.readthedocs.io/en/latest/index.html
 ;; https://github.com/emacs-evil/evil
 (use-package evil
-  :custom (evil-want-keybinding nil)
-  :config
-  (defun toggle-evil-mode ()
-    "Toggle evil mode."
-    (interactive)
-    (evil-mode (if (bound-and-true-p evil-mode) 0 1)))
-  (global-set-key (kbd "C-c SPC") 'toggle-evil-mode)
-  (evil-mode 1))
+  :bind ("C-c SPC" . evil-mode)
+  :config (evil-mode 1)
+  :custom (evil-want-keybinding nil))
 
 ;; https://github.com/emacs-evil/evil-collection
 (use-package evil-collection
@@ -142,6 +137,7 @@
 ;; https://github.com/akermu/emacs-libvterm
 (use-package vterm
   :after evil
+  :bind ("C-c t" . vterm)
   :config
   (dolist (key '("w" "t" "T" "f" "b"))
     (define-key vterm-mode-map (kbd (format "M-%s" key)) nil))
