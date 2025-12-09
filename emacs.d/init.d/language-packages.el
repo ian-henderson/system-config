@@ -95,9 +95,7 @@
 (use-package php-mode)
 
 ;; https://github.com/rust-lang/rust-mode
-(use-package rust-mode
-  :custom (rust-format-on-save t)
-  :mode "\\.rs\\'")
+(use-package rust-mode :custom (rust-format-on-save t) :mode "\\.rs\\'")
 
 ;; https://github.com/holomorph/systemd-mode
 (use-package systemd)

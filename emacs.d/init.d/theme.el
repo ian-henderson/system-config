@@ -10,6 +10,9 @@
   (load-theme theme t)
   (message "Set theme to '%s" theme))
 
+;; https://protesilaos.com/emacs/ef-themes
+(use-package ef-themes)
+
 ;; https://protesilaos.com/emacs/standard-themes
 (use-package standard-themes)
 
@@ -18,9 +21,8 @@
   :custom
   (calendar-latitude    38.833881)
   (calendar-longitude -104.821365)
-  (circadian-themes '((:sunrise . standard-light-tinted)
-		      ("15:00"  . standard-dark-tinted)
-		      (:sunset  . standard-dark)))
+  (circadian-themes '((:sunrise . ef-frost)
+		      ("15:00"  . ef-winter)))
   :hook (emacs-startup . circadian-setup))
 
 (provide 'theme)

@@ -127,7 +127,7 @@
 	 . (lambda () (setq-local visual-fill-column-width (+ fill-column 6)))))
 
 (defun rename-vterm-buffer ()
-  "Rename vterm buffer to *vterm<i>*, where i is the next available number."
+  "Rename vterm buffer to *vterm<i>*, i being the next available number."
   (when (eq major-mode 'vterm-mode)
     (let ((base "*vterm<%d>*")
 	  (n 0))
