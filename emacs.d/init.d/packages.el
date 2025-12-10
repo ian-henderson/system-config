@@ -86,6 +86,9 @@
   (org-startup-indented t)
   :hook (org-mode . org-indent-mode))
 
+;; https://github.com/sabof/org-bullets
+(use-package org-bullets :hook (org-mode . org-bullets-mode))
+
 ;; https://github.com/vedang/pdf-tools?tab=readme-ov-file
 (use-package pdf-tools
   :magic ("%PDF" . pdf-view-mode)
