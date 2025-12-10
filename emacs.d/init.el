@@ -26,9 +26,7 @@
 (setq-default use-package-always-ensure t)
 
 ;; https://gitlab.com/koral/gcmh
-(use-package gcmh
-  :custom (garbage-collection-messages t)
-  :config (gcmh-mode 1))
+(use-package gcmh :config (gcmh-mode 1) :custom (garbage-collection-messages t))
 
 (defun global-set-key-list (key-fn-mappings)
   "Set global keybindings.  KEY-FN-MAPPINGS: alist of key and function pairs."
@@ -37,8 +35,8 @@
 
 ;; Loads el files in init.d
 (let ((init-d (expand-file-name "init.d" user-emacs-directory)))
-  (when (file-directory-p init-d)
-    (mapc #'load-file (directory-files init-d t "\\.el$"))))
+  (if (file-directory-p init-d)
+      (mapc #'load-file (directory-files init-d t "\\.el$"))))
 
 (message "Emacs started in %s seconds." (emacs-init-time))
 

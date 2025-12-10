@@ -12,7 +12,7 @@
  rcirc-default-full-name (getenv "LIBERA_FULL_NAME")
  rcirc-server-alist `(("irc.libera.chat"
 		       :channels ("##math" "##politics" "##statistics"
-				  "#archlinux" "#c" "#emacs" "#finance" "#java"
+				  "#archlinux" "#c" "#emacs" "#finance"
 				  "#libera" "#linux" "#python")
 		       :encryption tls
 		       :nick ,(getenv "LIBERA_USERNAME")

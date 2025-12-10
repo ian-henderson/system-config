@@ -51,15 +51,6 @@
   :after evil
   :config (global-evil-surround-mode 1))
 
-;; https://github.com/purcell/exec-path-from-shell
-(use-package exec-path-from-shell
-  :config
-  (exec-path-from-shell-initialize)
-  (exec-path-from-shell-copy-envs
-   '("LIBERA_USERNAME" "LIBERA_PASSWORD" "LIBERA_FULL_NAME"))
-  :custom (shell-file-name (or (executable-find "fish")
-			       (executable-find "bash"))))
-
 ;; https://github.com/emacsorphanage/git-gutter-fringe
 (use-package git-gutter-fringe
   :config (global-git-gutter-mode 1)
@@ -73,6 +64,12 @@
 ;; https://github.com/magit/magit
 ;; https://magit.vc/manual
 (use-package magit)
+
+;; https://codeberg.org/martianh/mastodon.el
+(use-package mastodon
+  :custom
+  (mastodon-instance-url (getenv "MASTODON_INSTANCE_URL"))
+  (mastodon-active-user (getenv "MASTODON_USERNAME")))
 
 ;; https://depp.brause.cc/nov.el/
 (use-package nov
@@ -120,7 +117,7 @@
 (use-package visual-fill-column
   :config
   (global-visual-fill-column-mode 1)
-  (dolist (mode '(ert-results help lisp-interaction))
+  (dolist (mode '(ert-results help lisp-interaction mastodon))
     (add-hook (intern (format "%s-mode-hook" mode)) 'visual-fill-column-mode))
   :custom (visual-fill-column-center-text t)
   :hook (visual-fill-column-mode
