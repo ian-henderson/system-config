@@ -56,17 +56,16 @@
 
 ;; https://www.flycheck.org/en/latest/user/installation.html
 (use-package flycheck
-  :custom (flycheck-global-modes '(not c-mode c++-mode rust-mode))
-  :config
-  (global-flycheck-mode 1))
+  :config (global-flycheck-mode 1)
+  :custom (flycheck-global-modes '(not c-mode c++-mode rust-mode)))
 
 ;; https://github.com/lassik/emacs-format-all-the-code
 ;; https://clang.llvm.org/docs/ClangFormatStyleOptions.html
 ;; https://github.com/patrickvane/shfmt
 (use-package format-all
   :commands format-all-mode
-  :hook (prog-mode . format-all-mode)
-  :custom (format-all-formatters '(("Shell" (shfmt "-ci")))))
+  :custom (format-all-formatters '(("Shell" (shfmt "-ci"))))
+  :hook (prog-mode . format-all-mode))
 
 ;; https://github.com/haskell/haskell-mode
 (use-package haskell-mode)
@@ -79,17 +78,16 @@
 
 ;; https://github.com/jrblevin/markdown-mode
 (use-package markdown-mode
-  :custom (markdown-command "multimarkdown")
   :config
   (add-to-list 'auto-mode-alist '("\\.markdown\\'" . gfm-mode))
-  (add-to-list 'auto-mode-alist '("\\.md\\'"       . gfm-mode)))
+  (add-to-list 'auto-mode-alist '("\\.md\\'"       . gfm-mode))
+  :custom (markdown-command "multimarkdown"))
 
 ;; https://github.com/wentasah/meson-mode
 (use-package meson-mode)
 
-(use-package nxml-mode
-  :ensure nil ; (built-in)
-  :custom (nxml-slash-auto-complete-flag t))
+;; (built-in)
+(use-package nxml-mode :custom (nxml-slash-auto-complete-flag t) :ensure nil)
 
 ;; https://github.com/emacs-php/php-mode
 (use-package php-mode)
@@ -100,15 +98,13 @@
 ;; https://github.com/holomorph/systemd-mode
 (use-package systemd)
 
-(use-package typescript-mode
-  :hook (js-mode . typescript-mode))
+(use-package typescript-mode :hook (js-mode . typescript-mode))
 
 ;; https://github.com/yoshiki/yaml-mode
 (use-package yaml-mode
-  :init
-  (mapc (lambda (s)
-	  (add-to-list 'auto-mode-alist (cons s 'yaml-mode)))
-	'("\\.yml\\'" "\\.yaml\\'" "\\.clang-format\\'" "\\clang-format\\'")))
+  :init (mapc
+	 (lambda (s) (add-to-list 'auto-mode-alist (cons s 'yaml-mode)))
+	 '("\\.yml\\'" "\\.yaml\\'" "\\.clang-format\\'" "\\clang-format\\'")))
 
 (provide 'language-packages)
 

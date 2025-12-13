@@ -73,17 +73,17 @@
 
 ;; https://depp.brause.cc/nov.el/
 (use-package nov
-  :mode ("\\.epub\\'" . nov-mode)
+  :custom (nov-text-width 70)
   :hook (nov-mode . visual-fill-column-mode)
-  :custom (nov-text-width 70))
+  :mode ("\\.epub\\'" . nov-mode))
 
 ;; https://orgmode.org/
 (use-package org
-  :ensure nil ; built-in
   :custom
   (org-adapt-indentation nil)
   (org-hide-leading-stars t)
   (org-startup-indented t)
+  :ensure nil ; built-in
   :hook (org-mode . org-indent-mode))
 
 ;; https://github.com/sabof/org-bullets
@@ -91,27 +91,26 @@
 
 ;; https://github.com/vedang/pdf-tools?tab=readme-ov-file
 (use-package pdf-tools
-  :magic ("%PDF" . pdf-view-mode)
   :config
   (pdf-tools-install)
   (setq-default pdf-view-display-size 'fit-width)
-  (setq pdf-view-resize-factor 1.1))
+  (setq pdf-view-resize-factor 1.1)
+  :magic ("%PDF" . pdf-view-mode))
 
 ;; https://github.com/bbatsov/projectile
 ;; https://docs.projectile.mx/projectile/index.html
 ;; A project should have either a git directory or .projectile file.
 ;; If a project isn't detected, run `(projectile-invalidate-cache)`.
 (use-package projectile
-  :init (projectile-mode 1)
   :config
   (define-key projectile-mode-map (kbd "C-c p") #'projectile-command-map)
   (dolist (path '("c" "python" "system-config"))
     (projectile-add-known-project (expand-file-name path "~/Developer")))
-  (projectile-cleanup-known-projects))
+  (projectile-cleanup-known-projects)
+  :init (projectile-mode 1))
 
 ;; https://github.com/Fanael/rainbow-delimiters
-(use-package rainbow-delimiters
-  :hook (prog-mode . rainbow-delimiters-mode))
+(use-package rainbow-delimiters :hook (prog-mode . rainbow-delimiters-mode))
 
 ;; https://github.com/nflath/sudo-edit
 (use-package sudo-edit)
