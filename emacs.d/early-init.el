@@ -1,7 +1,7 @@
 ;;; Package --- early-init.el -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
-0j
+
 (prefer-coding-system 'utf-8)
 
 (display-battery-mode 1)
