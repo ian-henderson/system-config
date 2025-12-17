@@ -74,6 +74,12 @@
 ;; https://magit.vc/manual
 (use-package magit)
 
+;; https://codeberg.org/martianh/mastodon.el
+(use-package mastodon
+  :custom
+  (mastodon-active-user (getenv "MASTODON_USERNAME"))
+  (mastodon-instance-url (getenv "MASTODON_INSTANCE_URL")))
+
 ;; https://depp.brause.cc/nov.el/
 (use-package nov
   :mode ("\\.epub\\'" . nov-mode)
@@ -120,7 +126,7 @@
 (use-package visual-fill-column
   :config
   (global-visual-fill-column-mode 1)
-  (dolist (mode '(ert-results help lisp-interaction))
+  (dolist (mode '(ert-results help lisp-interaction mastodon))
     (add-hook (intern (format "%s-mode-hook" mode)) 'visual-fill-column-mode))
   :custom (visual-fill-column-center-text t)
   :hook (visual-fill-column-mode
