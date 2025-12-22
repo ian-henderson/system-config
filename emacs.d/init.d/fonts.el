@@ -4,9 +4,9 @@
 
 (declare-function global-set-key-list "init.el" alist)
 
-(defvar monospace-font-family "SF Mono")
+(defvar monospace-font-family "Hack")
 
-(defvar variable-font-family "SF Pro Text")
+(defvar variable-font-family "Open Sans")
 
 (defvar monospace-font-faces '(default fixed-pitch fixed-pitch-serif))
 
