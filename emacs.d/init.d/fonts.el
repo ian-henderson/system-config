@@ -4,7 +4,7 @@
 
 (declare-function global-set-key-list "init.el" alist)
 
-(defvar monospace-font-family "Cascadia Code")
+(defvar monospace-font-family "SF Mono")
 
 (defvar variable-font-family "SF Pro Text")
 

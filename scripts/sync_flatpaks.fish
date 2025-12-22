@@ -9,7 +9,6 @@ sudo flatpak install -y \
     com.calibre_ebook.calibre \
     com.github.johnfactotum.Foliate \
     com.github.tchx84.Flatseal \
-    com.jetbrains.IntelliJ-IDEA-Community \
     com.mattjakeman.ExtensionManager \
     com.protonvpn.www \
     de.haeckerfelix.Fragments \
