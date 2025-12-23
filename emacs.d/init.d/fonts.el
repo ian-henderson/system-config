@@ -6,7 +6,7 @@
 
 (defvar monospace-font-family "Hack")
 
-(defvar variable-font-family "Open Sans")
+(defvar variable-font-family "Lato")
 
 (defvar monospace-font-faces '(default fixed-pitch fixed-pitch-serif))
 
