@@ -4,9 +4,11 @@
 
 (declare-function global-set-key-list "init.el" alist)
 
-(defvar monospace-font-family "Hack")
+(defvar monospace-font-family "Ubuntu Sans Mono")
+(defvar monospace-font-height 140)
 
-(defvar variable-font-family "Lato")
+(defvar variable-font-family "Ubuntu Sans")
+(defvar variable-font-height 160)
 
 (defvar monospace-font-faces '(default fixed-pitch fixed-pitch-serif))
 
@@ -17,12 +19,16 @@
   (interactive)
 
   (dolist (f monospace-font-faces)
-    (set-face-attribute
-     f nil :family monospace-font-family :height 140 :weight 'regular))
+    (set-face-attribute f nil
+			:family monospace-font-family
+			:height monospace-font-height
+			:weight 'regular))
 
   (dolist (f variable-font-faces)
-    (set-face-attribute
-     f nil :family variable-font-family :height 160 :weight 'regular)))
+    (set-face-attribute f nil
+			:family variable-font-family
+			:height variable-font-height
+			:weight 'regular)))
 
 (font-size-reset)
 
