@@ -13,15 +13,11 @@ function install_vscode
     dnf check-update
 end
 
-install_vscode
-
 set -l main_packages \
     bat \
     btop \
     code \
     fastfetch \
-    gnome-chess \
-    gnome-tweaks \
     htop \
     lolcat \
     neovim
@@ -31,58 +27,26 @@ set -l c_packages \
     clang \
     clang-devel
 
-set -l docker_packages \
-    dnf-plugins-core
-
 set -l emacs_packages \
     emacs \
     libtool
 
-set -l font_packages \
-    adobe-source-sans-pro-fonts \
-    cascadia-code-fonts \
-    dejavu-fonts-all \
-    google-go-mono-fonts \
-    google-roboto-fonts \
-    google-roboto-mono-fonts \
-    ibm-plex-fonts-all \
-    jetbrains-mono-fonts \
-    liberation-fonts-all \
-    source-foundry-hack-fonts
-
-set -l java_packages \
-    java-21-openjdk
-
-set -l python_packages \
-    conda
-
 sudo dnf install -y \
     $main_packages \
     $c_packages \
-    $docker_packages \
-    $emacs_packages \
-    $font_packages \
-    $java_packages \
-    $python_packages
+    $emacs_packages
 
-sudo dnf remove -y \
-    evince \
+set -l packages_to_remove \
     firefox \
-    gnome-boxes \
-    gnome-clocks \
-    gnome-contacts \
-    gnome-maps \
-    gnome-tour \
     libreoffice-core \
     rhythmbox \
     yelp
 
-# docker
-sudo dnf-3 config-manager --add-repo \
-    https://download.docker.com/linux/fedora/docker-ce.repo
-sudo dnf install -y \
-    docker-ce \
-    docker-ce-cli \
-    containerd.io \
-    docker-buildx-plugin \
-    docker-compose-plugin
+for package in $packages_to_remove
+    if dnf list --installed $package >/dev/null 2>&1
+        echo "Removing $package..."
+        sudo dnf remove -y $package
+    else
+        echo "$package isn't installed. Skipping."
+    end
+end
