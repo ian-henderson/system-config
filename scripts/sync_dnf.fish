@@ -16,7 +16,6 @@ end
 set -l main_packages \
     bat \
     btop \
-    code \
     fastfetch \
     htop \
     lolcat \
