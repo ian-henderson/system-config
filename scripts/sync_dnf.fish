@@ -53,7 +53,7 @@ set -l font_packages \
 set -l java_packages \
     java-21-openjdk
 
-set - l python_packages \
+set -l python_packages \
     conda
 
 sudo dnf install -y \

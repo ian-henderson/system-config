@@ -4,15 +4,13 @@
 
 (declare-function global-set-key-list "init.el" alist)
 
-(defvar monospace-font-family "Ubuntu Sans Mono")
+(defvar monospace-font-faces '(default fixed-pitch fixed-pitch-serif))
+(defvar monospace-font-family "Hack")
 (defvar monospace-font-height 140)
 
-(defvar variable-font-family "Ubuntu Sans")
-(defvar variable-font-height 160)
-
-(defvar monospace-font-faces '(default fixed-pitch fixed-pitch-serif))
-
 (defvar variable-font-faces '(variable-pitch))
+(defvar variable-font-family "Lato")
+(defvar variable-font-height 160)
 
 (defun font-size-reset ()
   "Set font sizes to default sizes."
