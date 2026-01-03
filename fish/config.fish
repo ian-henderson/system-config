@@ -18,7 +18,6 @@ fish_add_path "$HOME/.local/bin"
 fish_add_path "$HOME/.composer/vendor/bin"
 fish_add_path "$HOME/.local/share/nvm/v24.1.0/bin"
 
-
 if status is-interactive
     set -x CONFIG "$HOME/.config"
     set -x EDITOR nvim
@@ -26,19 +25,15 @@ if status is-interactive
     set -x ICONS "$HOME/.icons"
     set -x THEMES "$HOME/.themes"
 
+    if not set -q SSH_AUTH_SOCK
+	eval (ssh-agent -c)
+	set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK
+	set -Ux SSH_AGENT_PID $SSH_AGENT_PID
+    end
+
     if test -d "$fish_dir/functions"
         for file in $fish_dir/functions/*.fish
             source "$file"
-        end
-    end
-
-    if test -f /opt/miniconda3/bin/conda
-        eval /opt/miniconda3/bin/conda "shell.fish" hook $argv | source
-    else
-        if test -f "/opt/miniconda3/etc/fish/conf.d/conda.fish"
-            . "/opt/miniconda3/etc/fish/conf.d/conda.fish"
-        else
-            set -x PATH /opt/miniconda3/bin $PATH
         end
     end
 end

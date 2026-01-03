@@ -126,7 +126,7 @@
 (use-package visual-fill-column
   :config
   (global-visual-fill-column-mode 1)
-  (dolist (mode '(ert-results help lisp-interaction mastodon))
+  (dolist (mode '(ert-results help Info lisp-interaction Man mastodon))
     (add-hook (intern (format "%s-mode-hook" mode)) 'visual-fill-column-mode))
   :custom (visual-fill-column-center-text t)
   :hook (visual-fill-column-mode
