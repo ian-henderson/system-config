@@ -1,9 +1,5 @@
 # https://fishshell.com/docs/current/index.html
 
-# PLUGINS:
-# - Fisher Package Manager: https://github.com/jorgebucaran/fisher
-# - nvm.fish: https://github.com/jorgebucaran/nvm.fish
-
 set -l fish_dir "$HOME/.config/fish"
 
 if test -f "$fish_dir/secrets.fish"
@@ -32,8 +28,8 @@ if status is-interactive
     end
 
     if test -d "$fish_dir/functions"
-        for file in $fish_dir/functions/*.fish
-            source "$file"
-        end
+	for file in $fish_dir/functions/*.fish
+	    source "$file"
+	end
     end
 end

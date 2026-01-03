@@ -13,6 +13,9 @@
 ;; https://protesilaos.com/emacs/ef-themes
 (use-package ef-themes)
 
+;; https://protesilaos.com/emacs/modus-themes
+(use-package modus-themes)
+
 ;; https://protesilaos.com/emacs/standard-themes
 (use-package standard-themes)
 
@@ -21,9 +24,10 @@
   :custom
   (calendar-latitude    38.833881)
   (calendar-longitude -104.821365)
-  (circadian-themes '((:sunrise . standard-light)
-		      ("16:00"  . standard-dark-tinted)
-		      (:sunset  . standard-dark)))
+  (circadian-themes '((:sunrise . modus-operandi)
+		      ("11:00"  . modus-operandi-tinted)
+		      ("16:00"  . modus-vivendi-tinted)
+		      (:sunset  . modus-vivendi)))
   :hook (emacs-startup . circadian-setup))
 
 (provide 'theme)
