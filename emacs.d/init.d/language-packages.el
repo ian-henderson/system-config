@@ -77,6 +77,9 @@
   (add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode))
   (add-to-list 'auto-mode-alist '("\\.jsonc\\'" . jsonc-mode)))
 
+;; https://github.com/immerrr/lua-mode
+(use-package lua-mode)
+
 ;; https://github.com/jrblevin/markdown-mode
 (use-package markdown-mode
   :custom (markdown-command "multimarkdown")
