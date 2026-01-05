@@ -5,6 +5,7 @@ sudo flatpak remote-add --if-not-exists \
 
 set -l gnome_packages \
     ca.desrt.dconf-editor \
+    com.github.johnfactotum.Foliate \
     de.haeckerfelix.Fragments \
     io.bassi.Amberol \
     io.missioncenter.MissionCenter \
@@ -17,7 +18,6 @@ set -l gnome_packages \
 sudo flatpak install -y \
     com.brave.Browser \
     com.calibre_ebook.calibre \
-    com.github.johnfactotum.Foliate \
     com.github.tchx84.Flatseal \
     com.protonvpn.www \
     me.timschneeberger.GalaxyBudsClient \

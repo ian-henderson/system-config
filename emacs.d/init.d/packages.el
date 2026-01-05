@@ -126,8 +126,13 @@
 (use-package visual-fill-column
   :config
   (global-visual-fill-column-mode 1)
-  (dolist (mode '(ert-results help Info lisp-interaction Man mastodon))
+  (dolist (mode '(dired ert-results help Info lisp-interaction magit-status Man mastodon))
     (add-hook (intern (format "%s-mode-hook" mode)) 'visual-fill-column-mode))
+  ;; fundamental-mode doesn't have a hook
+  (add-hook 'after-change-major-mode-hook
+	    (lambda ()
+	      (when (eq major-mode 'fundamental-mode)
+		(visual-fill-column-mode 1))))
   :custom (visual-fill-column-center-text t)
   :hook (visual-fill-column-mode
 	 . (lambda () (setq-local visual-fill-column-width (+ fill-column 6)))))

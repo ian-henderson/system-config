@@ -2,20 +2,19 @@
 
 # https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 
-set ssh_key ~/.ssh/id_ed25519
+if not set -q SSH_KEY
+    echo "\$SSH_KEY is not set. Ensure that the fish config links are installed with the `sync_configs.fish script."
+    exit 1
+end
 
 echo "Generating ssh key and copying public key to clipboard..."
 
 function copy_public_key_to_clipboard
-    if ! type -q wl-copy
-        echo "Installing wl-clipboard to copy public key to clipboard..."
-        sudo pacman -S wl-clipboard --noconfirm
-    end
-    cat "$ssh_key.pub" | wl-copy
+    cat "$SSH_KEY.pub" | wl-copy
     echo "Copied public key to clipboard."
 end
 
-if test -f $ssh_key
+if test -f $SSH_KEY
     copy_public_key_to_clipboard
     echo "ssh key ($ssh_key) already exists. Exiting."
     exit
@@ -25,6 +24,6 @@ ssh-keygen -t ed25519 -C "ianhenderson@pm.me"
 
 eval (ssh-agent -c)
 
-ssh-add $ssh_key
+ssh-add $SSH_KEY
 
 copy_public_key_to_clipboard

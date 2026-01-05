@@ -24,10 +24,10 @@
   :custom
   (calendar-latitude    38.833881)
   (calendar-longitude -104.821365)
-  (circadian-themes '((:sunrise . modus-operandi)
-		      ("11:00"  . modus-operandi-tinted)
-		      ("16:00"  . modus-vivendi-tinted)
-		      (:sunset  . modus-vivendi)))
+  (circadian-themes '((:sunrise . ef-light)
+		      ("11:00"  . ef-reverie)
+		      ("16:00"  . ef-rosa)
+		      (:sunset  . ef-bio)))
   :hook (emacs-startup . circadian-setup))
 
 (provide 'theme)
