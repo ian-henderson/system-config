@@ -55,9 +55,6 @@
   :hook
   (java-mode . eglot-java-mode))
 
-;; https://github.com/wwwjfy/emacs-fish
-(use-package fish-mode)
-
 ;; https://www.flycheck.org/en/latest/user/installation.html
 (use-package flycheck
   :custom (flycheck-global-modes '(not c-mode c++-mode rust-mode))
