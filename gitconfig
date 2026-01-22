@@ -1,0 +1,22 @@
+[alias]
+	a  = add
+	br = branch
+	cl = clone
+	cm = commit
+	co = checkout
+	d  = diff
+	p  = push
+	s  = status
+
+[init]
+	defaultBranch = main
+
+[pull]
+	rebase = true
+
+[transfer]
+	fsckObjects = true
+
+[user]
+	email = ianhenderson@pm.me
+	name  = Ian Henderson

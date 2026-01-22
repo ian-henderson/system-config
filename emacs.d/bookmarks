@@ -1,0 +1,29 @@
+;;;; Emacs Bookmark Format Version 1;;;; -*- coding: utf-8; mode: lisp-data -*-
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("Documents"
+ (filename . "~/Documents/")
+ (front-context-string . ":\n  drwxr-xr-x 1")
+ (rear-context-string . "me/ian/Documents")
+ (position . 22)
+ (last-modified 26884 23989 829580 494000))
+("emacs.d"
+ (filename . "~/Developer/system-config/emacs.d/")
+ (front-context-string . "  /home/ian/Deve")
+ (rear-context-string)
+ (position . 1)
+ (last-modified 26882 64101 976579 131000))
+("veles external"
+ (filename . "/sshx:ian@veles:/mnt/external/")
+ (front-context-string . ":\n  drwxr-xr-x  ")
+ (rear-context-string . "es:/mnt/external")
+ (position . 32)
+ (last-modified 26882 64023 942576 585000))
+("veles home"
+ (filename . "/sshx:ian@veles:~/")
+ (front-context-string . "  /sshx:ian@vele")
+ (rear-context-string)
+ (position . 1)
+ (last-modified 26882 63960 131127 301000))
+)
