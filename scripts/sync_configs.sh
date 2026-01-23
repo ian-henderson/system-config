@@ -27,7 +27,6 @@ create_symbolic_link() {
 # Configuration Directories
 SCRIPT_DIR="$HOME/Developer/system-config"
 HOME_DOTFILES=(
-	"bashrc"
 	"bashrc.d"
 	"clang-format"
 	"emacs.d"

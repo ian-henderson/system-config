@@ -6,7 +6,7 @@
 
 (defvar monospace-font-faces '(default fixed-pitch fixed-pitch-serif))
 (defvar monospace-font-family "PT Mono")
-(defvar monospace-font-height 120)
+(defvar monospace-font-height 130)
 
 (defvar variable-font-faces '(variable-pitch))
 (defvar variable-font-family "PT Sans")
@@ -15,13 +15,11 @@
 (defun font-size-reset ()
   "Set font sizes to default sizes."
   (interactive)
-
   (dolist (f monospace-font-faces)
     (set-face-attribute f nil
 			:family monospace-font-family
 			:height monospace-font-height
 			:weight 'regular))
-
   (dolist (f variable-font-faces)
     (set-face-attribute f nil
 			:family variable-font-family

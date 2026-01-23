@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 
-INIT_DIR="$PWD"
-
 sync_fastfetch() {
-	local fastfetch_dir="$HOME/Developer/fastfetch"
 	local compile_needed=1
+	local fastfetch_dir="$HOME/Developer/fastfetch"
+	local init_dir="$PWD"
 
 	if [ -d "$fastfetch_dir" ]; then
 		echo "Updating Fastfetch..."
@@ -34,7 +33,7 @@ sync_fastfetch() {
 		echo "Installed Fastfetch!"
 	fi
 
-	cd $INIT_DIR || return 1
+	cd "$init_dir" || return 1
 }
 
 sync_fastfetch

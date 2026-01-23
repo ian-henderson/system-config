@@ -26,6 +26,11 @@ fi
 # Aliases/Functions
 ################################################################################
 
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+
 cat() {
 	local bin=""
 
@@ -94,8 +99,3 @@ update() {
 }
 
 alias up="update"
-
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
