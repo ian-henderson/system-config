@@ -54,7 +54,7 @@ if [ ! -d "$CONFIG_DIR" ]; then
 fi
 
 # Link Config Directories
-CONFIG_DIRS=("fastfetch" "nvim" "starship.toml")
+CONFIG_DIRS=("fastfetch" "nvim")
 for i in "${CONFIG_DIRS[@]}"; do
     src="$SCRIPT_DIR/$i"
     target="$CONFIG_DIR/$i"

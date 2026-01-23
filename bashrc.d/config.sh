@@ -13,7 +13,10 @@ THEMES="$HOME/.themes"
 # Starship
 ################################################################################
 
-if command -v bat >/dev/null 2>&1; then
+if command -v starship >/dev/null 2>&1; then
+	if ! [ -f "~/.config/starship.toml" ]; then
+		starship preset plain-text-symbols -o ~/.config/starship.toml
+	fi
 	eval "$(starship init bash)"
 else
 	echo "Don't forget to install Starship!"
