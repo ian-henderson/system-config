@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Starship COPR
+sudo dnf copr enable atim/starship
+
 main_packages=(
     bat
     btop
@@ -7,6 +10,7 @@ main_packages=(
     htop
     lolcat
     neovim
+	starship
 )
 
 c_packages=(

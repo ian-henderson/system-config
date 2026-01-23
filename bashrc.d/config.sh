@@ -6,6 +6,7 @@
 
 FONTS="$HOME/.fonts"
 ICONS="$HOME/.icons"
+SYSTEM_CONFIG="$HOME/Developer/system-config"
 THEMES="$HOME/.themes"
 
 ################################################################################

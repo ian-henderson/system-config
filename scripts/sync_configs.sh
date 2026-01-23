@@ -27,6 +27,7 @@ create_symbolic_link() {
 # Configuration Directories
 SCRIPT_DIR="$HOME/Developer/system-config"
 HOME_DOTFILES=(
+	"bashrc"
 	"bashrc.d"
 	"clang-format"
 	"emacs.d"
@@ -53,7 +54,7 @@ if [ ! -d "$CONFIG_DIR" ]; then
 fi
 
 # Link Config Directories
-CONFIG_DIRS=("fastfetch" "nvim")
+CONFIG_DIRS=("fastfetch" "nvim" "starship.toml")
 for i in "${CONFIG_DIRS[@]}"; do
     src="$SCRIPT_DIR/$i"
     target="$CONFIG_DIR/$i"
