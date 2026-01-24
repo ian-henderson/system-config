@@ -28,7 +28,7 @@ fi
 # https://github.com/akinomyoga/ble.sh
 ################################################################################
 
-blesh_init() {
+blesh_source() {
 	source "$HOME/.local/share/blesh/ble.sh" \
 		   --attach=none \
 		   --rcfile "$HOME/.config/blerc"
@@ -51,7 +51,7 @@ if ! [ -d "$HOME/.local/share/blesh" ]; then
 	blesh_install_latest
 fi
 
-blesh_init
+blesh_source
 
 ################################################################################
 # SSH Key
