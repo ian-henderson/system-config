@@ -4,7 +4,7 @@ sudo apt update -y
 sudo apt full-upgrade -y
 
 main_packages=(
-	batcat
+	bat
 	btop
 	fastfetch
 	htop
@@ -13,4 +13,11 @@ main_packages=(
 	starship
 )
 
-sudo apt install -y "${main_packages[@]}"
+transcoding_packages=(
+	intel-media-va-driver-non-free
+	vainfo
+)
+
+sudo apt install -y \
+	 "${main_packages[@]}" \
+	 "${transcoding_packages[@]}"
