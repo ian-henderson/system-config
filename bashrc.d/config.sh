@@ -11,6 +11,7 @@ THEMES="$HOME/.themes"
 
 ################################################################################
 # Starship
+# https://starship.rs/guide/
 ################################################################################
 
 if command -v starship >/dev/null 2>&1; then
@@ -21,6 +22,36 @@ if command -v starship >/dev/null 2>&1; then
 else
 	echo "Don't forget to install Starship!"
 fi
+
+################################################################################
+# ble.sh
+# https://github.com/akinomyoga/ble.sh
+################################################################################
+
+blesh_init() {
+	source "$HOME/.local/share/blesh/ble.sh" \
+		   --attach=none \
+		   --rcfile "$HOME/.config/blerc"
+
+	if [[ -n "${BLE_VERSION-}" ]]; then
+		ble-attach
+	fi
+}
+
+blesh_install_latest() {
+	echo "Installing ble.sh..."
+	curl -L https://github.com/akinomyoga/ble.sh/releases/download/nightly/ble-nightly.tar.xz | tar xJf -
+
+	bash ble-nightly/ble.sh --install ~/.local/share
+
+	rm -rf ble-nightly
+}
+
+if ! [ -d "$HOME/.local/share/blesh" ]; then
+	blesh_install_latest
+fi
+
+blesh_init
 
 ################################################################################
 # SSH Key

@@ -1,0 +1,3 @@
+# -*- mode: conf -*-
+
+ble-face auto_complete="fg=8,bg=none,italic"
