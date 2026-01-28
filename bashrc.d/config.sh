@@ -166,9 +166,12 @@ update_docker_images() {
 					exit
 				fi
 
-				sudo docker compose pull \
-					&& sudo docker compose up -d \
-					&& sudo docker image prune -f
+				if sudo docker compose pull	&& sudo docker compose up -d; then
+					sudo docker image prune -f
+					echo "Successfully updated $dir"
+				else
+					echo "Failed to update $dir" >&2
+				fi
 			)
 		done
 	)
