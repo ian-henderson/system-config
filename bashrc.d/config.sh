@@ -11,7 +11,7 @@ THEMES="$HOME/.themes"
 
 ################################################################################
 # Starship
-# https://starship.rs/guide/
+# https://starship.rs/guide
 ################################################################################
 
 if command -v starship >/dev/null 2>&1; then
@@ -144,3 +144,32 @@ update() {
 }
 
 alias up="update"
+
+update_docker_images() {
+	docker_compose_dir="$HOME/DockerCompose"
+
+	if [ ! -d "$docker_compose_dir" ]; then
+		echo "DockerCompose directory doesn't exist. Exiting."
+		return 1
+	fi
+
+	(
+		cd "$docker_compose_dir" || exit
+
+		for dir in */; do
+			(
+				cd "$dir" || exit
+
+				if [ ! -f "docker-compose.yaml" ] \
+					   && [ ! -f "docker-compose.yml" ]; then
+					echo "$dir is missing docker-compose file. Skipping."
+					exit
+				fi
+
+				sudo docker compose pull \
+					&& sudo docker compose up -d \
+					&& sudo docker image prune -f
+			)
+		done
+	)
+}

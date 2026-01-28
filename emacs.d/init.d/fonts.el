@@ -5,23 +5,25 @@
 (declare-function global-set-key-list "init.el" alist)
 
 (defvar monospace-font-faces '(default fixed-pitch fixed-pitch-serif))
-(defvar monospace-font-family "Hack")
+(defvar monospace-font-family "FiraCode Nerd Font")
 (defvar monospace-font-height 130)
 
 (defvar variable-font-faces '(variable-pitch))
-(defvar variable-font-family "Open Sans")
+(defvar variable-font-family "Fira Sans")
 (defvar variable-font-height 160)
 
 (defun font-size-reset ()
   "Set font sizes to default sizes."
   (interactive)
   (dolist (f monospace-font-faces)
-    (set-face-attribute f nil
+    (set-face-attribute f
+			nil
 			:family monospace-font-family
 			:height monospace-font-height
 			:weight 'regular))
   (dolist (f variable-font-faces)
-    (set-face-attribute f nil
+    (set-face-attribute f
+			nil
 			:family variable-font-family
 			:height variable-font-height
 			:weight 'regular)))

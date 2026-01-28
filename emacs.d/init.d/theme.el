@@ -24,8 +24,8 @@
   :custom
   (calendar-latitude    39.530851)
   (calendar-longitude -104.870959)
-  (circadian-themes '((:sunrise . ef-day)
-		      ("16:00"  . ef-dream)))
+  (circadian-themes '((:sunrise . ef-light)
+		      ("16:00"  . ef-dark)))
   :hook
   (emacs-startup . circadian-setup))
 

@@ -11,6 +11,7 @@ main_packages=(
 	lolcat
 	neovim
 	starship
+	unrar
 )
 
 transcoding_packages=(
