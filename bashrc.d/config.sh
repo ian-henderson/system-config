@@ -160,17 +160,19 @@ update_docker_images() {
 			(
 				cd "$dir" || exit
 
+				image=$(basename "$dir")
+
 				if [ ! -f "docker-compose.yaml" ] \
 					   && [ ! -f "docker-compose.yml" ]; then
-					echo "$dir is missing docker-compose file. Skipping."
+					echo "$image is missing docker-compose file. Skipping."
 					exit
 				fi
 
 				if sudo docker compose pull	&& sudo docker compose up -d; then
 					sudo docker image prune -f
-					echo "Successfully updated $dir"
+					echo "Successfully updated $image"
 				else
-					echo "Failed to update $dir" >&2
+					echo "Failed to update $image" >&2
 				fi
 			)
 		done
