@@ -4,6 +4,7 @@
 # Global Variables
 ################################################################################
 
+DOCKER_COMPOSE="$HOME/DockerCompose"
 FONTS="$HOME/.fonts"
 ICONS="$HOME/.icons"
 SYSTEM_CONFIG="$HOME/Developer/system-config"
@@ -121,40 +122,14 @@ reload() {
 
 alias vi="nvim"
 
-update() {
-	if command -v apt >/dev/null 2>&1; then
-		echo -e "\nUPDATING APT"
-		sudo apt update
-		sudo apt dist-upgrade -y
-		sudo apt autoremove -y
-	fi
-
-	if command -v dnf >/dev/null 2>&1; then
-        echo -e "\nUPDATING DNF"
-        sudo dnf update -y
-        sudo dnf autoremove -y
-	fi
-
-	if command -v flatpak >/dev/null 2>&1; then
-        echo -e "\nUPDATING FLATPAK"
-        sudo flatpak update -y
-	fi
-
-    echo -e "\nDONE"
-}
-
-alias up="update"
-
 update_docker_images() {
-	docker_compose_dir="$HOME/DockerCompose"
-
-	if [ ! -d "$docker_compose_dir" ]; then
+	if [ ! -d "$DOCKER_COMPOSE" ]; then
 		echo "DockerCompose directory doesn't exist. Exiting."
 		return 1
 	fi
 
 	(
-		cd "$docker_compose_dir" || exit
+		cd "$DOCKER_COMPOSE" || exit
 
 		for dir in */; do
 			(
@@ -178,3 +153,33 @@ update_docker_images() {
 		done
 	)
 }
+
+update() {
+	if command -v apt >/dev/null 2>&1; then
+		echo -e "\nUPDATING APT"
+		sudo apt update
+		sudo apt dist-upgrade -y
+		sudo apt autoremove -y
+	fi
+
+	if command -v dnf >/dev/null 2>&1; then
+        echo -e "\nUPDATING DNF"
+        sudo dnf update -y
+        sudo dnf autoremove -y
+	fi
+
+	if [ -d "$DOCKER_COMPOSE" ] \
+		   && command -v update_docker_images >/dev/null 2>&1; then
+		echo -e "\nUPDATING DOCKER IMAGES"
+		update_docker_images
+	fi
+
+	if command -v flatpak >/dev/null 2>&1; then
+        echo -e "\nUPDATING FLATPAK"
+        sudo flatpak update -y
+	fi
+
+    echo -e "\nDONE"
+}
+
+alias up="update"
