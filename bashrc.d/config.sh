@@ -4,11 +4,15 @@
 # Global Variables
 ################################################################################
 
-DOCKER_COMPOSE="$HOME/DockerCompose"
-FONTS="$HOME/.fonts"
-ICONS="$HOME/.icons"
-SYSTEM_CONFIG="$HOME/Developer/system-config"
-THEMES="$HOME/.themes"
+export DOCKER_COMPOSE="$HOME/DockerCompose"
+export FONTS="$HOME/.fonts"
+export ICONS="$HOME/.icons"
+export SSH_KEY="$HOME/.ssh/id_ed25519"
+export SYSTEM_CONFIG="$HOME/Developer/system-config"
+export THEMES="$HOME/.themes"
+FLATPAK_DIR="/var/lib/flatpak/exports/share"
+export XDG_DATA_DIRS="$XDG_DATA_DIRS:$FLATPAK_DIR"
+export XDG_DATA_HOME="$XDG_DATA_HOME:$FLATPAK_DIR"
 
 ################################################################################
 # Starship
@@ -34,9 +38,7 @@ blesh_source() {
 		   --attach=none \
 		   --rcfile "$HOME/.config/blerc"
 
-	if [[ -n "${BLE_VERSION-}" ]]; then
-		ble-attach
-	fi
+	[ -n "${BLE_VERSION-}" ] && ble-attach
 }
 
 blesh_install_latest() {
@@ -48,9 +50,7 @@ blesh_install_latest() {
 	rm -rf ble-nightly
 }
 
-if ! [ -d "$HOME/.local/share/blesh" ]; then
-	blesh_install_latest
-fi
+[ -d "$HOME/.local/share/blesh" ] || blesh_install_latest
 
 blesh_source
 
@@ -60,13 +60,8 @@ blesh_source
 
 # Start ssh-agent if it isn't running and add ssh key
 # Reset ssh key password: `ssh-keygen -p -f ~/.ssh/id_ed25519`
-if [ -z "$SSH_AUTH_SOCK" ]; then
-	eval "$(ssh-agent -s)" > /dev/null
-fi
-SSH_KEY="$HOME/.ssh/id_ed25519"
-if [ -f "$SSH_KEY" ]; then
-	ssh-add "$SSH_KEY" 2>/dev/null
-fi
+[ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)" > /dev/null
+[ -f "$SSH_KEY" ] && ssh-add "$SSH_KEY" 2>/dev/null
 
 ################################################################################
 # Aliases/Functions
@@ -117,7 +112,7 @@ alias lt="ls -ltr"
 
 reload() {
 	source "$HOME/.bashrc"
-    echo "Bash config reloaded! 🐧"
+    echo -e "\n\n\nBash config reloaded! 🐧\n"
 }
 
 alias vi="nvim"
@@ -156,30 +151,30 @@ update_docker_images() {
 
 update() {
 	if command -v apt >/dev/null 2>&1; then
-		echo -e "\nUPDATING APT"
+		echo -e "\nUPDATING APT\n"
 		sudo apt update
 		sudo apt dist-upgrade -y
 		sudo apt autoremove -y
 	fi
 
 	if command -v dnf >/dev/null 2>&1; then
-        echo -e "\nUPDATING DNF"
+        echo -e "\nUPDATING DNF\n"
         sudo dnf update -y
         sudo dnf autoremove -y
 	fi
 
 	if [ -d "$DOCKER_COMPOSE" ] \
 		   && command -v update_docker_images >/dev/null 2>&1; then
-		echo -e "\nUPDATING DOCKER IMAGES"
+		echo -e "\nUPDATING DOCKER IMAGES\n"
 		update_docker_images
 	fi
 
 	if command -v flatpak >/dev/null 2>&1; then
-        echo -e "\nUPDATING FLATPAK"
+        echo -e "\nUPDATING FLATPAK\n"
         sudo flatpak update -y
 	fi
 
-    echo -e "\nDONE"
+    echo -e "\nDONE\n"
 }
 
 alias up="update"

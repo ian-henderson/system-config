@@ -6,7 +6,7 @@
 
 (defvar monospace-font-faces '(default fixed-pitch fixed-pitch-serif))
 (defvar monospace-font-family "FiraCode Nerd Font")
-(defvar monospace-font-height 130)
+(defvar monospace-font-height 120)
 
 (defvar variable-font-faces '(variable-pitch))
 (defvar variable-font-family "Fira Sans")
