@@ -7,6 +7,19 @@
   :hook
   ((emacs-lisp-mode lisp-mode scheme-mode) . aggressive-indent-mode))
 
+;; https://github.com/necaris/conda.el
+(use-package conda
+  :config
+  (conda-env-initialize-eshell)
+  (conda-env-initialize-interactive-shells)
+  (conda-env-autoactivate-mode t)
+  :custom
+  (conda-anaconda-home "/usr")
+  (conda-env-home-directory (expand-file-name "~/.conda"))
+  :hook
+  (find-file . (lambda () (when (bound-and-true-p conda-project-env-path)
+		       (conda-env-activate-for-buffer)))))
+
 (define-minor-mode eglot-format-on-save-mode
   "Toggle Eglot automatic formatting before saving buffer."
   :global
@@ -21,20 +34,20 @@
   :config
   (define-key eglot-mode-map (kbd "C-c e f") 'eglot-format-buffer)
   (define-key eglot-mode-map (kbd "C-c e r") 'eglot-rename)
-  (dolist (mode '(c c++ java python typescript rust))
-    (add-hook (intern (format "%s-mode-hook" mode)) #'eglot-ensure))
   :custom
   (eglot-server-programs
    '((c-mode          . ("ccls"))
      (c++-mode        . ("ccls"))
      (java-mode       . ("jdtls"))
-     (python-mode     . ("pylsp"))
      (typescript-mode . ("typescript-language-server" "--stdio"))
      (rust-mode       . ("rust-analyzer"))))
-  (eglot-workspace-configuration
-   '(:pylsp (:plugins (:black (:enabled t)))))
-  ;; :hook (eglot-activated . eglot-format-on-save-mode)
-  )
+  :hook
+  (eglot-managed-mode . eglot-format-on-save-mode)
+  (c-mode . eglot-ensure)
+  (c++-mode . eglot-ensure)
+  (java-mode . eglot-ensure)
+  (rust-mode . eglot-ensure)
+  (typescript-mode . eglot-ensure))
 
 ;; https://github.com/yveszoundi/eglot-java
 (use-package eglot-java
@@ -118,6 +131,11 @@
 (use-package typescript-mode
   :hook
   (js-mode . typescript-mode))
+
+;; https://github.com/fxbois/web-mode
+(use-package web-mode
+  :mode
+  ("\\.html\\'" . web-mode))
 
 ;; https://github.com/yoshiki/yaml-mode
 (use-package yaml-mode

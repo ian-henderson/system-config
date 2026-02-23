@@ -10,9 +10,9 @@ export ICONS="$HOME/.icons"
 export SSH_KEY="$HOME/.ssh/id_ed25519"
 export SYSTEM_CONFIG="$HOME/Developer/system-config"
 export THEMES="$HOME/.themes"
-FLATPAK_DIR="/var/lib/flatpak/exports/share"
-export XDG_DATA_DIRS="$XDG_DATA_DIRS:$FLATPAK_DIR"
-export XDG_DATA_HOME="$XDG_DATA_HOME:$FLATPAK_DIR"
+# FLATPAK_DIR="/var/lib/flatpak/exports/share"
+# export XDG_DATA_DIRS="${XDG_DATA_DIRS:+$XDG_DATA_DIRS:}$FLATPAK_DIR"
+# export XDG_DATA_HOME="${XDG_DATA_HOME:+$XDG_DATA_HOME:}$FLATPAK_DIR"
 
 ################################################################################
 # Starship
@@ -153,13 +153,13 @@ update() {
 	if command -v apt >/dev/null 2>&1; then
 		echo -e "\nUPDATING APT\n"
 		sudo apt update
-		sudo apt dist-upgrade -y
+		sudo apt dist-upgrade
 		sudo apt autoremove -y
 	fi
 
 	if command -v dnf >/dev/null 2>&1; then
         echo -e "\nUPDATING DNF\n"
-        sudo dnf update -y
+        sudo dnf update
         sudo dnf autoremove -y
 	fi
 
@@ -171,10 +171,18 @@ update() {
 
 	if command -v flatpak >/dev/null 2>&1; then
         echo -e "\nUPDATING FLATPAK\n"
-        sudo flatpak update -y
+        sudo flatpak update
 	fi
 
     echo -e "\nDONE\n"
 }
 
 alias up="update"
+
+check_website_dns() {
+	echo -e "\nwww.ianhenderson.info CNAME:"
+	dig www.ianhenderson.info CNAME +short
+
+	echo -e "\nGitHub Pages TXT:"
+	dig _github-pages-challenge-ian-henderson.ianhenderson.info TXT +short
+}

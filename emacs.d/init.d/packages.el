@@ -33,8 +33,12 @@
 			      (recents   . "r")))
   (dashboard-navigation-cycle t)
   (dashboard-projects-backend 'projectile)
-  (dashboard-startup-banner 3)
-  ;; (expand-file-name "images/stallman-boat.jpg" user-emacs-directory))
+  (dashboard-startup-banner
+   (expand-file-name "assets/banners/emacs-bloody.txt" user-emacs-directory))
+  ;; (dashboard-startup-banner
+  ;;  (directory-files
+  ;;   (expand-file-name "assets/text-banners" user-emacs-directory)
+  ;;   t))
   (dashboard-vertically-center-content t)
   (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
   :init
@@ -158,20 +162,19 @@
   (global-visual-fill-column-mode 1)
   (defun my/manage-visual-fill-column ()
     ;; Centralized logic to enable/disable visual-fill-column-mode.
-    (defun modes (names)
+    (defun mode-strings (names)
       (mapcar (lambda (n)
 		(intern (format "%s-mode" n)))
 	      names))
-    (let ((whitelist (modes '(ert-results
-			      fundamental
-			      help
-			      Info
-			      lisp-interaction
-			      magit-status
-			      Man
-			      mastodon
-			      minibuffer)))
-	  (blacklist (modes '(pdf-view))))
+    (let ((whitelist (mode-strings '(ert-results
+				     fundamental
+				     help
+				     Info
+				     lisp-interaction
+				     magit-status
+				     Man
+				     mastodon)))
+	  (blacklist (mode-strings '(pdf-view))))
       (cond
        ((memq major-mode whitelist)
 	(visual-fill-column-mode 1))

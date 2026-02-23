@@ -3,7 +3,7 @@
 ;;; Code:
 
 ;; Generate custom.el if one doesn't exist and load it
-(setq custom-file (expand-file-name "init.d/custom.el" user-emacs-directory))
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (unless (file-exists-p custom-file)
   (with-temp-buffer
     (insert ";;; Package --- custom.el\n")
@@ -38,7 +38,6 @@
     (global-set-key (kbd (car mapping)) (cdr mapping))))
 
 ;; Loads el files in init.d
-;; TODO: skip loading init.d/custom.el since it was loaded earlier in the file
 (let ((init-d (expand-file-name "init.d" user-emacs-directory)))
   (when (file-directory-p init-d)
     (mapc #'load-file (directory-files init-d t "\\.el$"))))
