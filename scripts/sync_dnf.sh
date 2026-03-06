@@ -41,7 +41,9 @@ main_packages=(
     htop
     lolcat
     neovim
+	ramalama
 	starship
+	yt-dlp
 )
 
 c_packages=(

@@ -5,12 +5,12 @@
 (declare-function global-set-key-list "init.el" alist)
 
 (defvar monospace-font-faces '(default fixed-pitch fixed-pitch-serif))
-(defvar monospace-font-family "IBM Plex Mono")
+(defvar monospace-font-family "Hack")
 (defvar monospace-font-height 120)
 
 (defvar variable-font-faces '(variable-pitch))
-(defvar variable-font-family "IBM Plex Sans")
-(defvar variable-font-height 160)
+(defvar variable-font-family "Open Sans")
+(defvar variable-font-height 120)
 
 (defun font-size-reset ()
   "Set font sizes to default sizes."

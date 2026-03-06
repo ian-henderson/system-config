@@ -38,6 +38,9 @@
   (setq backup-directory-alist `(("." . ,backups))
 	make-backup-files t)) ; t by default
 
+;; turns off prompt checking if active processes should be closed
+(setq confirm-kill-processes nil)
+
 (provide 'utils)
 
 ;;; utils.el ends here

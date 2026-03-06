@@ -34,7 +34,8 @@
   (dashboard-navigation-cycle t)
   (dashboard-projects-backend 'projectile)
   (dashboard-startup-banner
-   (expand-file-name "assets/banners/emacs-bloody.txt" user-emacs-directory))
+   (expand-file-name "assets/banners/emacs-bloody.txt"
+		     user-emacs-directory))
   ;; (dashboard-startup-banner
   ;;  (directory-files
   ;;   (expand-file-name "assets/text-banners" user-emacs-directory)
@@ -94,12 +95,6 @@
 ;; https://github.com/magit/magit
 ;; https://magit.vc/manual
 (use-package magit)
-
-;; https://codeberg.org/martianh/mastodon.el
-(use-package mastodon
-  :custom
-  (mastodon-active-user (getenv "MASTODON_USERNAME"))
-  (mastodon-instance-url (getenv "MASTODON_INSTANCE_URL")))
 
 ;; https://depp.brause.cc/nov.el/
 (use-package nov

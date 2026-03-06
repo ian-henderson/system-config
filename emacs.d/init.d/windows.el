@@ -20,6 +20,11 @@
    ("M-<prior>" . tab-bar-move-tab-backward)
    ("<f12>"     . tab-bar-select-tab)))
 
+(global-set-key-list
+ (mapcar (lambda (i)
+	   `(,(format "M-%d" i) . (lambda () (interactive) (tab-bar-select-tab ,i))))
+	 (number-sequence 1 9)))
+
 ;; disables trackpad pinch-to-zoom
 (dolist (binding '("<pinch>" "<magnify>"))
   (global-set-key (kbd binding) #'ignore))

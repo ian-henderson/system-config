@@ -29,6 +29,7 @@ gnome_packages=(
 main_packages=(
 	app.zen_browser.zen
 	com.calibre_ebook.calibre
+	com.discordapp.Discord
 	com.github.tchx84.Flatseal
 	com.protonvpn.www
 	im.riot.Riot
@@ -41,7 +42,9 @@ main_packages=(
 	org.kde.kid3
 	org.libreoffice.LibreOffice
 	org.signal.Signal
+	org.strawberrymusicplayer.strawberry
 	org.telegram.desktop
+	org.videolan.VLC
 )
 
 echo "Installing Flatpak packages..."

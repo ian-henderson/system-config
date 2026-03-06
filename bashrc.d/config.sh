@@ -130,7 +130,7 @@ update_docker_images() {
 			(
 				cd "$dir" || exit
 
-				image=$(basename "$dir")
+				local image=$(basename "$dir")
 
 				if [ ! -f "docker-compose.yaml" ] \
 					   && [ ! -f "docker-compose.yml" ]; then
@@ -185,4 +185,37 @@ check_website_dns() {
 
 	echo -e "\nGitHub Pages TXT:"
 	dig _github-pages-challenge-ian-henderson.ianhenderson.info TXT +short
+}
+
+yt_dlp_audio() {
+	if ! command -v yt-dlp >/dev/null 2>&1; then
+		echo "Error: yt-dlp isn't installed. Exiting."
+		return 1
+	fi
+
+	if [ -z "$1" ]; then
+		echo "Error: YouTube video id argument required. Exiting."
+		return 1
+	fi
+
+	(
+		yt_dlp_dir="$HOME/Music/yt-dlp"
+
+		mkdir -p "$yt_dlp_dir" || {
+			echo "Failed to create directory $yt_dlp_dir. Exiting."
+			return 1
+		}
+
+		cd "$yt_dlp_dir" || {
+			echo "Failed to cd to $yt_dlp_dir. Exiting."
+			return 1
+		}
+
+		yt-dlp "$1" \
+			   --embed-metadata \
+			   --embed-thumbnail \
+			   --extract-audio \
+			   --audio-quality 0 \
+			   --output "%(channel)s/%(title)s.%(ext)s"
+	)
 }
