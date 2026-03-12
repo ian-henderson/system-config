@@ -8,7 +8,7 @@
    (list (intern (completing-read "Load theme: " (custom-available-themes)))))
   (mapc #'disable-theme custom-enabled-themes)
   (load-theme theme t)
-  (message "Set theme to '%s" theme))
+  (message "Set theme to '%s'" theme))
 
 ;; https://protesilaos.com/emacs/ef-themes
 (use-package ef-themes)
@@ -24,8 +24,8 @@
   :custom
   (calendar-latitude    39.530851)
   (calendar-longitude -104.870959)
-  (circadian-themes '((:sunrise . ef-day)
-		      (:sunset  . ef-night)))
+  (circadian-themes '((:sunrise . standard-light)
+		      (:sunset  . standard-dark)))
   :hook
   (emacs-startup . circadian-setup))
 

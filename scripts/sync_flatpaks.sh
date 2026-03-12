@@ -5,7 +5,7 @@ for repo in fedora fedora-testing; do
 		echo "Removing $repo flatpak repo..."
 		flatpak remote-delete --force "$repo"
 	else
-		echo "$repo flatpak repo doesn't exist."
+		echo "$repo flatpak repo doesn't exist on system."
 	fi
 done
 
@@ -37,12 +37,12 @@ main_packages=(
 	me.timschneeberger.GalaxyBudsClient
 	me.proton.Pass
 	one.ablaze.floorp
+	org.chromium.Chromium
 	org.freac.freac
 	org.gimp.GIMP
 	org.kde.kid3
 	org.libreoffice.LibreOffice
 	org.signal.Signal
-	org.strawberrymusicplayer.strawberry
 	org.telegram.desktop
 	org.videolan.VLC
 )

@@ -219,3 +219,46 @@ yt_dlp_audio() {
 			   --output "%(channel)s/%(title)s.%(ext)s"
 	)
 }
+
+write_iso_to_usb() {
+	print_usage() {
+		echo "write_iso_to_usb"
+		echo "Usage: write_iso_to_usb $input_file $output_file"
+	}
+
+	local input_file="$1"
+	local output_file="$2"
+
+	if [ -z "$input_file"] && [ -z "$input_file"]; then
+		print_usage
+		return 0
+	fi
+
+	if [ -z "$input_file" ]; then
+		echo "Error: Missing input file argument. Exiting."
+		print_usage
+		return 1
+	fi
+
+	if [ -z "$output_file" ]; then
+		echo "Error: Missing output file argument. Exiting."
+		print_usage
+		return 1
+	fi
+
+	if [ "$output_file" != /dev/* ]; then
+		echo "Warning: Output file '$output_file' does not look like a device path (/dev/...). Exiting."
+		return 1
+	fi
+
+	echo "This fn is a WIP. Don't use yet."
+	return 0
+
+	sudo dd \
+		 bs=4M \
+		 conv=fsync \
+		 if=$input_file \
+		 of=$output_file \
+		 oflag=direct \
+		 status=progress
+}

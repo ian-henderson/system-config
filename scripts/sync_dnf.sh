@@ -41,6 +41,7 @@ main_packages=(
     htop
     lolcat
     neovim
+	pngquant
 	ramalama
 	starship
 	yt-dlp
