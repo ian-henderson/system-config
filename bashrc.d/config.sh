@@ -91,7 +91,14 @@ em() {
 	emacsclient -ct "$@"
 }
 
-alias ff="fastfetch"
+# fastfetch alias
+if command -v dnf >/dev/null 2>&1; then
+	alias ff="fastfetch --logo Fedora2_small"
+elif command -v pacman >/dev/null 2>&1; then
+	alias ff="fastfetch --logo arch_small"
+else
+	alias ff="fastfetch"
+fi
 
 fflol() {
 	if ! command -v lolcat >/dev/null 2>&1; then

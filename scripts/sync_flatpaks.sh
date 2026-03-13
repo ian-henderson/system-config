@@ -30,6 +30,7 @@ main_packages=(
 	app.zen_browser.zen
 	com.calibre_ebook.calibre
 	com.discordapp.Discord
+	com.github.taiko2k.tauonmb
 	com.github.tchx84.Flatseal
 	com.protonvpn.www
 	im.riot.Riot
