@@ -34,13 +34,13 @@ main_packages=(
 	com.protonvpn.www
 	im.riot.Riot
 	io.mgba.mGBA
-	me.timschneeberger.GalaxyBudsClient
 	me.proton.Pass
 	one.ablaze.floorp
 	org.chromium.Chromium
 	org.freac.freac
 	org.gimp.GIMP
 	org.kde.kid3
+	org.kde.okular
 	org.libreoffice.LibreOffice
 	org.signal.Signal
 	org.telegram.desktop

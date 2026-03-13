@@ -163,6 +163,16 @@ update() {
         sudo dnf autoremove -y
 	fi
 
+	if command -v pacman >/dev/null 2>&1; then
+		if command -v paru >/dev/null 2>&1; then
+			echo -e "\nUPDATING PARU\n"
+			paru -Syu
+		else
+			echo -e "\nUPDATING PACMAN\n"
+			sudo pacman -Syu
+		fi
+	fi
+
 	if [ -d "$DOCKER_COMPOSE" ] \
 		   && command -v update_docker_images >/dev/null 2>&1; then
 		echo -e "\nUPDATING DOCKER IMAGES\n"
