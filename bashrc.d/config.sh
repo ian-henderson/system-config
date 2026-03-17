@@ -92,7 +92,9 @@ em() {
 }
 
 # fastfetch alias
-if command -v dnf >/dev/null 2>&1; then
+if uname -v | grep -qi "Debian"; then
+	alias ff="fastfetch --logo debian-linux_small"
+elif command -v dnf >/dev/null 2>&1; then
 	alias ff="fastfetch --logo Fedora2_small"
 elif command -v pacman >/dev/null 2>&1; then
 	alias ff="fastfetch --logo arch_small"
