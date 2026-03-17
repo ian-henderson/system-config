@@ -14,16 +14,4 @@
  (rear-context-string)
  (position . 1)
  (last-modified 26882 64101 976579 131000))
-("veles external"
- (filename . "/sshx:ian@veles:/mnt/external/")
- (front-context-string . ":\n  drwxr-xr-x  ")
- (rear-context-string . "es:/mnt/external")
- (position . 32)
- (last-modified 26882 64023 942576 585000))
-("veles home"
- (filename . "/sshx:ian@veles:~/")
- (front-context-string . "  /sshx:ian@vele")
- (rear-context-string)
- (position . 1)
- (last-modified 26882 63960 131127 301000))
 )

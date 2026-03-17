@@ -4,13 +4,17 @@ main_packages=(
 	bat
 	btop
 	emacs-wayland
+	fastfetch
 	htop
 	less # git diff
 	lolcat
 	neovim
 	pngquant
+	power-profiles-daemon
 	rustup # paru
+	sddm-kcm
 	starship
+	unzip
 	wl-clipboard
 	yt-dlp
 )
@@ -26,6 +30,12 @@ sudo pacman -Syu
 sudo pacman -S --needed --noconfirm \
 	 "${main_packages[@]}" \
 	 "${c_packages[@]}"
+
+# Installs audio firmware for Dell Inspiron 7630
+product_name=$(cat /sys/devices/virtual/dmi/id/product_name)
+if [ "$product_name" == *"Inspiron 16 Plus 7630"* ]; then
+	sudo pacman -S --needed --noconfirm sof-firmware
+fi
 
 # Rustup
 rustup default stable
@@ -50,22 +60,19 @@ rustup default stable
 		after=$(git rev-parse HEAD)
 		if [ "$before" != "$after" ]; then
 			echo "New changes were pulled"
-			make -si
+			makepkg -si
 		else
 			echo "No changes"
 		fi
 	else
 		git clone https://aur.archlinux.org/paru.git "$paru_dir"
 		cd "$paru_dir"
-		make -si
+		makepkg -si
 	fi
 )
 
 if command -v paru >/dev/null 2>&1; then
-	paru_packages=(
-		vscodium-bin
-	)
-	paru -S --needed --noconfirm "${paru_packages[@]}"
+	paru -S --needed --noconfirm vscodium-bin
 fi
 
 packages_to_remove=(
@@ -78,3 +85,7 @@ for package in "${packages_to_remove[@]}"; do
         sudo dnf remove -y "$package"
     fi
 done
+
+sudo systemctl enable --now \
+	 bluetooth.service \
+	 power-profiles-daemon.service
