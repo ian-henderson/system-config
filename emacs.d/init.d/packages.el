@@ -34,8 +34,10 @@
   (dashboard-navigation-cycle t)
   (dashboard-projects-backend 'projectile)
   (dashboard-startup-banner
-   (expand-file-name "assets/banners/emacs-bloody.txt"
-		     user-emacs-directory))
+   (expand-file-name "assets/images/stallman-boat.jpg" user-emacs-directory))
+  ;; (dashboard-startup-banner
+  ;;  (expand-file-name "assets/banners/emacs-bloody.txt"
+  ;; 		     user-emacs-directory))
   ;; (dashboard-startup-banner
   ;;  (directory-files
   ;;   (expand-file-name "assets/text-banners" user-emacs-directory)

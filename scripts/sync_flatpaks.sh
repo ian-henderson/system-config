@@ -35,6 +35,7 @@ main_packages=(
 	com.protonvpn.www
 	im.riot.Riot
 	io.mgba.mGBA
+	io.mpv.Mpv
 	me.proton.Pass
 	one.ablaze.floorp
 	org.chromium.Chromium

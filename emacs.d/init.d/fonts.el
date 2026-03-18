@@ -5,11 +5,11 @@
 (declare-function global-set-key-list "init.el" alist)
 
 (defvar monospace-font-faces '(default fixed-pitch fixed-pitch-serif))
-(defvar monospace-font-family "Fantasque Sans Mono")
-(defvar monospace-font-height 120)
+(defvar monospace-font-family "reFixedsys Mono")
+(defvar monospace-font-height 100)
 
 (defvar variable-font-faces '(variable-pitch))
-(defvar variable-font-family "Noto Sans")
+(defvar variable-font-family "Open Sans")
 (defvar variable-font-height 120)
 
 (defun font-size-reset ()

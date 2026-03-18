@@ -121,7 +121,7 @@ alias lt="ls -ltr"
 
 reload() {
 	source "$HOME/.bashrc"
-    echo -e "\n\n\nBash config reloaded! 🐧\n"
+    echo "Bash config reloaded! 🐧"
 }
 
 alias vi="nvim"
@@ -199,6 +199,11 @@ update() {
 alias up="update"
 
 check_website_dns() {
+	if ! command -v dig >/dev/null 2>&1; then
+		echo "Error: dig isn't installed. Exiting."
+		return 1
+	fi
+
 	echo -e "\nwww.ianhenderson.info CNAME:"
 	dig www.ianhenderson.info CNAME +short
 
