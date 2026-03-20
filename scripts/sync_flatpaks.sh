@@ -12,8 +12,7 @@ done
 sudo flatpak remote-add --if-not-exists \
 	 flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-# ignored
-gnome_packages=(
+unused_packages=(
 	ca.desrt.dconf-editor
 	com.github.johnfactotum.Foliate
 	de.haeckerfelix.Fragments
@@ -27,7 +26,6 @@ gnome_packages=(
 )
 
 main_packages=(
-	app.zen_browser.zen
 	com.calibre_ebook.calibre
 	com.discordapp.Discord
 	com.github.taiko2k.tauonmb
@@ -35,18 +33,16 @@ main_packages=(
 	com.protonvpn.www
 	im.riot.Riot
 	io.mgba.mGBA
-	io.mpv.Mpv
 	me.proton.Pass
 	one.ablaze.floorp
 	org.chromium.Chromium
 	org.freac.freac
 	org.gimp.GIMP
+	org.kde.gwenview
 	org.kde.kid3
 	org.kde.okular
 	org.libreoffice.LibreOffice
 	org.signal.Signal
-	org.telegram.desktop
-	org.videolan.VLC
 )
 
 echo "Installing Flatpak packages..."

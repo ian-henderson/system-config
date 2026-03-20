@@ -1,17 +1,22 @@
 #!/usr/bin/env bash
 
-main_packages=(
+packages=(
+	archlinux-wallpaper
 	bat
 	btop
+	cmake
 	emacs-wayland
 	fastfetch
 	htop
-	less # git diff
+	less                   # git diff
 	lolcat
+	make
 	neovim
 	pngquant
 	power-profiles-daemon
-	rustup # paru
+	python-mutagen         # required by yt-dlp
+	python-pip             # global pip
+	rustup                 # paru
 	sddm-kcm
 	starship
 	unzip
@@ -19,17 +24,10 @@ main_packages=(
 	yt-dlp
 )
 
-c_packages=(
-	make
-	cmake
-)
-
 # TODO: find conda package (python)
 
 sudo pacman -Syu
-sudo pacman -S --needed --noconfirm \
-	 "${main_packages[@]}" \
-	 "${c_packages[@]}"
+sudo pacman -S --needed --noconfirm "${packages[@]}"
 
 # Installs audio firmware for Dell Inspiron 7630
 product_name=$(cat /sys/devices/virtual/dmi/id/product_name)

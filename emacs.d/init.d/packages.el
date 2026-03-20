@@ -34,13 +34,11 @@
   (dashboard-navigation-cycle t)
   (dashboard-projects-backend 'projectile)
   (dashboard-startup-banner
-   (expand-file-name "assets/images/stallman-boat.jpg" user-emacs-directory))
-  ;; (dashboard-startup-banner
-  ;;  (expand-file-name "assets/banners/emacs-bloody.txt"
-  ;; 		     user-emacs-directory))
+   (expand-file-name "assets/banners/emacs-blurvision-ascii.txt"
+    		     user-emacs-directory))
   ;; (dashboard-startup-banner
   ;;  (directory-files
-  ;;   (expand-file-name "assets/text-banners" user-emacs-directory)
+  ;;   (expand-file-name "assets/banners" user-emacs-directory)
   ;;   t))
   (dashboard-vertically-center-content t)
   (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
@@ -164,6 +162,7 @@
 		(intern (format "%s-mode" n)))
 	      names))
     (let ((whitelist (mode-strings '(ert-results
+				     eww
 				     fundamental
 				     help
 				     Info
