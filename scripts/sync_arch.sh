@@ -11,6 +11,7 @@ packages=(
 	less                   # git diff
 	lolcat
 	make
+	man-db
 	neovim
 	pngquant
 	power-profiles-daemon

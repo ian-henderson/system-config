@@ -40,6 +40,7 @@ main_packages=(
 	org.gimp.GIMP
 	org.kde.gwenview
 	org.kde.kid3
+	org.kde.ktorrent
 	org.kde.okular
 	org.libreoffice.LibreOffice
 	org.signal.Signal
