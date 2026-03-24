@@ -13,6 +13,7 @@ packages=(
 	make
 	man-db
 	neovim
+	nvm
 	pngquant
 	power-profiles-daemon
 	python-mutagen         # required by yt-dlp
@@ -35,6 +36,10 @@ product_name=$(cat /sys/devices/virtual/dmi/id/product_name)
 if [ "$product_name" == *"Inspiron 16 Plus 7630"* ]; then
 	sudo pacman -S --needed --noconfirm sof-firmware
 fi
+
+# NVM
+init_nvm="/usr/share/nvm/init-nvm.sh "
+[ -f "$init_nvm" ] && . "$init_nvm"
 
 # Rustup
 rustup default stable

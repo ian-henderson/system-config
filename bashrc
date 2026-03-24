@@ -39,5 +39,10 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-# rust
-. "$HOME/.cargo/env"
+# cargo
+cargo_env="$HOME/.cargo/env"
+[ -f "$cargo_env" ] && . "$cargo_env"
+
+# nvm
+init_nvm="/usr/share/nvm/init-nvm.sh"
+[ -f "$init_nvm" ] && . "$init_nvm"
