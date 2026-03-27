@@ -97,7 +97,11 @@ if uname -v | grep -qi "Debian"; then
 elif command -v dnf >/dev/null 2>&1; then
 	alias ff="fastfetch --logo Fedora2_small"
 elif command -v pacman >/dev/null 2>&1; then
-	alias ff="fastfetch --logo arch_small"
+	if [ -f /etc/artix-release ]; then
+		alias ff="fastfetch --logo artix_small"
+	else
+		alias ff="fastfetch --logo arch_small"
+	fi
 else
 	alias ff="fastfetch"
 fi

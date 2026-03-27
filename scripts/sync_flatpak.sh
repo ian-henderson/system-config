@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+echo "SYNCHRONIZING FLATPAK"
+
 for repo in fedora fedora-testing; do
 	if flatpak remotes | grep -q "$repo"; then
 		echo "Removing $repo flatpak repo..."
@@ -39,6 +41,7 @@ main_packages=(
 	org.freac.freac
 	org.gimp.GIMP
 	org.kde.gwenview
+	org.kde.kcalc
 	org.kde.kid3
 	org.kde.ktorrent
 	org.kde.okular

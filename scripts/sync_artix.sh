@@ -1,33 +1,34 @@
 #!/usr/bin/env bash
 
-echo "SYNCHRONIZING ARCH"
+echo "SYNCHRONIZING ARTIX"
 
 scripts_dir="$HOME/Developer/system-config/scripts"
 
 sudo pacman -Syu
 
 packages=(
-	archlinux-wallpaper
 	bat
 	btop
 	cmake
 	emacs-wayland
 	fastfetch
+	flatpak
 	htop
-	less                   # git diff
+	less
 	lolcat
 	make
 	man-db
 	neovim
 	nvm
-	pngquant
 	power-profiles-daemon
-	python-mutagen         # required by yt-dlp
-	python-pip             # global pip
-	rustup                 # paru
+	python-mutagen
+	python-pip
+	rustup
 	sddm-kcm
+	spectacle
 	starship
 	unzip
+	wget
 	wl-clipboard
 	yt-dlp
 )
@@ -36,6 +37,7 @@ packages=(
 
 sudo pacman -S --needed --noconfirm "${packages[@]}"
 
+# TODO: verify that this is still needed on Artix
 # Installs audio firmware for Dell Inspiron 7630
 product_name=$(cat /sys/devices/virtual/dmi/id/product_name)
 if [ "$product_name" == *"Inspiron 16 Plus 7630"* ]; then
@@ -43,7 +45,7 @@ if [ "$product_name" == *"Inspiron 16 Plus 7630"* ]; then
 fi
 
 # NVM
-init_nvm="/usr/share/nvm/init-nvm.sh "
+init_nvm="/usr/share/nvm/init-nvm.sh"
 if [ -f "$init_nvm" ]; then
 	echo "INITIALIZING NVM"
 	. "$init_nvm"
@@ -67,7 +69,7 @@ sync_flatpak="$scripts_dir/sync_flatpak.sh"
 [ -x "$sync_flatpak" ] && "$sync_flatpak"
 
 packages_to_remove=(
-	elisa
+	falkon
 	okular
 )
 for package in "${packages_to_remove[@]}"; do
@@ -76,7 +78,3 @@ for package in "${packages_to_remove[@]}"; do
         sudo pacman -Rns --noconfirm "$package"
     fi
 done
-
-sudo systemctl enable --now \
-	 bluetooth.service \
-	 power-profiles-daemon.service
