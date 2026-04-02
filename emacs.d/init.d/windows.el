@@ -67,6 +67,9 @@
 ;; tab size for shell mode
 (add-hook 'sh-mode-hook (lambda () (setq-local tab-width 4)))
 
+;; hides title-bar
+(add-to-list 'default-frame-alist '(undecorated . t))
+
 (provide 'windows)
 
 ;;; windows.el ends here

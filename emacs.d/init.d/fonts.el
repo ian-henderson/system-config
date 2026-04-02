@@ -6,7 +6,7 @@
 
 (defvar monospace-font-faces '(default fixed-pitch fixed-pitch-serif))
 (defvar monospace-font-family "JetBrains Mono")
-(defvar monospace-font-height 120)
+(defvar monospace-font-height 110)
 
 (defvar variable-font-faces '(variable-pitch))
 (defvar variable-font-family "Open Sans")

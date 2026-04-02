@@ -4,6 +4,11 @@
 
 (declare-function global-set-key-list "init.el" alist)
 
+(defun open-guix-config ()
+  "Open /etc/config.scm."
+  (interactive)
+  (sudo-edit-find-file "/etc/config.scm"))
+
 ;; flyspell
 (require 'flyspell)
 (dolist (hook '(markdown-mode-hook org-mode-hook text-mode-hook))

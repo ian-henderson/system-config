@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-reference_path="/etc/shadow-"
+# reference_path="/etc/shadow-"
+# start_date=$(date -r "$reference_path" +%s)
 
-# Get start date in seconds (macOS/BSD date might require different flags,
-# but this works on Debian/Standard Linux)
-start_date=$(date -r "$reference_path" +%s)
+reference_path="/var/guix/profiles/system-1-link"
+start_date=$(date -d "@$(stat -c %Y "$reference_path")" +%s)
 
 # Get current date in seconds
 today=$(date +%s)

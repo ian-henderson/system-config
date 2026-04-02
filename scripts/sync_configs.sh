@@ -25,7 +25,7 @@ create_symbolic_link() {
 }
 
 # Configuration Directories
-SCRIPT_DIR="$HOME/Developer/system-config"
+SYSTEM_CONFIG_DIR="$HOME/Developer/system-config"
 HOME_DOTFILES=(
 	"bashrc"
 	"bashrc.d"
@@ -37,7 +37,7 @@ HOME_DOTFILES=(
 
 # Link Home Dotfiles
 for i in "${HOME_DOTFILES[@]}"; do
-    src="$SCRIPT_DIR/$i"
+    src="$SYSTEM_CONFIG_DIR/$i"
     target="$HOME/.$i"
     create_symbolic_link "$src" "$target"
 done
@@ -56,7 +56,18 @@ fi
 # Link Config Directories
 CONFIG_DIRS=("blerc" "fastfetch" "nvim")
 for i in "${CONFIG_DIRS[@]}"; do
-    src="$SCRIPT_DIR/$i"
+    src="$SYSTEM_CONFIG_DIR/$i"
     target="$CONFIG_DIR/$i"
     create_symbolic_link "$src" "$target"
 done
+
+# Guix
+if command -v guix >/dev/null 2>&1; then
+	mkdir -p "$HOME/.config/guix"
+    create_symbolic_link \
+		"$SYSTEM_CONFIG_DIR/guix.d/channels.scm" \
+		"$HOME/.config/guix/channels.scm"
+	sudo create_symbolic_link \
+		"$SYSTEM_CONFIG_DIR/guix.d/nonguix-key.pub" \
+		"/etc/guix/nonguix-key.pub"
+fi

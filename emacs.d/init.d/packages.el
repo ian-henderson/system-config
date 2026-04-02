@@ -33,10 +33,10 @@
 			      (recents   . "r")))
   (dashboard-navigation-cycle t)
   (dashboard-projects-backend 'projectile)
-  (dashboard-startup-banner 3)
-  ;; (dashboard-startup-banner
-  ;;  (expand-file-name "assets/banners/emacs-blurvision-ascii.txt"
-  ;;   		     user-emacs-directory))
+  ;; (dashboard-startup-banner 3)
+  (dashboard-startup-banner
+   (expand-file-name "assets/banners/emacs-bloody.txt"
+    		     user-emacs-directory))
   ;; (dashboard-startup-banner
   ;;  (directory-files
   ;;   (expand-file-name "assets/banners" user-emacs-directory)

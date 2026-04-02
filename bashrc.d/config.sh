@@ -60,8 +60,8 @@ blesh_source
 
 # Start ssh-agent if it isn't running and add ssh key
 # Reset ssh key password: `ssh-keygen -p -f ~/.ssh/id_ed25519`
-[ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)" > /dev/null
-[ -f "$SSH_KEY" ] && ssh-add "$SSH_KEY" 2>/dev/null
+# [ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)" > /dev/null
+# [ -f "$SSH_KEY" ] && ssh-add "$SSH_KEY" 2>/dev/null
 
 ################################################################################
 # Aliases/Functions
@@ -87,24 +87,9 @@ cat() {
 	"$bin" -pp --tabs 4 --theme ansi "$@"
 }
 
-em() {
-	emacsclient -ct "$@"
+ff() {
+	fastfetch --logo Guix_small "$@"
 }
-
-# fastfetch alias
-if uname -v | grep -qi "Debian"; then
-	alias ff="fastfetch --logo debian-linux_small"
-elif command -v dnf >/dev/null 2>&1; then
-	alias ff="fastfetch --logo Fedora2_small"
-elif command -v pacman >/dev/null 2>&1; then
-	if [ -f /etc/artix-release ]; then
-		alias ff="fastfetch --logo artix_small"
-	else
-		alias ff="fastfetch --logo arch_small"
-	fi
-else
-	alias ff="fastfetch"
-fi
 
 fflol() {
 	if ! command -v lolcat >/dev/null 2>&1; then
@@ -112,7 +97,7 @@ fflol() {
 		return 127
 	fi
 
-	fastfetch "$@" | lolcat
+	ff "$@" | lolcat
 }
 
 alias g="git"
@@ -163,6 +148,11 @@ update_docker_images() {
 }
 
 update() {
+	if command -v guix >/dev/null 2>&1; then
+		echo -e "\nUPDATING GUIX\n"
+		echo "TODO: write this function"
+	fi
+
 	if command -v apt >/dev/null 2>&1; then
 		echo -e "\nUPDATING APT\n"
 		sudo apt update
