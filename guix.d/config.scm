@@ -15,6 +15,7 @@
              (gnu packages glib)
              (gnu packages gnome)
              (gnu packages gnome-xyz)        ; gnome extensions
+             (gnu packages ssh)              ; openssh
              (gnu packages version-control)  ; git
              (gnu packages vim)
 	     (gnu packages xdisorg)          ; wl-clipboard
@@ -44,6 +45,7 @@
 	gsettings-desktop-schemas
 	htop
 	neovim
+	openssh
 	power-profiles-daemon
 	vscodium
 	wl-clipboard))
