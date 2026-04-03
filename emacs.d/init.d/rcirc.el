@@ -6,17 +6,32 @@
 
 (global-set-key-list '(("C-c i" . rcirc)))
 
-(setq-default
- rcirc-authinfo `(("libera" nickserv ,(getenv "LIBERA_USERNAME")
-		   ,(getenv "LIBERA_PASSWORD")))
- rcirc-default-full-name (getenv "LIBERA_FULL_NAME")
- rcirc-server-alist `(("irc.libera.chat"
-		       :channels ("##math" "##politics" "##statistics"
-				  "#archlinux" "#c" "#emacs" "#finance" "#java"
-				  "#libera" "#linux" "#python")
-		       :encryption tls
-		       :nick ,(getenv "LIBERA_USERNAME")
-		       :port 6697)))
+(let ((full-name (getenv "LIBERA_FULL_NAME"))
+      (password (getenv "LIBERA_PASSWORD"))
+      (username (getenv "LIBERA_USERNAME")))
+  (setq-default
+   rcirc-authinfo (list (list "libera" 'nickserv username password))
+   rcirc-default-full-name full-name
+   rcirc-server-alist (list
+                       (list "irc.libera.chat"
+                             :channels '("##math"
+					 "##politics"
+					 "##statistics"
+					 ;; "#c"
+					 "#dbd"
+					 "#emacs"
+					 ;; "#finance"
+					 "#fsf"
+					 "#guix"
+					 "#libera"
+					 "#libreplanet"
+					 "#linux"
+					 ;; "#python"
+					 "#systemcrafters"
+					 )
+                             :encryption 'tls
+                             :nick username
+                             :port 6697))))
 
 (add-hook 'rcirc-mode-hook
 	  (lambda () (set (make-local-variable 'scroll-conservatively) 8192)))

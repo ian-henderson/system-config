@@ -5,11 +5,11 @@
 (declare-function global-set-key-list "init.el" alist)
 
 (defvar monospace-font-faces '(default fixed-pitch fixed-pitch-serif))
-(defvar monospace-font-family "JetBrains Mono")
+(defvar monospace-font-family "Adwaita Mono")
 (defvar monospace-font-height 110)
 
 (defvar variable-font-faces '(variable-pitch))
-(defvar variable-font-family "Open Sans")
+(defvar variable-font-family "Adwaita Sans")
 (defvar variable-font-height 120)
 
 (defun font-size-reset ()

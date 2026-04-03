@@ -192,6 +192,16 @@ update() {
 
 alias up="update"
 
+enable_gnome_fractional_scaling() {
+	if ! command -v gsettings >/dev/null 2>&1; then
+		echo "Error: gsettings isn't installed. Exiting."
+		return 1
+	fi
+
+	gsettings set org.gnome.mutter experimental-features \
+			  "['scale-monitor-framebuffer']"
+}
+
 check_website_dns() {
 	if ! command -v dig >/dev/null 2>&1; then
 		echo "Error: dig isn't installed. Exiting."

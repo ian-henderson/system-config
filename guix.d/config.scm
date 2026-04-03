@@ -28,8 +28,8 @@
 
 (use-service-modules cups desktop networking ssh xorg)
 
-(define %boot-device (uuid "3660-7DA9" 'fat32))
-(define %encrypted-device (uuid "2a181d8e-b28b-48cd-be7e-ec9ef60e19fb"))
+(define %boot-device (uuid "A29E-78E4" 'fat32))
+(define %encrypted-device (uuid "f09b3806-ad87-4d56-9a52-dc43d1612edc"))
 (define %root-device "/dev/mapper/cryptroot")
 
 (define %my-packages
@@ -41,6 +41,7 @@
 	git
 	glib
 	gnome-shell-extension-just-perfection
+	gnome-shell-extension-night-theme-switcher
 	gnome-tweaks
 	gsettings-desktop-schemas
 	htop
@@ -53,12 +54,15 @@
 (operating-system
  (kernel linux)
  (initrd microcode-initrd)
- (firmware (list linux-firmware))
+ ;; (firmware (list linux-firmware))
+ ;; dell only
+ (firmware (cons* linux-firmware sof-firmware %base-firmware))
 
  (locale "en_US.utf8")
  (timezone "America/Denver")
  (keyboard-layout (keyboard-layout "us"))
- (host-name "thinkpad")
+ ;; maybe make this a variable too?
+ (host-name "inspiron")
 
  ;; The list of user accounts ('root' is implicit).
  (users (cons* (user-account
@@ -107,6 +111,10 @@
                         (source %encrypted-device)
 			(target "cryptroot")
 			(type luks-device-mapping))))
+
+ ;; dell only
+ (initrd-modules (append '("vmd") %base-initrd-modules))
+
 
  ;; The list of file systems that get "mounted".  The unique
  ;; file system identifiers there ("UUIDs") can be obtained

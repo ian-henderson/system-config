@@ -5,7 +5,8 @@
 ;; See the "Replicating Guix" section in the manual.
 
 (specifications->manifest
- (list "ungoogled-chromium"
+ (list "quodlibet"
+       "signal-desktop"
        "yt-dlp"
        "emacs-pgtk"
        "libreoffice"
