@@ -10,8 +10,10 @@
       (password (getenv "LIBERA_PASSWORD"))
       (username (getenv "LIBERA_USERNAME")))
   (setq-default
-   rcirc-authinfo (list (list "libera" 'nickserv username password))
+   rcirc-authinfo (list (list "libera" 'sasl username password))
    rcirc-default-full-name full-name
+   rcirc-default-nick username
+   rcirc-default-user-name username
    rcirc-server-alist (list
                        (list "irc.libera.chat"
                              :channels '("##math"

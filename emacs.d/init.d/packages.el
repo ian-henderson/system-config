@@ -2,6 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
+(declare-function global-set-key-list "init.el" alist)
+
 ;; https://github.com/rranelli/auto-package-update.el
 (use-package auto-package-update
   :custom
@@ -18,8 +20,8 @@
 ;; https://company-mode.github.io
 ;; complete anything (auto complete)
 (use-package company
-  :hook
-  (after-init . global-company-mode))
+  :config
+  (global-company-mode 1))
 
 ;; https://github.com/emacs-dashboard/emacs-dashboard
 (use-package dashboard
@@ -33,9 +35,8 @@
 			      (recents   . "r")))
   (dashboard-navigation-cycle t)
   (dashboard-projects-backend 'projectile)
-  ;; (dashboard-startup-banner 3)
   (dashboard-startup-banner
-   (expand-file-name "assets/banners/emacs-bloody.txt"
+   (expand-file-name "assets/banners/emacs-ansi-shadow.txt"
     		     user-emacs-directory))
   ;; (dashboard-startup-banner
   ;;  (directory-files
@@ -46,13 +47,23 @@
   :init
   (dashboard-setup-startup-hook))
 
+;; https://www.gnu.org/software/emms
+(use-package emms
+  :bind
+  ("C-c P" . emms-pause)
+  :config
+  (emms-minimalistic)
+  (emms-mode-line-disable)
+  :custom
+  (emms-player-list '(emms-player-vlc)))
+
 ;; https://evil.readthedocs.io/en/latest/index.html
 ;; https://github.com/emacs-evil/evil
 (use-package evil
   :bind
   ("C-c SPC" . evil-mode)
   :config
-  (evil-mode 1)
+  ;; (evil-mode 1)
   :custom
   (evil-want-keybinding nil))
 
@@ -75,7 +86,7 @@
   :config
   (exec-path-from-shell-initialize)
   (exec-path-from-shell-copy-envs
-   '("LIBERA_USERNAME" "LIBERA_PASSWORD" "LIBERA_FULL_NAME"))
+   '("LIBERA_USERNAME" "LIBERA_PASSWORD" "LIBERA_FULL_NAME" "MANPATH"))
   :custom
   (shell-file-name (executable-find "bash")))
 
@@ -88,10 +99,10 @@
 
 ;; https://github.com/roman/golden-ratio.el
 (use-package golden-ratio
-  :config
-  ;; (golden-ratio-mode 1)
-  :custom
-  (golden-ratio-auto-scale t))
+:config
+;; (golden-ratio-mode 1)
+:custom
+(golden-ratio-auto-scale t))
 
 ;; https://github.com/magit/magit
 ;; https://magit.vc/manual
@@ -138,7 +149,7 @@
 (use-package projectile
   :config
   (define-key projectile-mode-map (kbd "C-c p") #'projectile-command-map)
-  (dolist (path '("c" "python" "system-config"))
+  (dolist (path '("system-config"))
     (projectile-add-known-project (expand-file-name path "~/Developer")))
   (projectile-cleanup-known-projects)
   :init
@@ -170,7 +181,7 @@
 				     lisp-interaction
 				     magit-status
 				     Man
-				     mastodon)))
+				     special)))
 	  (blacklist (mode-strings '(pdf-view))))
       (cond
        ((memq major-mode whitelist)
@@ -180,9 +191,11 @@
   (add-hook 'after-change-major-mode-hook 'my/manage-visual-fill-column)
   :custom
   (visual-fill-column-center-text t)
-  :hook
-  (visual-fill-column-mode
-   . (lambda () (setq-local visual-fill-column-width (+ fill-column 6)))))
+  ;; (visual-fill-column-extra-text-width nil)
+  ;; :hook
+  ;; (visual-fill-column-mode
+  ;; . (lambda () (setq-local visual-fill-column-width (+ fill-column 6))))
+  )
 
 (defun rename-vterm-buffer ()
   "Rename vterm buffer to *vterm<i>*, i being the next available number."
@@ -202,7 +215,7 @@
   (dolist (key '("w" "t" "T" "f" "b"))
     (define-key vterm-mode-map (kbd (format "M-%s" key)) nil))
   (define-key vterm-mode-map (kbd "C-c v") 'vterm-yank)
-  (define-key vterm-mode-map (kbd "M-<backspace>") 'vterm-send-C-w)
+  ;; (define-key vterm-mode-map (kbd "M-<backspace>") 'vterm-send-C-w)
   :custom
   (vterm-shell (executable-find "bash"))
   :hook

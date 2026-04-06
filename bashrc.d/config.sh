@@ -5,14 +5,12 @@
 ################################################################################
 
 export DOCKER_COMPOSE="$HOME/DockerCompose"
+export EDITOR="emacsclient -c"
 export FONTS="$HOME/.fonts"
 export ICONS="$HOME/.icons"
 export SSH_KEY="$HOME/.ssh/id_ed25519"
 export SYSTEM_CONFIG="$HOME/Developer/system-config"
 export THEMES="$HOME/.themes"
-# FLATPAK_DIR="/var/lib/flatpak/exports/share"
-# export XDG_DATA_DIRS="${XDG_DATA_DIRS:+$XDG_DATA_DIRS:}$FLATPAK_DIR"
-# export XDG_DATA_HOME="${XDG_DATA_HOME:+$XDG_DATA_HOME:}$FLATPAK_DIR"
 
 ################################################################################
 # Starship

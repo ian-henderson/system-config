@@ -85,6 +85,15 @@
   :hook
   (prog-mode . format-all-mode))
 
+;; https://elpa.nongnu.org/nongnu/doc/geiser.html
+(use-package geiser)
+(use-package geiser-guile
+  :custom
+  (geiser-default-implementation 'guile)
+  (geiser-activate-implementations '(guile))
+  (geiser-mode-start-repl-p t)
+  (geiser-repl-use-other-window nil))
+
 ;; https://github.com/haskell/haskell-mode
 (use-package haskell-mode)
 
@@ -115,6 +124,14 @@
   :ensure
   nil) ; (built-in)
 
+;; http://paredit.org
+;; http://danmidwood.com
+(use-package paredit
+  :hook
+  ((emacs-lisp-mode . enable-paredit-mode)
+   (scheme-mode . enable-paredit-mode)
+   (lisp-interaction-mode . enable-paredit-mode)))
+
 ;; https://github.com/emacs-php/php-mode
 (use-package php-mode)
 
@@ -124,6 +141,9 @@
   (rust-format-on-save t)
   :mode
   "\\.rs\\'")
+
+;; https://slime.common-lisp.dev/doc/html
+;; (use-package slime)
 
 ;; https://github.com/holomorph/systemd-mode
 (use-package systemd)

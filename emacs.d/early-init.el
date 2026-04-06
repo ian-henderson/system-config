@@ -22,11 +22,12 @@
  read-file-name-completion-ignore-case t
  ring-bell-function 'ignore
  tab-bar-close-button-show nil
+ tab-bar-new-button-show nil
  tab-bar-format '(tab-bar-format-history
-	          tab-bar-format-tabs
-	          tab-bar-separator
-	          tab-bar-format-align-right
-	          tab-bar-format-global)
+ 	          tab-bar-format-tabs
+ 	          tab-bar-separator
+ 	          tab-bar-format-align-right
+ 	          tab-bar-format-global)
  tab-bar-new-tab-choice "*dashboard*")
 
 (tab-bar-mode 1)

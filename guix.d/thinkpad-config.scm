@@ -15,6 +15,7 @@
              (gnu packages glib)
              (gnu packages gnome)
              (gnu packages gnome-xyz)        ; gnome extensions
+	     (gnu packages ncurses)          ; clear (term function)
              (gnu packages ssh)              ; openssh
              (gnu packages version-control)  ; git
              (gnu packages vim)
@@ -28,8 +29,8 @@
 
 (use-service-modules cups desktop networking ssh xorg)
 
-(define %boot-device (uuid "A29E-78E4" 'fat32))
-(define %encrypted-device (uuid "f09b3806-ad87-4d56-9a52-dc43d1612edc"))
+(define %boot-device (uuid "3660-7DA9" 'fat32))
+(define %encrypted-device (uuid "2a181d8e-b28b-48cd-be7e-ec9ef60e19fb"))
 (define %root-device "/dev/mapper/cryptroot")
 
 (define %my-packages
@@ -45,6 +46,7 @@
 	gnome-tweaks
 	gsettings-desktop-schemas
 	htop
+	ncurses
 	neovim
 	openssh
 	power-profiles-daemon
@@ -54,15 +56,12 @@
 (operating-system
  (kernel linux)
  (initrd microcode-initrd)
- ;; (firmware (list linux-firmware))
- ;; dell only
- (firmware (cons* linux-firmware sof-firmware %base-firmware))
+ (firmware (list linux-firmware))
 
  (locale "en_US.utf8")
  (timezone "America/Denver")
  (keyboard-layout (keyboard-layout "us"))
- ;; maybe make this a variable too?
- (host-name "inspiron")
+ (host-name "thinkpad")
 
  ;; The list of user accounts ('root' is implicit).
  (users (cons* (user-account
@@ -111,10 +110,6 @@
                         (source %encrypted-device)
 			(target "cryptroot")
 			(type luks-device-mapping))))
-
- ;; dell only
- (initrd-modules (append '("vmd") %base-initrd-modules))
-
 
  ;; The list of file systems that get "mounted".  The unique
  ;; file system identifiers there ("UUIDs") can be obtained

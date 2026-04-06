@@ -20,10 +20,12 @@
    ("M-<prior>" . tab-bar-move-tab-backward)
    ("<f12>"     . tab-bar-select-tab)))
 
-(global-set-key-list
- (mapcar (lambda (i)
-	   `(,(format "M-%d" i) . (lambda () (interactive) (tab-bar-select-tab ,i))))
-	 (number-sequence 1 9)))
+;; (global-set-key-list
+;;  (mapcar (lambda (i)
+;; 	   `(,(format "M-%d" i) . (lambda () (interactive) (tab-bar-select-tab ,i))))
+;; 	 (number-sequence 1 9)))
+
+(setq scroll-preserve-screen-position t)
 
 ;; disables trackpad pinch-to-zoom
 (dolist (binding '("<pinch>" "<magnify>"))
@@ -43,7 +45,7 @@
 
 ;; line numbers and fill-column
 (setq-default display-line-numbers-type 'relative
-	      fill-column 80)
+	      fill-column 85)
 
 (dolist (hook '(conf-mode-hook
 		conf-toml-mode-hook

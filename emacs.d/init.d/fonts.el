@@ -5,7 +5,7 @@
 (declare-function global-set-key-list "init.el" alist)
 
 (defvar monospace-font-faces '(default fixed-pitch fixed-pitch-serif))
-(defvar monospace-font-family "Adwaita Mono")
+(defvar monospace-font-family "Hack")
 (defvar monospace-font-height 110)
 
 (defvar variable-font-faces '(variable-pitch))
@@ -26,7 +26,10 @@
 			nil
 			:family variable-font-family
 			:height variable-font-height
-			:weight 'regular)))
+			:weight 'regular))
+  ;; redraws screen for visual-fill-column. Remove this line if
+  ;; visual-fill-column is ever removed.
+  (redraw-display))
 
 (font-size-reset)
 
@@ -44,7 +47,10 @@ The function is applied to the :height attribute of each relevant face (default,
 fixed-pitch, variable-pitch)."
   (dolist (f (append monospace-font-faces variable-font-faces))
     (set-face-attribute
-     f nil :height (funcall calc-font-size (face-attribute f :height)))))
+     f nil :height (funcall calc-font-size (face-attribute f :height))))
+  ;; redraws screen for visual-fill-column. Remove this line if
+  ;; visual-fill-column is ever removed.
+  (redraw-display))
 
 (defun font-size-increase ()
   "Increase font size."

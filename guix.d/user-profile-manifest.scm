@@ -5,7 +5,10 @@
 ;; See the "Replicating Guix" section in the manual.
 
 (specifications->manifest
- (list "quodlibet"
+ (list "font-lato"
+       "my-hello"
+       "vlc"
+       "quodlibet"
        "signal-desktop"
        "yt-dlp"
        "emacs-pgtk"
