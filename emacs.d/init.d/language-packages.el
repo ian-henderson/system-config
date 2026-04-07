@@ -38,35 +38,14 @@
   (eglot-server-programs
    '((c-mode          . ("ccls"))
      (c++-mode        . ("ccls"))
-     (java-mode       . ("jdtls"))
      (typescript-mode . ("typescript-language-server" "--stdio"))
      (rust-mode       . ("rust-analyzer"))))
   :hook
   (eglot-managed-mode . eglot-format-on-save-mode)
   (c-mode . eglot-ensure)
   (c++-mode . eglot-ensure)
-  (java-mode . eglot-ensure)
   (rust-mode . eglot-ensure)
   (typescript-mode . eglot-ensure))
-
-;; https://github.com/yveszoundi/eglot-java
-(use-package eglot-java
-  :after
-  eglot
-  :config
-  (let ((eglot-java-keys
-         '(("n" . eglot-java-file-new)
-           ("x" . eglot-java-run-main)
-           ("t" . eglot-java-run-test)
-           ("N" . eglot-java-project-new)
-           ("T" . eglot-java-project-build-task)
-           ("R" . eglot-java-project-build-refresh))))
-    (dolist (pair eglot-java-keys)
-      (define-key eglot-java-mode-map
-		  (kbd (concat "C-c j " (car pair)))
-		  (cdr pair))))
-  :hook
-  (java-mode . eglot-java-mode))
 
 ;; https://www.flycheck.org/en/latest/user/installation.html
 (use-package flycheck
@@ -94,9 +73,6 @@
   (geiser-mode-start-repl-p t)
   (geiser-repl-use-other-window nil))
 
-;; https://github.com/haskell/haskell-mode
-(use-package haskell-mode)
-
 ;; https://github.com/json-emacs/json-mode
 (use-package json-mode
   :config
@@ -114,9 +90,6 @@
   (("\\.markdown\\'" . gfm-mode)
    ("\\.md\\'"       . gfm-mode)
    ("\\.txt\\'"      . gfm-mode)))
-
-;; https://github.com/wentasah/meson-mode
-(use-package meson-mode)
 
 (use-package nxml-mode
   :custom
@@ -144,9 +117,6 @@
 
 ;; https://slime.common-lisp.dev/doc/html
 ;; (use-package slime)
-
-;; https://github.com/holomorph/systemd-mode
-(use-package systemd)
 
 (use-package typescript-mode
   :hook
