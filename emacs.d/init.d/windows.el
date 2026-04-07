@@ -44,7 +44,9 @@
 (add-hook 'prog-mode-hook #'hs-minor-mode)
 
 ;; line numbers and fill-column
-(setq-default display-line-numbers-type 'relative
+(setq-default display-line-numbers-grow-only t
+	      display-line-numbers-type 'relative
+	      display-line-numbers-width 4
 	      fill-column 85)
 
 (dolist (hook '(conf-mode-hook

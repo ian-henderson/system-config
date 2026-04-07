@@ -166,36 +166,24 @@
 ;; https://codeberg.org/joostkremers/visual-fill-column
 (use-package visual-fill-column
   :config
-  (global-visual-fill-column-mode 1)
-  (defun my/manage-visual-fill-column ()
-    ;; Centralized logic to enable/disable visual-fill-column-mode.
-    (defun mode-strings (names)
-      (mapcar (lambda (n)
-		(intern (format "%s-mode" n)))
-	      names))
-    (let ((whitelist (mode-strings '(ert-results
-				     eww
-				     fundamental
-				     help
-				     Info
-				     lisp-interaction
-				     magit-status
-				     Man
-				     special)))
-	  (blacklist (mode-strings '(pdf-view))))
-      (cond
-       ((memq major-mode whitelist)
-	(visual-fill-column-mode 1))
-       ((memq major-mode blacklist)
-	(visual-fill-column-mode 0)))))
-  (add-hook 'after-change-major-mode-hook 'my/manage-visual-fill-column)
+  (defvar visual-fill-column-mode-whitelist
+    (mapcar (lambda (name)
+	      (intern (format "%s-mode" name)))
+	    '(ert-results
+	      eww
+	      fundamental
+	      help
+	      Info
+	      lisp-interaction
+	      magit-status
+	      Man
+	      special)))
+  (add-hook 'after-change-major-mode-hook
+	    (lambda ()
+	      (when (memq major-mode visual-fill-column-mode-whitelist)
+		(visual-fill-column-mode 1))))
   :custom
-  (visual-fill-column-center-text t)
-  ;; (visual-fill-column-extra-text-width nil)
-  ;; :hook
-  ;; (visual-fill-column-mode
-  ;; . (lambda () (setq-local visual-fill-column-width (+ fill-column 6))))
-  )
+  (visual-fill-column-center-text t))
 
 (defun rename-vterm-buffer ()
   "Rename vterm buffer to *vterm<i>*, i being the next available number."

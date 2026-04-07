@@ -9,7 +9,7 @@
 (defvar monospace-font-height 110)
 
 (defvar variable-font-faces '(variable-pitch))
-(defvar variable-font-family "Adwaita Sans")
+(defvar variable-font-family "DejaVu Sans")
 (defvar variable-font-height 120)
 
 (defun font-size-reset ()
