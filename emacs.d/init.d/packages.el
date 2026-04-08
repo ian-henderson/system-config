@@ -114,7 +114,7 @@
 ;; https://github.com/roman/golden-ratio.el
 (use-package golden-ratio
   :config
-  (golden-ratio-mode 1)
+  ;; (golden-ratio-mode 1)
   :custom
   (golden-ratio-auto-scale t))
 
