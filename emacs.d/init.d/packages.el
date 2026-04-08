@@ -36,7 +36,7 @@
   (dashboard-navigation-cycle t)
   (dashboard-projects-backend 'projectile)
   (dashboard-startup-banner
-   (expand-file-name "assets/banners/emacs-ansi-shadow.txt"
+   (expand-file-name "assets/banners/emacs-bloody.txt"
     		     user-emacs-directory))
   ;; (dashboard-startup-banner
   ;;  (directory-files
@@ -46,6 +46,20 @@
   (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
   :init
   (dashboard-setup-startup-hook))
+
+;; https://github.com/skeeto/elfeed
+(use-package elfeed
+  :custom
+  (elfeed-feeds '("https://planet.guix.gnu.org/atom.xml"
+		  "https://protesilaos.com/books.xml"
+		  "https://protesilaos.com/codelog.xml"
+		  "https://protesilaos.com/commentary.xml"
+		  "https://protesilaos.com/news.xml"
+		  "https://protesilaos.com/prot-asks.xml"
+		  "https://protesilaos.com/politics.xml"
+		  "https://systemcrafters.net/rss/news.xml"
+		  "https://thelinuxcast.org/index.xml"))
+  (elfeed-search-filter "@6-months-ago"))
 
 ;; https://www.gnu.org/software/emms
 (use-package emms
@@ -99,10 +113,10 @@
 
 ;; https://github.com/roman/golden-ratio.el
 (use-package golden-ratio
-:config
-;; (golden-ratio-mode 1)
-:custom
-(golden-ratio-auto-scale t))
+  :config
+  (golden-ratio-mode 1)
+  :custom
+  (golden-ratio-auto-scale t))
 
 ;; https://github.com/magit/magit
 ;; https://magit.vc/manual
@@ -166,10 +180,10 @@
 ;; https://codeberg.org/joostkremers/visual-fill-column
 (use-package visual-fill-column
   :config
-  (defvar visual-fill-column-mode-whitelist
-    (mapcar (lambda (name)
-	      (intern (format "%s-mode" name)))
-	    '(ert-results
+  (defvar visual-fill-column-whitelist
+    (mapcar (lambda (name) (intern (format "%s-mode" name)))
+	    '(elfeed-show
+	      ert-results
 	      eww
 	      fundamental
 	      help
@@ -177,10 +191,11 @@
 	      lisp-interaction
 	      magit-status
 	      Man
+	      org
 	      special)))
   (add-hook 'after-change-major-mode-hook
 	    (lambda ()
-	      (when (memq major-mode visual-fill-column-mode-whitelist)
+	      (when (memq major-mode visual-fill-column-whitelist)
 		(visual-fill-column-mode 1))))
   :custom
   (visual-fill-column-center-text t))

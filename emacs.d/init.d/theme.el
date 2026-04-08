@@ -10,6 +10,11 @@
   (load-theme theme t)
   (message "Set theme to '%s'" theme))
 
+;; https://github.com/doomemacs/themes
+(use-package doom-themes
+  :custom
+  (doom-themes-enable-bold nil))
+
 ;; https://protesilaos.com/emacs/ef-themes
 (use-package ef-themes)
 
@@ -24,8 +29,8 @@
   :custom
   (calendar-latitude    39.530851)
   (calendar-longitude -104.870959)
-  (circadian-themes '(("07:30" . ef-rosa)
-		      ("18:00" . ef-cherie)))
+  (circadian-themes '(("07:30" . doom-xcode)
+		      ("18:00" . doom-solarized-dark)))
   :hook
   (emacs-startup . circadian-setup))
 

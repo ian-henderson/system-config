@@ -5,8 +5,8 @@
 ;; See the "Replicating Guix" section in the manual.
 
 (specifications->manifest
- (list "font-lato"
-       "my-hello"
+ (list "ccls"
+       "font-lato"
        "vlc"
        "quodlibet"
        "signal-desktop"

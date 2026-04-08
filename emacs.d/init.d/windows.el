@@ -20,10 +20,8 @@
    ("M-<prior>" . tab-bar-move-tab-backward)
    ("<f12>"     . tab-bar-select-tab)))
 
-;; (global-set-key-list
-;;  (mapcar (lambda (i)
-;; 	   `(,(format "M-%d" i) . (lambda () (interactive) (tab-bar-select-tab ,i))))
-;; 	 (number-sequence 1 9)))
+;; windows split logic
+(setq window-combination-resize t)
 
 (setq scroll-preserve-screen-position t)
 
@@ -47,7 +45,9 @@
 (setq-default display-line-numbers-grow-only t
 	      display-line-numbers-type 'relative
 	      display-line-numbers-width 4
-	      fill-column 85)
+	      fill-column 70) ; default value
+
+(add-hook 'prog-mode-hook (lambda () (setq-local fill-column 85)))
 
 (dolist (hook '(conf-mode-hook
 		conf-toml-mode-hook

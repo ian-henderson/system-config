@@ -10,7 +10,7 @@
 
 (defvar variable-font-faces '(variable-pitch))
 (defvar variable-font-family "DejaVu Sans")
-(defvar variable-font-height 120)
+(defvar variable-font-height 110)
 
 (defun font-size-reset ()
   "Set font sizes to default sizes."
