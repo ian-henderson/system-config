@@ -31,7 +31,7 @@
   (calendar-latitude    39.530851)
   (calendar-longitude -104.870959)
   (circadian-themes '(("07:30" . ef-light)
-		      ("18:00" . ef-dark)))
+                      ("18:00" . ef-dark)))
   :hook
   (emacs-startup . circadian-setup))
 

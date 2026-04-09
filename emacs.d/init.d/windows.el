@@ -43,18 +43,18 @@
 
 ;; line numbers and fill-column
 (setq-default display-line-numbers-grow-only t
-	      display-line-numbers-type 'relative
-	      display-line-numbers-width 4
-	      fill-column 70) ; default value
+              display-line-numbers-type 'relative
+              display-line-numbers-width 4
+              fill-column 70) ; default value
 
 (add-hook 'prog-mode-hook (lambda () (setq-local fill-column 85)))
 
 (dolist (hook '(conf-mode-hook
-		conf-toml-mode-hook
-		haskell-mode-hook
-		nxml-mode-hook
-		prog-mode-hook
-		yaml-mode-hook))
+                conf-toml-mode-hook
+                haskell-mode-hook
+                nxml-mode-hook
+                prog-mode-hook
+                yaml-mode-hook))
   (add-hook hook #'display-line-numbers-mode)
   (add-hook hook #'display-fill-column-indicator-mode))
 
@@ -65,7 +65,7 @@
 (defun remove-mode-line-modes-from-mode-line ()
   "Remove modes from modeline."
   (setq mode-line-format
-	(delq 'mode-line-modes mode-line-format)))
+        (delq 'mode-line-modes mode-line-format)))
 (add-hook 'after-init-hook #'remove-mode-line-modes-from-mode-line)
 
 ;; tab size for shell mode

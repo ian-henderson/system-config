@@ -23,18 +23,18 @@
  tab-bar-close-button-show nil
  tab-bar-new-button-show nil
  tab-bar-format '(tab-bar-format-history
-  	          tab-bar-format-tabs
-  	          tab-bar-separator
-		  tab-bar-format-add-tab
-  	          tab-bar-format-align-right
- 	          tab-bar-format-global)
+                  tab-bar-format-tabs
+                  tab-bar-separator
+                  tab-bar-format-add-tab
+                  tab-bar-format-align-right
+                  tab-bar-format-global)
  tab-bar-new-tab-choice "*dashboard*")
 
 (tab-bar-mode 1)
 
 (with-eval-after-load 'time
   (setq-default display-time-mail-function nil
-		display-time-mail-string ""))
+                display-time-mail-string ""))
 
 ;; maximize frame on startup
 (add-to-list 'default-frame-alist '(fullscreen . maximized))

@@ -17,16 +17,16 @@
   (interactive)
   (dolist (f monospace-font-faces)
     (set-face-attribute f
-			nil
-			:family monospace-font-family
-			:height monospace-font-height
-			:weight 'regular))
+                        nil
+                        :family monospace-font-family
+                        :height monospace-font-height
+                        :weight 'regular))
   (dolist (f variable-font-faces)
     (set-face-attribute f
-			nil
-			:family variable-font-family
-			:height variable-font-height
-			:weight 'regular))
+                        nil
+                        :family variable-font-family
+                        :height variable-font-height
+                        :weight 'regular))
   ;; redraws screen for visual-fill-column. Remove this line if
   ;; visual-fill-column is ever removed.
   (redraw-display))
@@ -63,8 +63,8 @@ fixed-pitch, variable-pitch)."
   (font-size-set (lambda (size) (- size 10))))
 
 (global-set-key-list '(("C-=" . font-size-increase)
-		       ("C--" . font-size-decrease)
-		       ("C-0" . font-size-reset)))
+                       ("C--" . font-size-decrease)
+                       ("C-0" . font-size-reset)))
 
 (provide 'fonts)
 

@@ -17,26 +17,26 @@
    rcirc-server-alist (list
                        (list "irc.libera.chat"
                              :channels '("##math"
-					 "##politics"
-					 "##statistics"
-					 ;; "#c"
-					 "#dbd"
-					 "#emacs"
-					 ;; "#finance"
-					 "#fsf"
-					 "#guix"
-					 "#libera"
-					 "#libreplanet"
-					 "#linux"
-					 ;; "#python"
-					 "#systemcrafters"
-					 )
+                                         "##politics"
+                                         "##statistics"
+                                         ;; "#c"
+                                         "#dbd"
+                                         "#emacs"
+                                         ;; "#finance"
+                                         "#fsf"
+                                         "#guix"
+                                         "#libera"
+                                         "#libreplanet"
+                                         "#linux"
+                                         ;; "#python"
+                                         "#systemcrafters"
+                                         )
                              :encryption 'tls
                              :nick username
                              :port 6697))))
 
 (add-hook 'rcirc-mode-hook
-	  (lambda () (set (make-local-variable 'scroll-conservatively) 8192)))
+          (lambda () (set (make-local-variable 'scroll-conservatively) 8192)))
 
 (defun rcirc-kill-buffers ()
   "Kill all rcirc buffers."
@@ -44,7 +44,7 @@
   (dolist (buffer (buffer-list))
     (with-current-buffer buffer
       (when (eq major-mode 'rcirc-mode)
-	(kill-buffer)))))
+        (kill-buffer)))))
 
 (provide 'rcirc)
 

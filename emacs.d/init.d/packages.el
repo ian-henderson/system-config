@@ -28,16 +28,16 @@
   :custom
   (dashboard-center-content t)
   (dashboard-items '((bookmarks . 5)
-		     (projects  . 5)
-		     (recents   . 5)))
+                     (projects  . 5)
+                     (recents   . 5)))
   (dashboard-item-shortcuts '((bookmarks . "m")
-			      (projects  . "p")
-			      (recents   . "r")))
+                              (projects  . "p")
+                              (recents   . "r")))
   (dashboard-navigation-cycle t)
   (dashboard-projects-backend 'projectile)
   (dashboard-startup-banner
    (expand-file-name "assets/banners/emacs-bloody.txt"
-    		     user-emacs-directory))
+                     user-emacs-directory))
   ;; (dashboard-startup-banner
   ;;  (directory-files
   ;;   (expand-file-name "assets/banners" user-emacs-directory)
@@ -51,14 +51,14 @@
 (use-package elfeed
   :custom
   (elfeed-feeds '("https://planet.guix.gnu.org/atom.xml"
-		  "https://protesilaos.com/books.xml"
-		  "https://protesilaos.com/codelog.xml"
-		  "https://protesilaos.com/commentary.xml"
-		  "https://protesilaos.com/news.xml"
-		  "https://protesilaos.com/prot-asks.xml"
-		  "https://protesilaos.com/politics.xml"
-		  "https://systemcrafters.net/rss/news.xml"
-		  "https://thelinuxcast.org/index.xml"))
+                  "https://protesilaos.com/books.xml"
+                  "https://protesilaos.com/codelog.xml"
+                  "https://protesilaos.com/commentary.xml"
+                  "https://protesilaos.com/news.xml"
+                  "https://protesilaos.com/prot-asks.xml"
+                  "https://protesilaos.com/politics.xml"
+                  "https://systemcrafters.net/rss/news.xml"
+                  "https://thelinuxcast.org/index.xml"))
   (elfeed-search-filter "@6-months-ago"))
 
 ;; https://www.gnu.org/software/emms
@@ -175,21 +175,21 @@
   :config
   (defvar visual-fill-column-whitelist
     (mapcar (lambda (name) (intern (format "%s-mode" name)))
-	    '(elfeed-show
-	      ert-results
-	      eww
-	      fundamental
-	      help
-	      Info
-	      lisp-interaction
-	      magit-status
-	      Man
-	      org
-	      special)))
+            '(elfeed-show
+              ert-results
+              eww
+              fundamental
+              help
+              Info
+              lisp-interaction
+              magit-status
+              Man
+              org
+              special)))
   (add-hook 'after-change-major-mode-hook
-	    (lambda ()
-	      (when (memq major-mode visual-fill-column-whitelist)
-		(visual-fill-column-mode 1))))
+            (lambda ()
+              (when (memq major-mode visual-fill-column-whitelist)
+                (visual-fill-column-mode 1))))
   :custom
   (visual-fill-column-center-text t))
 
@@ -197,7 +197,7 @@
   "Rename vterm buffer to *vterm<i>*, i being the next available number."
   (when (eq major-mode 'vterm-mode)
     (let ((base "*vterm<%d>*")
-	  (n 0))
+          (n 0))
       (while (get-buffer (format base n)) (setq n (1+ n)))
       (rename-buffer (format base n) t))))
 

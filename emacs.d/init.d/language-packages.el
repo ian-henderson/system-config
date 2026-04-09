@@ -18,7 +18,7 @@
   (conda-env-home-directory (expand-file-name "~/.conda"))
   :hook
   (find-file . (lambda () (when (bound-and-true-p conda-project-env-path)
-		       (conda-env-activate-for-buffer)))))
+                       (conda-env-activate-for-buffer)))))
 
 (define-minor-mode eglot-format-on-save-mode
   "Toggle Eglot automatic formatting before saving buffer."
@@ -131,9 +131,9 @@
 (use-package yaml-mode
   :init
   (dolist (str '("\\.yml\\'"
-		 "\\.yaml\\'"
-		 "\\.clang-format\\'"
-		 "\\clang-format\\'"))
+                 "\\.yaml\\'"
+                 "\\.clang-format\\'"
+                 "\\clang-format\\'"))
     (add-to-list 'auto-mode-alist (cons str 'yaml-mode))))
 
 (provide 'language-packages)

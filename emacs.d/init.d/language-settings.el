@@ -8,6 +8,6 @@
 
 ;; Java
 (add-hook 'java-mode-hook (lambda () (setq-local indent-tabs-mode nil
-					    tab-width 4)))
+                                            tab-width 4)))
 
 ;;; language-settings.el ends here

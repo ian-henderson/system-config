@@ -22,7 +22,7 @@
               (let ((manual (file-name-base Info-current-file))
                     (current-name (buffer-name)))
                 (unless (or (string-match-p (regexp-quote manual) current-name)
-			    (string-equal manual "dir"))
+                            (string-equal manual "dir"))
                   (rename-buffer (format "*info<%s>*" manual) t))))))
 
 (use-package eww
@@ -33,19 +33,19 @@
    (lambda ()
      (when (eq major-mode 'eww-mode)
        (when-let ((string (or (plist-get eww-data :title)
-			      (plist-get eww-data :url))))
-	 (if (s-blank-str-p string)
-	     (format "*eww*")
-	   (format "*eww<%s>*" string) )))))
+                              (plist-get eww-data :url))))
+         (if (s-blank-str-p string)
+             (format "*eww*")
+           (format "*eww<%s>*" string) )))))
   (eww-search-prefix "https://lite.duckduckgo.com/lite?q=")
   (shr-width nil))
 
 (savehist-mode t)
 
 (global-set-key-list '(("C-c u" . browse-url-at-point)
-		       ("C-c c" . clipboard-kill-ring-save)
-		       ("C-c v" . clipboard-yank)
-		       ("C-c x" . clipboard-kill-region)))
+                       ("C-c c" . clipboard-kill-ring-save)
+                       ("C-c v" . clipboard-yank)
+                       ("C-c x" . clipboard-kill-region)))
 
 ;; desktop save mode
 (desktop-save-mode 1)
@@ -56,6 +56,16 @@
 ;; Deletes trailing whitespace
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
+;; Replaces tabs with spaces
+(setq-default indent-tabs-mode nil)
+
+(defun untabify-buffer ()
+  "Untabify entire buffer."
+  (interactive)
+  (save-excursion
+    (untabify (point-min) (point-max)))
+  (message "Untabified buffer: %s" (buffer-name)))
+
 (set-frame-parameter nil 'alpha-background 100)
 
 ;; Backup config
@@ -63,7 +73,7 @@
   (if (not (file-directory-p backups))
       (mkdir backups))
   (setq backup-directory-alist `(("." . ,backups))
-	make-backup-files t)) ; t by default
+        make-backup-files t)) ; t by default
 
 ;; turns off prompt checking if active processes should be closed
 (setq confirm-kill-processes nil)
