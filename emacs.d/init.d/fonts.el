@@ -16,14 +16,12 @@
   "Set font sizes to default sizes."
   (interactive)
   (dolist (f monospace-font-faces)
-    (set-face-attribute f
-                        nil
+    (set-face-attribute f nil
                         :family monospace-font-family
                         :height monospace-font-height
                         :weight 'regular))
   (dolist (f variable-font-faces)
-    (set-face-attribute f
-                        nil
+    (set-face-attribute f nil
                         :family variable-font-family
                         :height variable-font-height
                         :weight 'regular))

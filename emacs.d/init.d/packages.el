@@ -58,7 +58,8 @@
                   "https://protesilaos.com/prot-asks.xml"
                   "https://protesilaos.com/politics.xml"
                   "https://systemcrafters.net/rss/news.xml"
-                  "https://thelinuxcast.org/index.xml"))
+                  "https://thelinuxcast.org/index.xml"
+                  "https://news.ycombinator.com/rss"))
   (elfeed-search-filter "@6-months-ago"))
 
 ;; https://www.gnu.org/software/emms
