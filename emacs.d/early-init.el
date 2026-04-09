@@ -2,15 +2,14 @@
 ;;; Commentary:
 ;;; Code:
 
-(prefer-coding-system 'utf-8)
-
 (display-battery-mode 1)
 (display-time-mode 1)
 (menu-bar-mode -1)
+(prefer-coding-system 'utf-8)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 
-;; https://lambdaland.org/posts/2022-07-20_adding_a_clock_to_emacs/
+;; https://lambdaland.org/posts/2022-07-20_adding_a_clock_to_emacs
 (setq-default
  coding-system-for-read 'utf-8
  coding-system-for-write 'utf-8
@@ -24,9 +23,10 @@
  tab-bar-close-button-show nil
  tab-bar-new-button-show nil
  tab-bar-format '(tab-bar-format-history
- 	          tab-bar-format-tabs
- 	          tab-bar-separator
- 	          tab-bar-format-align-right
+  	          tab-bar-format-tabs
+  	          tab-bar-separator
+		  tab-bar-format-add-tab
+  	          tab-bar-format-align-right
  	          tab-bar-format-global)
  tab-bar-new-tab-choice "*dashboard*")
 
@@ -35,11 +35,6 @@
 (with-eval-after-load 'time
   (setq-default display-time-mail-function nil
 		display-time-mail-string ""))
-
-;; removes client-side decorations in GNOME+Linux
-;; (when (and (eq system-type 'gnu/linux)
-;;            (string-match "GNOME" (getenv "XDG_CURRENT_DESKTOP") ))
-;;   (add-to-list 'default-frame-alist '(undecorated . t)))
 
 ;; maximize frame on startup
 (add-to-list 'default-frame-alist '(fullscreen . maximized))

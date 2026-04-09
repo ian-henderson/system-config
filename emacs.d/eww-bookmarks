@@ -1,11 +1,28 @@
 ;; Auto-generated file; don't edit -*- mode: lisp-data -*-
-((:url "https://planet.guix.gnu.org/" :title "Planet Guix" :time
+(
+ (:url
+  "http://danmidwood.com/content/2014/11/21/animated-paredit.html"
+  :title "The Animated Guide to Paredit" :time
+  "Mon Apr  6 09:14:41 2026")
+
+ (:url
+  "https://guix.gnu.org/manual/1.5.0/en/html_node/Desktop-Services.html"
+  :title "Desktop Services (GNU Guix Reference Manual)" :time
+  "Wed Apr  8 11:24:45 2026")
+
+ (:url
+  "https://guix.gnu.org/cookbook/en/html_node/Packaging-Tutorial.html"
+  :title "Packaging Tutorial (GNU Guix Cookbook)" :time
+  "Sun Apr  5 02:25:49 2026")
+
+ (:url "https://planet.guix.gnu.org/" :title "Planet Guix" :time
        "Tue Apr  7 18:41:37 2026")
- (:url "http://danmidwood.com/content/2014/11/21/animated-paredit.html" :title
-       "The Animated Guide to Paredit" :time "Mon Apr  6 09:14:41 2026")
- (:url "http://paredit.org/" :title "paredit — parenthetical editing in Emacs" :time
+
+ (:url "https://elpa.nongnu.org/nongnu/doc/geiser.html" :title
+       "Geiser User Manual" :time "Sun Apr  5 01:46:00 2026")
+
+  (:url "http://paredit.org/" :title
+       "paredit — parenthetical editing in Emacs" :time
        "Mon Apr  6 07:34:57 2026")
- (:url "https://guix.gnu.org/cookbook/en/html_node/Packaging-Tutorial.html" :title
-       "Packaging Tutorial (GNU Guix Cookbook)" :time "Sun Apr  5 02:25:49 2026")
- (:url "https://elpa.nongnu.org/nongnu/doc/geiser.html" :title "Geiser User Manual"
-       :time "Sun Apr  5 01:46:00 2026"))
+
+ )

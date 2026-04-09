@@ -23,7 +23,7 @@
                     (current-name (buffer-name)))
                 (unless (or (string-match-p (regexp-quote manual) current-name)
 			    (string-equal manual "dir"))
-                  (rename-buffer (format "*info: %s*" manual) t))))))
+                  (rename-buffer (format "*info<%s>*" manual) t))))))
 
 (use-package eww
   :ensure
@@ -36,7 +36,7 @@
 			      (plist-get eww-data :url))))
 	 (if (s-blank-str-p string)
 	     (format "*eww*")
-	   (format "*eww: %s*" string) )))))
+	   (format "*eww<%s>*" string) )))))
   (eww-search-prefix "https://lite.duckduckgo.com/lite?q=")
   (shr-width nil))
 

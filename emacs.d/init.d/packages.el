@@ -111,13 +111,6 @@
   :custom
   (git-gutter-fr:side 'right-fringe))
 
-;; https://github.com/roman/golden-ratio.el
-(use-package golden-ratio
-  :config
-  ;; (golden-ratio-mode 1)
-  :custom
-  (golden-ratio-auto-scale t))
-
 ;; https://github.com/magit/magit
 ;; https://magit.vc/manual
 (use-package magit)

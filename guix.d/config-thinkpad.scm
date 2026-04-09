@@ -22,6 +22,7 @@
 	     (gnu packages xdisorg)          ; wl-clipboard
 	     (gnu services base)
 	     (gnu services pm)
+	     (gnu services sound)          ; pulseaudio-service-type
              (guix)
              (nongnu packages editors)
              (nongnu packages linux)
@@ -76,16 +77,18 @@
 
  ;; Below is the list of system services.  To search for available
  ;; services, run 'guix system search KEYWORD' in a terminal.
+ ;; https://guix.gnu.org/manual/1.5.0/en/html_node/Desktop-Services.html
  (services
-  (append (list  (service gnome-desktop-service-type)
-		 (service power-profiles-daemon-service-type)
-		 (service bluetooth-service-type)
-		 (set-xorg-configuration
-		  (xorg-configuration (keyboard-layout keyboard-layout)))
-		 (simple-service 'add-extra-hosts
-				 hosts-service-type
-				 (list (host "10.0.0.2" "veles"))))
-          (modify-services
+  (append (list (set-xorg-configuration
+		 (xorg-configuration (keyboard-layout keyboard-layout)))
+		(service gnome-desktop-service-type)
+		(service power-profiles-daemon-service-type)
+		(service bluetooth-service-type
+			 (bluetooth-configuration (auto-enable? #t)))
+		(simple-service 'add-extra-hosts
+				hosts-service-type
+				(list (host "10.0.0.2" "veles"))))
+	  (modify-services
 	   %desktop-services
 	   (guix-service-type
 	    config =>
@@ -99,7 +102,9 @@
 		      %default-substitute-urls))
 	     (authorized-keys
 	      (append (list (local-file "/etc/guix/nonguix-key.pub"))
-		      %default-authorized-guix-keys)))))))
+		      %default-authorized-guix-keys))))
+	   (delete pulseaudio-service-type)
+	   (delete alsa-service-type))))
 
  (bootloader (bootloader-configuration
               (bootloader grub-efi-bootloader)

@@ -67,6 +67,9 @@ if command -v guix >/dev/null 2>&1; then
     create_symbolic_link \
 		"$SYSTEM_CONFIG_DIR/guix.d/channels.scm" \
 		"$HOME/.config/guix/channels.scm"
+    create_symbolic_link \
+		"$SYSTEM_CONFIG_DIR/guix.d/home.scm" \
+		"$HOME/.config/guix/home.scm"
 	sudo create_symbolic_link \
 		"$SYSTEM_CONFIG_DIR/guix.d/nonguix-key.pub" \
 		"/etc/guix/nonguix-key.pub"
