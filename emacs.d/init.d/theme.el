@@ -30,8 +30,8 @@
   :custom
   (calendar-latitude    39.530851)
   (calendar-longitude -104.870959)
-  (circadian-themes '(("07:30" . doom-earl-grey)
-                      ("18:00" . doom-challenger-deep)))
+  (circadian-themes '(("07:30" . doom-challenger-deep)
+                      ("18:00" . doom-badger)))
   :hook
   (emacs-startup . circadian-setup))
 

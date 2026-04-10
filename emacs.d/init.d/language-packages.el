@@ -115,9 +115,6 @@
   :mode
   "\\.rs\\'")
 
-;; https://slime.common-lisp.dev/doc/html
-;; (use-package slime)
-
 (use-package typescript-mode
   :hook
   (js-mode . typescript-mode))

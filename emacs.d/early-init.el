@@ -20,6 +20,7 @@
  read-buffer-completion-ignore-case t
  read-file-name-completion-ignore-case t
  ring-bell-function 'ignore
+ tab-bar-auto-width t
  tab-bar-close-button-show nil
  tab-bar-new-button-show nil
  tab-bar-format '(tab-bar-format-history

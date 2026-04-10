@@ -14,6 +14,9 @@
 [pull]
 	rebase = true
 
+[push]
+        autoSetupRemote = true
+
 [transfer]
 	fsckObjects = true
 

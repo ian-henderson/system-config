@@ -1,0 +1,40 @@
+* Guix Packaging Notes
+
+** Guix Project Setup
+
+1. Run `guix shell` to install build tools
+2. Run `./bootstrap`
+3. Run `./configure`
+4. Run `make` to build guix
+
+** Generate Package Hash
+
+Checkout correct branch/commit
+Generate hash: `guix hash -rx .`
+
+** Test Out Package
+
+./pre-inst-env guix build <package-name>
+./pre-inst-env guix install <package-name>
+
+** Style & Lint
+
+./pre-inst-env guix style <package-name>
+./pre-inst-env guix lint <package-name>
+
+** Git Remote Management
+
+# Fetch latest from both remotes
+git fetch --all
+
+# Switch to master and update it
+git checkout master
+git rebase upstream/master
+
+# Push to your fork
+git push origin master
+
+** Check out an AGit virtual branch
+
+git fetch upstream refs/pull/7768/head
+git checkout -b pr-7768 FETCH_HEAD
