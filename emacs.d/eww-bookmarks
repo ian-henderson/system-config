@@ -1,7 +1,16 @@
 ;; Auto-generated file; don't edit -*- mode: lisp-data -*-
-((:url "https://www.gnu.org/prep/standards/html_node/index.html"
-       :title "Top (GNU Coding Standards)" :time
-       "Thu Apr  9 17:53:14 2026")
+((:url
+  "https://systemcrafters.net/craft-your-system-with-guix/everyday-package-management/"
+  :title "Everyday Package Management with GNU Guix - System Crafters"
+  :time "Fri Apr 10 14:23:55 2026")
+ (:url "https://doc.guix.gnu.org/emacs-guix/latest/en/html_node/"
+       :title "Emacs-Guix Reference Manual" :time
+       "Fri Apr 10 14:09:56 2026")
+ (:url
+  "https://www.gnu.org/software/guile/manual/html_node/index.html"
+  :title "Guile Reference Manual" :time "Fri Apr 10 13:52:35 2026")
+ (:url "https://www.gnu.org/prep/standards/html_node/index.html"
+       :title "GNU Coding Standards" :time "Thu Apr  9 17:53:14 2026")
  (:url "https://guix.gnu.org/manual/devel/en/html_node/index.html"
        :title "GNU Guix Reference Manual" :time
        "Thu Apr  9 15:05:43 2026")

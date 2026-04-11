@@ -21,7 +21,9 @@
 ;; complete anything (auto complete)
 (use-package company
   :config
-  (global-company-mode 1))
+  (global-company-mode 1)
+  :diminish
+  company-mode)
 
 ;; https://github.com/emacs-dashboard/emacs-dashboard
 (use-package dashboard
@@ -35,9 +37,10 @@
                               (recents   . "r")))
   (dashboard-navigation-cycle t)
   (dashboard-projects-backend 'projectile)
-  (dashboard-startup-banner
-   (expand-file-name "assets/banners/emacs-bloody.txt"
-                     user-emacs-directory))
+  (dashboard-startup-banner 3)
+  ;; (dashboard-startup-banner
+  ;;  (expand-file-name "assets/banners/emacs-bloody.txt"
+  ;;                    user-emacs-directory))
   ;; (dashboard-startup-banner
   ;;  (directory-files
   ;;   (expand-file-name "assets/banners" user-emacs-directory)
@@ -46,6 +49,22 @@
   (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
   :init
   (dashboard-setup-startup-hook))
+
+;; https://github.com/myrjola/diminish.el
+;; https://github.com/jwiegley/use-package#diminishing-and-delighting-minor-modes
+(use-package diminish
+  :config
+  (mapc (lambda (mode)
+          (let ((sym (intern (format "%s-mode" mode))))
+            (when (fboundp sym)
+              (diminish sym)))
+          (diminish (intern (format "%s-mode" mode))))
+        '(auto-revert
+          eldoc
+          hs-minor
+          outline-minor
+          which-key
+          visual-line)))
 
 ;; https://github.com/skeeto/elfeed
 (use-package elfeed
@@ -87,7 +106,8 @@
   :after
   evil
   :config
-  (evil-collection-init))
+  (evil-collection-init)
+  :diminish evil-collection-unimpaired-mode)
 
 ;; https://github.com/emacs-evil/evil-surround
 (use-package evil-surround
@@ -110,7 +130,9 @@
   :config
   (global-git-gutter-mode 1)
   :custom
-  (git-gutter-fr:side 'right-fringe))
+  (git-gutter-fr:side 'right-fringe)
+  :diminish
+  git-gutter-mode)
 
 ;; https://github.com/magit/magit
 ;; https://magit.vc/manual
@@ -160,6 +182,8 @@
   (dolist (path '("system-config"))
     (projectile-add-known-project (expand-file-name path "~/Developer")))
   (projectile-cleanup-known-projects)
+  :diminish
+  projectile-mode
   :init
   (projectile-mode 1))
 

@@ -62,11 +62,11 @@
 (dolist (hook '(emacs-lisp-mode-hook scheme-mode-hook))
   (add-hook hook #'prettify-symbols-mode))
 
-(defun remove-mode-line-modes-from-mode-line ()
-  "Remove modes from modeline."
-  (setq mode-line-format
-        (delq 'mode-line-modes mode-line-format)))
-(add-hook 'after-init-hook #'remove-mode-line-modes-from-mode-line)
+;; (defun remove-mode-line-modes-from-mode-line ()
+;;   "Remove modes from modeline."
+;;   (setq mode-line-format
+;;         (delq 'mode-line-modes mode-line-format)))
+;; (add-hook 'after-init-hook #'remove-mode-line-modes-from-mode-line)
 
 ;; tab size for shell mode
 (add-hook 'sh-mode-hook (lambda () (setq-local tab-width 4)))

@@ -46,3 +46,6 @@ cargo_env="$HOME/.cargo/env"
 # nvm
 init_nvm="/usr/share/nvm/init-nvm.sh"
 [ -f "$init_nvm" ] && . "$init_nvm"
+
+# guix
+export PATH="$PATH:$HOME/.guix-profile/bin"

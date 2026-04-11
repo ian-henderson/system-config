@@ -4,6 +4,7 @@
 
 ;; https://github.com/Malabarba/aggressive-indent-mode
 (use-package aggressive-indent
+  :diminish aggressive-indent-mode
   :hook
   ((emacs-lisp-mode lisp-mode scheme-mode) . aggressive-indent-mode))
 
@@ -49,9 +50,12 @@
 
 ;; https://www.flycheck.org/en/latest/user/installation.html
 (use-package flycheck
-  :custom (flycheck-global-modes '(not c-mode c++-mode rust-mode))
   :config
-  (global-flycheck-mode 1))
+  (global-flycheck-mode 1)
+  :custom
+  (flycheck-global-modes '(not c-mode c++-mode rust-mode))
+  :diminish
+  flycheck-mode)
 
 ;; https://github.com/lassik/emacs-format-all-the-code
 ;; https://clang.llvm.org/docs/ClangFormatStyleOptions.html
@@ -61,6 +65,8 @@
   format-all-mode
   :custom
   (format-all-formatters '(("Shell" (shfmt "-ci"))))
+  :diminish
+  format-all-mode
   :hook
   (prog-mode . format-all-mode))
 
@@ -100,6 +106,7 @@
 ;; http://paredit.org
 ;; http://danmidwood.com
 (use-package paredit
+  :diminish paredit-mode
   :hook
   ((emacs-lisp-mode . enable-paredit-mode)
    (scheme-mode . enable-paredit-mode)

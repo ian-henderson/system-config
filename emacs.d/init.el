@@ -30,7 +30,9 @@
   :config
   (gcmh-mode 1)
   :custom
-  (garbage-collection-messages t))
+  (garbage-collection-messages t)
+  :diminish
+  gcmh-mode)
 
 (defun global-set-key-list (key-fn-mappings)
   "Set global keybindings.  KEY-FN-MAPPINGS: alist of key and function pairs."
