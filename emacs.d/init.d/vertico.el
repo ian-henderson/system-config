@@ -6,7 +6,8 @@
 (use-package vertico :init (vertico-mode t))
 
 ;; Persist history over Emacs restarts. Vertico sorts by history position.
-(use-package savehist :init (savehist-mode t))
+;; savehist not on guix, probably need to package it myself
+;; (use-package savehist :init (savehist-mode t))
 
 (use-package vertico-directory
   :after vertico

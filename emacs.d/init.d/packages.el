@@ -5,29 +5,17 @@
 (declare-function global-set-key-list "init.el" alist)
 
 ;; https://github.com/rranelli/auto-package-update.el
-(use-package auto-package-update
-  :custom
-  (auto-package-update-delete-old-versions t)
-  (auto-package-update-hide-results t)
-  :init
-  (auto-package-update-maybe))
+;; (use-package auto-package-update
+;;   :custom
+;;   (auto-package-update-delete-old-versions t)
+;;   (auto-package-update-hide-results t)
+;;   :init
+;;   (auto-package-update-maybe))
 
 ;; https://github.com/abo-abo/avy
 (use-package avy
   :bind
   ("C-c j" . 'avy-goto-char-2))
-
-;; https://github.com/Artawower/blamer.el
-(use-package blamer
-  :bind (("M-i" . blamer-show-commit-info)
-         ("C-c i" . blamer-show-posframe-commit-info))
-  :custom
-  (blamer-min-offset 70)
-  :custom-face
-  (blamer-face ((t (:inherit default))))
-  :config
-  (global-blamer-mode 1)
-  :defer 20)
 
 ;; https://company-mode.github.io
 ;; complete anything (auto complete)
@@ -130,15 +118,6 @@
 ;; https://magit.vc/manual
 (use-package magit)
 
-;; https://depp.brause.cc/nov.el/
-(use-package nov
-  :custom
-  (nov-text-width 70)
-  :hook
-  (nov-mode . visual-fill-column-mode)
-  :mode
-  ("\\.epub\\'" . nov-mode))
-
 ;; https://orgmode.org/
 (use-package org
   :custom
@@ -156,15 +135,6 @@
 (use-package org-bullets
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
-
-;; https://github.com/vedang/pdf-tools?tab=readme-ov-file
-(use-package pdf-tools
-  :config
-  (pdf-tools-install)
-  (setq-default pdf-view-display-size 'fit-width)
-  (setq pdf-view-resize-factor 1.1)
-  :magic
-  ("%PDF" . pdf-view-mode))
 
 ;; https://github.com/bbatsov/projectile
 ;; https://docs.projectile.mx/projectile/index.html

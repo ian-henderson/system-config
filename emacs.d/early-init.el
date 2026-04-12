@@ -17,6 +17,7 @@
  default-buffer-file-coding-system 'utf-8
  display-time-24hr-format t
  display-time-interval 1
+ package-enable-at-startup nil
  read-buffer-completion-ignore-case t
  read-file-name-completion-ignore-case t
  ring-bell-function 'ignore

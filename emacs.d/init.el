@@ -14,16 +14,24 @@
     (write-region (point-min) (point-max) custom-file)))
 (load custom-file)
 
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(package-initialize)
+(setq package-archives nil)  ; disables package.el
 
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
+;; TODO: Remove
+;; (require 'package)
+;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+;; (package-initialize)
+;; (unless (package-installed-p 'use-package)
+;;   (package-refresh-contents)
+;;   (package-install 'use-package))
+;; (require 'use-package)
+;; (setq-default use-package-always-ensure t)
 
-(require 'use-package)
-(setq-default use-package-always-ensure t)
+;; Guix Packages!
+(add-to-list 'load-path (expand-file-name "~/.guix-profile/share/emacs/site-lisp"))
+(require 'guix-autoloads nil t)
+;; utility libs
+(require 'f)
+(require 's)
 
 ;; https://gitlab.com/koral/gcmh
 (use-package gcmh

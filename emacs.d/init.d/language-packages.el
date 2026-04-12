@@ -8,19 +8,6 @@
   :hook
   ((emacs-lisp-mode lisp-mode scheme-mode) . aggressive-indent-mode))
 
-;; https://github.com/necaris/conda.el
-(use-package conda
-  :config
-  (conda-env-initialize-eshell)
-  (conda-env-initialize-interactive-shells)
-  (conda-env-autoactivate-mode t)
-  :custom
-  (conda-anaconda-home "/usr")
-  (conda-env-home-directory (expand-file-name "~/.conda"))
-  :hook
-  (find-file . (lambda () (when (bound-and-true-p conda-project-env-path)
-                       (conda-env-activate-for-buffer)))))
-
 (define-minor-mode eglot-format-on-save-mode
   "Toggle Eglot automatic formatting before saving buffer."
   :global
@@ -73,19 +60,6 @@
   format-all-mode
   :hook
   (prog-mode . format-all-mode))
-
-;; https://elpa.nongnu.org/nongnu/doc/geiser.html
-(use-package geiser
-  :custom
-  (geiser-activate-implementations '(guile))
-  (geiser-default-implementation 'guile)
-  (geiser-mode-start-repl-p t)
-  (geiser-repl-use-other-window nil))
-
-;; https://gitlab.com/emacs-geiser/guile
-(use-package geiser-guile
-  :config
-  (add-to-list 'geiser-guile-load-path (expand-file-name "~/Developer/guix")))
 
 ;; https://github.com/json-emacs/json-mode
 (use-package json-mode

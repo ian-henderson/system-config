@@ -78,6 +78,9 @@
 ;; turns off prompt checking if active processes should be closed
 (setq confirm-kill-processes nil)
 
+;; confirm when quitting emacs
+(setq confirm-kill-emacs 'yes-or-no-p)
+
 (provide 'utils)
 
 ;;; utils.el ends here
