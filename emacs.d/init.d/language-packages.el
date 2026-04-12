@@ -4,7 +4,6 @@
 
 ;; https://github.com/Malabarba/aggressive-indent-mode
 (use-package aggressive-indent
-  :diminish aggressive-indent-mode
   :hook
   ((emacs-lisp-mode lisp-mode scheme-mode) . aggressive-indent-mode))
 
@@ -28,8 +27,6 @@
      (c++-mode        . ("ccls"))
      (typescript-mode . ("typescript-language-server" "--stdio"))
      (rust-mode       . ("rust-analyzer"))))
-  :diminish
-  eglot-format-on-save-mode
   :hook
   (eglot-managed-mode . eglot-format-on-save-mode)
   (c-mode . eglot-ensure)
@@ -42,11 +39,7 @@
   :config
   (global-flycheck-mode 1)
   :custom
-  (flycheck-global-modes '(not c-mode c++-mode rust-mode))
-  :diminish
-  flycheck-mode
-  flymake-mode
-  global-flycheck-mode)
+  (flycheck-global-modes '(not c-mode c++-mode rust-mode)))
 
 ;; https://github.com/lassik/emacs-format-all-the-code
 ;; https://clang.llvm.org/docs/ClangFormatStyleOptions.html
@@ -56,10 +49,19 @@
   format-all-mode
   :custom
   (format-all-formatters '(("Shell" (shfmt "-ci"))))
-  :diminish
-  format-all-mode
   :hook
   (prog-mode . format-all-mode))
+
+;; https://geiser.nongnu.org
+(use-package geiser)
+
+;; https://gitlab.com/emacs-geiser/guile
+(use-package geiser-guile
+  :custom
+  (geiser-guile-load-path
+   (mapc (lambda (dir)
+           (expand-file-name (concat "~/Developer/" dir)))
+         '("guile" "guix"))))
 
 ;; https://github.com/json-emacs/json-mode
 (use-package json-mode
@@ -88,7 +90,6 @@
 ;; http://paredit.org
 ;; http://danmidwood.com
 (use-package paredit
-  :diminish paredit-mode
   :hook
   ((emacs-lisp-mode . enable-paredit-mode)
    (scheme-mode . enable-paredit-mode)

@@ -7,15 +7,14 @@
 ;; https://www.gnu.org/software/emacs/manual/html_node/erc/SASL.html
 ;; Other libera channels:
 ;; #c
+;; #gnome
 ;; #guile
-;; #linux
-;; ##math
 (use-package erc
   :bind
   ("C-c e" . erc-tls)
   :custom
   (erc-autojoin-channels-alist '((".*\\.libera.chat"
-                                  "#emacs" "#gnome" "#guix" "#linux")))
+                                  "#emacs" "#guix" "#linux" "##math")))
   (erc-hide-list '("JOIN" "NICK" "PART" "QUIT"))
   (erc-interactive-display 'buffer)
   (erc-max-buffer-size 10000)
@@ -26,7 +25,7 @@
                  fill
                  keep-place
                  menu
-                 nicks
+                 ;; nicks
                  notifications
                  ring
                  sasl
@@ -45,15 +44,28 @@
   (erc-sasl-user (getenv "LIBERA_USERNAME"))
   (erc-scrolltobottom-all t)
   (erc-server "irc.libera.chat")
+  (erc-track-position-in-mode-line t)
   (erc-track-shorten-aggressively nil)
+  (erc-track-shorten-function nil)
   (erc-track-showcount t)
   (erc-user-full-name (getenv "LIBERA_FULL_NAME"))
   :config
   (require 'erc-sasl)
+  (require 'erc-match)
+  (require 'erc-track)
   (erc-autojoin-mode 1)
   (erc-services-mode -1)  ; disables nickserv, using sasl instead
-  (erc-update-modules)
-  :ensure nil)
+  (erc-update-modules))
+
+;; Try removing this and using the nicks module once Emacs 30.3 lands.
+;; Remove "emacs-erc-hl-nicks" guix package if nicks works.
+(use-package erc-hl-nicks
+  :config
+  (erc-hl-nicks-enable)
+  :hook
+  (enable-theme-functions . (lambda (_theme)
+                              (when (bound-and-true-p erc-hl-nicks-mode)
+                                (erc-hl-nicks-refresh-colors)))))
 
 (provide 'erc)
 

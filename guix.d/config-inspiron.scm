@@ -9,12 +9,11 @@
 ;; Indicate which modules to import to access the variables
 ;; used in this configuration.
 (use-modules (gnu)
-	     (gnu packages admin)            ; btop
+             (gnu packages compression)      ; unzip
              (gnu packages curl)
              (gnu packages freedesktop)      ; power-profiles-daemon
              (gnu packages glib)
              (gnu packages gnome)
-             (gnu packages gnome-xyz)        ; gnome extensions
 	     (gnu packages ncurses)          ; clear (term function)
              (gnu packages ssh)              ; openssh
              (gnu packages version-control)  ; git
@@ -35,24 +34,17 @@
 (define %root-device "/dev/mapper/cryptroot")
 
 (define %my-packages
-  (list adwaita-icon-theme
-	bibata-cursor-theme
-	btop
-	curl
-	fastfetch
-	git
-	glib
-	gnome-shell-extension-just-perfection
-	gnome-shell-extension-night-theme-switcher
-	gnome-tweaks
-	gsettings-desktop-schemas
-	htop
-	ncurses
-	neovim
-	openssh
-	power-profiles-daemon
-	vscodium
-	wl-clipboard))
+  (list curl
+        git
+        glib
+        gsettings-desktop-schemas
+        htop
+        ncurses
+        neovim
+        openssh
+        power-profiles-daemon
+        unzip
+        wl-clipboard))
 
 (operating-system
   (kernel linux)

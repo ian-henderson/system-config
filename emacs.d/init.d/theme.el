@@ -8,6 +8,7 @@
    (list (intern (completing-read "Load theme: " (custom-available-themes)))))
   (mapc #'disable-theme custom-enabled-themes)
   (load-theme theme t)
+  (enable-theme theme)
   (message "Set theme to '%s'" theme))
 
 ;; https://github.com/doomemacs/themes
@@ -30,8 +31,8 @@
   :custom
   (calendar-latitude    39.530851)
   (calendar-longitude -104.870959)
-  (circadian-themes '(("07:30" . ef-day)
-                      ("18:00" . ef-night)))
+  (circadian-themes '((:sunrise . standard-dark-tinted)
+                      (:sunset  . standard-dark)))
   :hook
   (emacs-startup . circadian-setup))
 

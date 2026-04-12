@@ -5,11 +5,11 @@
 	cm = commit
 	co = checkout
 	d  = diff
-	p  = push
+        f  = fetch
 	s  = status
 
 [init]
-	defaultBranch = main
+	defaultBranch = master
 
 [pull]
 	rebase = true

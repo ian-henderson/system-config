@@ -2,9 +2,13 @@
 
 ** Bookmarks
 
-- [[https://guix.gnu.org/manual/1.5.0/en/html_node/Build-Systems.html][Guix Build Systems]]
-- [[https://guix.gnu.org/manual/1.5.0/en/html_node/Build-Phases.html][Guix Build Phases]]
 - [[https://www.gnu.org/software/guile/manual/html_node/index.html][Guile Manual]]
+- [[https://guix.gnu.org/manual/devel/en/html_node/index.html][Guix Manual]]
+
+** TODOs
+
+- [ ] sign up for guix team (probably just team-gnome?)
+- [ ] arc menu packaging
 
 ** Guix Project Setup
 
@@ -47,8 +51,13 @@ git checkout -b pr-7768 FETCH_HEAD
 
 ** Packages Created
 
-- font-open-sans
-- font-ubuntu-sans
-- font-ubuntu-sans-mono
-- gnome-shell-extension-caffeine
-- gnome-shell-extension-hot-edge
+- [[https://codeberg.org/guix/guix/pulls/7833][font-open-sans]]
+- [[https://codeberg.org/guix/guix/pulls/7836][font-ubuntu-sans/font-ubuntu-sans-mono]]
+- [[https://codeberg.org/guix/guix/pulls/7776][gnome-shell-extension-caffeine]]
+- [[https://codeberg.org/guix/guix/pulls/7792][gnome-shell-extension-hot-edge]]
+
+** Applications to Package
+
+- [[https://gitlab.com/arcmenu/ArcMenu][ArcMenu]]
+- [[https://github.com/maoschanz/emoji-selector-for-gnome][Emoji Selector]]
+- [[https://github.com/johnfactotum/foliate][Foliate]]

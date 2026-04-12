@@ -21,9 +21,7 @@
 ;; complete anything (auto complete)
 (use-package company
   :config
-  (global-company-mode 1)
-  :diminish
-  company-mode)
+  (global-company-mode 1))
 
 ;; https://github.com/emacs-dashboard/emacs-dashboard
 (use-package dashboard
@@ -49,22 +47,6 @@
   (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
   :init
   (dashboard-setup-startup-hook))
-
-;; https://github.com/myrjola/diminish.el
-;; https://github.com/jwiegley/use-package#diminishing-and-delighting-minor-modes
-(use-package diminish
-  :config
-  (mapc (lambda (mode)
-          (let ((sym (intern (format "%s-mode" mode))))
-            (when (fboundp sym)
-              (diminish sym))))
-        '(abbrev
-          auto-revert
-          eldoc
-          hs-minor
-          outline-minor
-          which-key
-          visual-line)))
 
 ;; https://github.com/skeeto/elfeed
 (use-package elfeed
@@ -110,13 +92,16 @@
   :config
   (global-git-gutter-mode 1)
   :custom
-  (git-gutter-fr:side 'right-fringe)
-  :diminish
-  git-gutter-mode)
+  (git-gutter-fr:side 'right-fringe))
 
 ;; https://github.com/magit/magit
 ;; https://magit.vc/manual
 (use-package magit)
+
+;; https://github.com/tarsius/minions
+(use-package minions
+  :config
+  (minions-mode 1))
 
 ;; https://orgmode.org/
 (use-package org
@@ -124,10 +109,8 @@
   (org-adapt-indentation nil)
   (org-hide-leading-stars t)
   (org-startup-indented t)
-  :diminish
-  org-indent-mode
   :ensure
-  nil ; built-in
+  nil
   :hook
   (org-mode . org-indent-mode))
 
@@ -146,8 +129,6 @@
   (dolist (path '("guix" "nonguix" "system-config"))
     (projectile-add-known-project (expand-file-name path "~/Developer")))
   (projectile-cleanup-known-projects)
-  :diminish
-  projectile-mode
   :init
   (projectile-mode 1))
 

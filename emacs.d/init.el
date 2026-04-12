@@ -16,7 +16,7 @@
 
 (setq package-archives nil)  ; disables package.el
 
-;; TODO: Remove
+;; TODO: Remove when ready
 ;; (require 'package)
 ;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 ;; (package-initialize)
@@ -38,9 +38,7 @@
   :config
   (gcmh-mode 1)
   :custom
-  (garbage-collection-messages t)
-  :diminish
-  gcmh-mode)
+  (garbage-collection-messages t))
 
 (defun global-set-key-list (key-fn-mappings)
   "Set global keybindings.  KEY-FN-MAPPINGS: alist of key and function pairs."
