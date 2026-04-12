@@ -12,7 +12,7 @@
 ;; ##math
 (use-package erc
   :bind
-  ("C-c i" . erc-tls)
+  ("C-c e" . erc-tls)
   :custom
   (erc-autojoin-channels-alist '((".*\\.libera.chat"
                                   "#emacs" "#gnome" "#guix" "#linux")))
@@ -31,7 +31,6 @@
                  ring
                  sasl
                  scrolltobottom
-                 services
                  sound
                  spelling
                  stamp
@@ -46,7 +45,7 @@
   (erc-sasl-user (getenv "LIBERA_USERNAME"))
   (erc-scrolltobottom-all t)
   (erc-server "irc.libera.chat")
-  (erc-track-shorten-aggressively 'max)
+  (erc-track-shorten-aggressively nil)
   (erc-track-showcount t)
   (erc-user-full-name (getenv "LIBERA_FULL_NAME"))
   :config

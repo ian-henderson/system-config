@@ -41,6 +41,8 @@
      (c++-mode        . ("ccls"))
      (typescript-mode . ("typescript-language-server" "--stdio"))
      (rust-mode       . ("rust-analyzer"))))
+  :diminish
+  eglot-format-on-save-mode
   :hook
   (eglot-managed-mode . eglot-format-on-save-mode)
   (c-mode . eglot-ensure)
@@ -55,7 +57,9 @@
   :custom
   (flycheck-global-modes '(not c-mode c++-mode rust-mode))
   :diminish
-  flycheck-mode)
+  flycheck-mode
+  flymake-mode
+  global-flycheck-mode)
 
 ;; https://github.com/lassik/emacs-format-all-the-code
 ;; https://clang.llvm.org/docs/ClangFormatStyleOptions.html
@@ -71,13 +75,17 @@
   (prog-mode . format-all-mode))
 
 ;; https://elpa.nongnu.org/nongnu/doc/geiser.html
-(use-package geiser)
-(use-package geiser-guile
+(use-package geiser
   :custom
-  (geiser-default-implementation 'guile)
   (geiser-activate-implementations '(guile))
+  (geiser-default-implementation 'guile)
   (geiser-mode-start-repl-p t)
   (geiser-repl-use-other-window nil))
+
+;; https://gitlab.com/emacs-geiser/guile
+(use-package geiser-guile
+  :config
+  (add-to-list 'geiser-guile-load-path (expand-file-name "~/Developer/guix")))
 
 ;; https://github.com/json-emacs/json-mode
 (use-package json-mode

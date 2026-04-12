@@ -1,5 +1,9 @@
 ;; Auto-generated file; don't edit -*- mode: lisp-data -*-
 ((:url
+  "https://guix.gnu.org/manual/1.5.0/en/html_node/Build-Systems.html"
+  :title "Build Systems (GNU Guix Reference Manual)" :time
+  "Sat Apr 11 08:44:33 2026")
+ (:url
   "https://systemcrafters.net/craft-your-system-with-guix/everyday-package-management/"
   :title "Everyday Package Management with GNU Guix - System Crafters"
   :time "Fri Apr 10 14:23:55 2026")

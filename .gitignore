@@ -11,6 +11,7 @@ emacs.d/.emacs.desktop
 emacs.d/.emacs.desktop.lock
 emacs.d/auto-save-list
 emacs.d/eglot-java-eclipse-jdt-cache
+emacs.d/emms
 emacs.d/history
 emacs.d/ielm-history.eld
 emacs.d/mastodon.plstore

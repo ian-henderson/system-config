@@ -17,6 +17,18 @@
   :bind
   ("C-c j" . 'avy-goto-char-2))
 
+;; https://github.com/Artawower/blamer.el
+(use-package blamer
+  :bind (("M-i" . blamer-show-commit-info)
+         ("C-c i" . blamer-show-posframe-commit-info))
+  :custom
+  (blamer-min-offset 70)
+  :custom-face
+  (blamer-face ((t (:inherit default))))
+  :config
+  (global-blamer-mode 1)
+  :defer 20)
+
 ;; https://company-mode.github.io
 ;; complete anything (auto complete)
 (use-package company
@@ -37,10 +49,10 @@
                               (recents   . "r")))
   (dashboard-navigation-cycle t)
   (dashboard-projects-backend 'projectile)
-  (dashboard-startup-banner 3)
-  ;; (dashboard-startup-banner
-  ;;  (expand-file-name "assets/banners/emacs-bloody.txt"
-  ;;                    user-emacs-directory))
+  ;; (dashboard-startup-banner 3)
+  (dashboard-startup-banner
+   (expand-file-name "assets/banners/emacs-bloody.txt"
+                     user-emacs-directory))
   ;; (dashboard-startup-banner
   ;;  (directory-files
   ;;   (expand-file-name "assets/banners" user-emacs-directory)
@@ -57,9 +69,9 @@
   (mapc (lambda (mode)
           (let ((sym (intern (format "%s-mode" mode))))
             (when (fboundp sym)
-              (diminish sym)))
-          (diminish (intern (format "%s-mode" mode))))
-        '(auto-revert
+              (diminish sym))))
+        '(abbrev
+          auto-revert
           eldoc
           hs-minor
           outline-minor
@@ -91,31 +103,6 @@
   :custom
   (emms-player-list '(emms-player-vlc)))
 
-;; https://evil.readthedocs.io/en/latest/index.html
-;; https://github.com/emacs-evil/evil
-(use-package evil
-  :bind
-  ("C-c SPC" . evil-mode)
-  :config
-  ;; (evil-mode 1)
-  :custom
-  (evil-want-keybinding nil))
-
-;; https://github.com/emacs-evil/evil-collection
-(use-package evil-collection
-  :after
-  evil
-  :config
-  (evil-collection-init)
-  :diminish evil-collection-unimpaired-mode)
-
-;; https://github.com/emacs-evil/evil-surround
-(use-package evil-surround
-  :after
-  evil
-  :config
-  (global-evil-surround-mode 1))
-
 ;; https://github.com/purcell/exec-path-from-shell
 (use-package exec-path-from-shell
   :config
@@ -124,6 +111,11 @@
    '("LIBERA_USERNAME" "LIBERA_PASSWORD" "LIBERA_FULL_NAME" "MANPATH"))
   :custom
   (shell-file-name (executable-find "bash")))
+
+;; https://codeberg.org/guix/emacs-guix
+(use-package guix
+  :bind
+  ("C-c g" . guix))
 
 ;; https://github.com/emacsorphanage/git-gutter-fringe
 (use-package git-gutter-fringe
@@ -153,6 +145,8 @@
   (org-adapt-indentation nil)
   (org-hide-leading-stars t)
   (org-startup-indented t)
+  :diminish
+  org-indent-mode
   :ensure
   nil ; built-in
   :hook
@@ -179,7 +173,7 @@
 (use-package projectile
   :config
   (define-key projectile-mode-map (kbd "C-c p") #'projectile-command-map)
-  (dolist (path '("system-config"))
+  (dolist (path '("guix" "nonguix" "system-config"))
     (projectile-add-known-project (expand-file-name path "~/Developer")))
   (projectile-cleanup-known-projects)
   :diminish
@@ -228,8 +222,6 @@
 
 ;; https://github.com/akermu/emacs-libvterm
 (use-package vterm
-  :after
-  evil
   :bind
   ("C-c t" . vterm)
   :config
@@ -240,7 +232,6 @@
   :custom
   (vterm-shell (executable-find "bash"))
   :hook
-  (vterm-mode . evil-emacs-state)
   (vterm-mode . rename-vterm-buffer))
 
 (provide 'packages)
